@@ -849,6 +849,26 @@ COPY allocation_allocation (id, employee, department, area, date_joined, is_acti
 76	1400306609	11	5	2016-01-27	t	67
 77	1400306609	11	5	2016-01-27	t	69
 78	1400306609	11	5	2016-01-27	t	68
+79	1400426753	4	2	2016-02-23	t	70
+80	1400426753	4	2	2016-02-23	t	71
+81	1400426753	4	2	2016-02-23	t	73
+82	1400426753	4	2	2016-02-23	t	72
+83	1400690143	4	2	2016-02-23	t	74
+84	1400690143	4	2	2016-02-23	t	75
+85	1400690143	4	2	2016-02-23	t	76
+86	1400690143	4	2	2016-02-23	t	77
+87	1400426753	4	2	2016-02-23	t	78
+88	1400426753	4	2	2016-02-23	t	79
+89	1400426753	4	2	2016-02-23	t	81
+90	1400426753	4	2	2016-02-23	t	80
+91	1803382710	4	4	2016-02-26	t	82
+92	1400371710	4	2	2016-02-26	t	83
+93	1400371710	4	2	2016-02-26	t	59
+94	1400371710	4	2	2016-02-26	t	84
+95	1400616080	11	3	2016-02-29	t	85
+96	1400616080	11	3	2016-02-29	t	86
+97	1400616080	11	3	2016-02-29	t	88
+98	1400616080	11	3	2016-02-29	t	87
 \.
 
 
@@ -856,7 +876,7 @@ COPY allocation_allocation (id, employee, department, area, date_joined, is_acti
 -- Name: allocation_allocation_id_seq; Type: SEQUENCE SET; Schema: public; Owner: coninf
 --
 
-SELECT pg_catalog.setval('allocation_allocation_id_seq', 78, true);
+SELECT pg_catalog.setval('allocation_allocation_id_seq', 98, true);
 
 
 --
@@ -1091,74 +1111,93 @@ COPY django_session (session_key, session_data, expire_date) FROM stdin;
 
 COPY equipment_device (id, code, serial, part, state, invoice, date_purchase, date_warranty, specifications, model_id, provider_id) FROM stdin;
 22	1266	3CQ5024KGT		1	7616	2015-08-17	2018-08-17	{}	3	2
-3	1274T	BDMHEOCHH7WAFI		1	7616	2015-08-17	\N	{}	4	2
-4	1274M	FCMHHOAHD8KOB8		1	7616	2015-08-17	\N	{}	5	2
-23	1277T	BDMHE0CHH7WAWH		1	7616	2015-08-17	\N	{}	4	2
-5	1274R	2432APB25762404145		1	7616	2015-08-17	2017-08-17	{}	6	2
-24	1277M	FCMHHOAHD8KOBA		1	7616	2015-08-17	\N	{}	5	2
+23	1277-03	BDMHE0CHH7WAWH		1	7616	2015-08-17	\N	{}	4	2
+3	1274-03	BDMHEOCHH7WAFI		1	7616	2015-08-17	\N	{}	4	2
+8	1273-03	BDMHE0CHH7WAWI		1	7616	2015-08-17	\N	{}	4	2
+15	1275-05	2432APBL5762404141		1	7616	2015-08-17	2017-08-17	{}	6	2
+29	1278-04	X75270801846		1	7616	2015-08-17	\N	{}	5	2
 7	1269	3CQ5024KGL		1	7616	2015-08-17	2018-08-17	{}	3	2
-8	1273T	BDMHE0CHH7WAWI		1	7616	2015-08-17	\N	{}	4	2
-9	1273M	FCMHHOAHD8KO86		1	7616	2015-08-17	\N	{}	5	2
-10	1273R	2432APBL5762404146		1	7616	2015-08-17	2017-08-17	{}	6	2
-6	1273	2UA5231Y2X		1	7616	2015-08-17	2018-08-17	{"Usuario": "USER4", "Ip": "172.16.10.161", "Ram": "8GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1TB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "XEON 3.4 Ghz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL"}	2	2
+33	1272-03	BDMHE0CHH7WAON		1	7616	2015-08-17	\N	{}	4	2
+48	980-04	FCGLH0DN33U387	600553-002	1		\N	\N	{}	19	\N
+25	1277-05	2432APBL5762404147		1	7616	2015-08-17	2017-08-17	{}	6	2
+36	785	MXL1491FKR		1		\N	\N	{"Usuario": "mpalacios", "Ip": "172.16.8.214", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "32 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL CORE I7 2600 3.40Ghz", "Sistema Operativo": "UBUNTU", "Acceso Remoto": "SI"}	7	\N
 2	1267	3CQ5024KGB		1	7616	2015-08-17	2018-08-17	{}	3	2
-39	785M	FATSQ0EDR1BOBT	417441-002	1		\N	\N	{}	11	\N
-31	1272	2UA5231Y30		1	7616	2015-08-17	2018-08-17	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "FRUBIO", "Ip": "172.16.9.15", "Ram": "8GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1 TB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "XEON 3.4 Ghz", "Bits": "64 BITS"}	2	2
+59	945	VNB3K13607		1		\N	\N	{"Ip": "172.16.8.50"}	22	\N
+26	1278	2UA5231Y2F		1	7616	2015-08-17	2018-08-17	{"Usuario": "SMONTALUISA", "Ip": "172.16.10.142", "Ram": "8 GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1TB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "XEON  3.4 Ghz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "NO"}	2	2
 32	1264	3CQ5024KGD		1	7616	2015-08-17	2018-08-17	{}	3	2
-33	1272T	BDMHE0CHH7WAON		1	7616	2015-08-17	\N	{}	4	2
-34	1272M	FCMHHOAHD8KOB5		1	7616	2015-08-17	\N	{}	5	2
-35	1272R	2432APBC5762404143		1	7616	2015-08-17	2017-08-17	{}	6	2
-26	1278	2UA5231Y2F		1	7616	2015-08-17	2018-08-17	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "SMONTALUISA", "Ip": "172.16.10.142", "Ram": "8 GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1TB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "XEON  3.4 Ghz", "Bits": "64 BITS"}	2	2
+18	1276-03	BDMHEOCHH7WAFG		1	7616	2015-08-17	\N	{}	4	2
+9	1273-04	FCMHHOAHD8KO86		1	7616	2015-08-17	\N	{}	5	2
+20	1276-05	2432APBL5762404144		1	7616	2015-08-17	2017-08-17	{}	6	2
+21	1277	2UA5231Y2R		1	7616	2015-08-17	2018-08-17	{"Usuario": "VLOPEZ", "Ip": "172.16.9.32", "Ram": "8GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1 TB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "XEON 3.4 Ghz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "NO"}	2	2
 27	1265	3CQ5024KFZ		1	7616	2015-08-17	2018-08-17	{}	3	2
-28	1278T	BDMHEOC5Y8K05B		1	7616	2015-08-17	\N	{}	4	2
-29	1278M	X75270801846		1	7616	2015-08-17	\N	{}	5	2
-30	1278R	2432APBL5762404148		1	7616	2015-08-17	2017-08-17	{}	6	2
-21	1277	2UA5231Y2R		1	7616	2015-08-17	2018-08-17	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "VLOPEZ", "Ip": "172.16.9.32", "Ram": "8GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1 TB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "XEON 3.4 Ghz", "Bits": "64 BITS"}	2	2
-25	1277R	2432APBL5762404147		1	7616	2015-08-17	2017-08-17	{}	6	2
-16	1276	2UA5231Y34		1	7616	2015-08-17	2018-08-17	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "MBARAHONA", "Ip": "172.16.9.37", "Ram": "8GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1TB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "XEON 3.4 Ghz", "Bits": "64 BITS"}	2	2
+38	785-03	B77670AVBQF2LX	352750-161	1		\N	\N	{}	9	\N
+19	1276-04	FCMHHOAHD8KOB9		1	7616	2015-08-17	\N	{}	5	2
+14	1275-04	FCMHHOAHD8KOB1		1	7616	2015-08-17	\N	{}	5	2
+16	1276	2UA5231Y34		1	7616	2015-08-17	2018-08-17	{"Usuario": "MBARAHONA", "Ip": "172.16.9.37", "Ram": "8GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1TB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "XEON 3.4 Ghz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "NO"}	2	2
+35	1272-05	2432APBC5762404143		1	7616	2015-08-17	2017-08-17	{}	6	2
+6	1273	2UA5231Y2X		1	7616	2015-08-17	2018-08-17	{"Usuario": "USER4", "Ip": "172.16.10.161", "Ram": "8GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1TB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "XEON 3.4 Ghz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "NO"}	2	2
 17	1268	3CQ5024K8G		1	7616	2015-08-17	2018-08-17	{}	3	2
-18	1276T	BDMHEOCHH7WAFG		1	7616	2015-08-17	\N	{}	4	2
-19	1276M	FCMHHOAHD8KOB9		1	7616	2015-08-17	\N	{}	5	2
-20	1276R	2432APBL5762404144		1	7616	2015-08-17	2017-08-17	{}	6	2
+13	1275-03	BDMHEOCHH7WAOO		1	7616	2015-08-17	\N	{}	4	2
+34	1272-04	FCMHHOAHD8KOB5		1	7616	2015-08-17	\N	{}	5	2
+5	1274-05	2432APB25762404145		1	7616	2015-08-17	2017-08-17	{}	6	2
+31	1272	2UA5231Y30		1	7616	2015-08-17	2018-08-17	{"Usuario": "FRUBIO", "Ip": "172.16.9.15", "Ram": "8GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1 TB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "XEON 3.4 Ghz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "NO"}	2	2
 12	1271	3CQ5024KGX		1	7616	2015-08-17	2018-08-17	{}	3	2
-13	1275T	BDMHEOCHH7WAOO		1	7616	2015-08-17	\N	{}	4	2
-14	1275M	FCMHHOAHD8KOB1		1	7616	2015-08-17	\N	{}	5	2
-15	1275R	2432APBL5762404141		1	7616	2015-08-17	2017-08-17	{}	6	2
+28	1278-03	BDMHEOC5Y8K05B		1	7616	2015-08-17	\N	{}	4	2
+24	1277-04	FCMHHOAHD8KOBA		1	7616	2015-08-17	\N	{}	5	2
+30	1278-05	2432APBL5762404148		1	7616	2015-08-17	2017-08-17	{}	6	2
 1	1274	2UA5231435		1	7616	2015-08-17	2018-08-17	{"Usuario": "USER7", "Ip": "172.16.11.88", "Ram": "8 GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1 TB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "XEON (R) 3.4 Ghz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "NO"}	2	2
 40	842	SMAVR1006		1		\N	\N	{}	10	\N
 42	710	102UXUN58782		1		\N	\N	{}	13	\N
 46	981	GCM3020BR3		1		\N	\N	{}	18	\N
 47	251	BDAEV0QVB3Q6B3	434820-167	1		\N	\N	{}	9	\N
-48	980M	FCGLH0DN33U387	600553-002	1		\N	\N	{}	19	\N
+39	785-04	FATSQ0EDR1BOBT	417441-002	1		\N	\N	{}	11	\N
 49	225	225		1		\N	\N	{}	20	\N
-50	980	MXL3021QP9		1		\N	\N	{"Sistema Operativo": "UBUNTU", "Usuario": "tculcay", "Acceso Remoto": "SI", "Ip": "172.16.8.219", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500 GB", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7 3770 3.40 GHz", "Bits": "64 BITS"}	17	\N
-36	785	MXL1491FKR		1		\N	\N	{"Usuario": "mpalacios", "Acceso Remoto": "SI", "Ip": "172.16.8.214", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500 GB", "Bits": "32 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL CORE I7 2600 3.40Ghz", "Sistema Operativo": "UBUNTU"}	7	\N
+55	914	MXL2470937		1		\N	\N	{"Usuario": "walarcon", "Ip": "172.16.8.216", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7 3770 3.40 GHz", "Sistema Operativo": "UBUNTU", "Acceso Remoto": "NO"}	17	\N
+50	980	MXL3021QP9		1		\N	\N	{"Usuario": "tculcay", "Ip": "172.16.8.219", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7 3770 3.40 GHz", "Sistema Operativo": "UBUNTU", "Acceso Remoto": "SI"}	17	\N
 37	797	CNC119R7CN	625366-001	1		\N	\N	{}	8	\N
-38	785T	B77670AVBQF2LX	352750-161	1		\N	\N	{}	9	\N
-43	1169T	ZCE1A1600999		1		\N	\N	{}	14	\N
-44	1169M	X75270801857		1		\N	\N	{}	15	\N
+52	914-03	BAUDU0OVB3CD26		1		\N	\N	{}	9	\N
+10	1273-05	2432APBL5762404146		1	7616	2015-08-17	2017-08-17	{}	6	2
+53	914-04	FCGLH0DHD3KVTO		1		\N	\N	{}	21	\N
 45	693	09061604003028		1		\N	\N	{}	16	\N
 41	1169			1		\N	\N	{"Usuario": "hp", "Acceso Remoto": "SI", "Ip": "172.16.8.212", "Ram": "2GB", "Unidad Optica": "DVD Writer", "Disco": "350GB", "Bits": "32 BITS", "Unidad Lectora": "CARD READER", "Procesador": "DUAL CORE E2220 2.40 GHz", "Sistema Operativo": "UBUNTU"}	12	\N
 51	913	6CM2300Q5H	675802-001	1		\N	\N	{}	18	\N
-52	914T	BAUDU0OVB3CD26		1		\N	\N	{}	9	\N
-53	914M	FCGLH0DHD3KVTO		1		\N	\N	{}	21	\N
+43	1169-03	ZCE1A1600999		1		\N	\N	{}	14	\N
+4	1274-04	FCMHHOAHD8KOB8		1	7616	2015-08-17	\N	{}	5	2
 54	142	L245APBL5710712001		1		\N	\N	{}	6	\N
-55	914	MXL2470937		1		\N	\N	{"Sistema Operativo": "UBUNTU", "Usuario": "walarcon", "Acceso Remoto": "NO", "Ip": "172.16.8.216", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7 3770 3.40 GHz", "Bits": "32 BITS"}	17	\N
+44	1169-04	X75270801857		1		\N	\N	{}	15	\N
 56	950	VNB3D12656		1		\N	\N	{"Ip": "172.16.12.130"}	22	\N
 57	582	CNBSD01066		1		\N	\N	{"Ip": "172.16.11.130"}	23	\N
 58	498	CNHC81107X		1		\N	\N	{"Ip": "PLUG AND PLAY"}	24	\N
-59	945	VNB3K13607		1		\N	\N	{}	22	\N
 61	696	 CNB9068816		1		\N	\N	{"Ip": "172.16.11.4"}	25	\N
 62	657	YC5RH9LZ908313D	5670972	1		\N	\N	{}	28	\N
 60	345	MXD42806GS	DV670A#ABM	1		\N	\N	{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "fmontenegro", "Acceso Remoto": "NO", "Ip": "172.16.11.20", "Ram": "512MB DDR", "Unidad Optica": "CD Writer", "Disco": "40GB", "Unidad Lectora": "FLOPPY", "Procesador": "PENTIUM 4 2.80GHz", "Bits": "32 BITS"}	27	\N
-63	345M	FATSQ0EDR1BOWU	417441-002	1		\N	\N	{}	11	\N
-64	345T	C0405223396		1		\N	\N	{}	29	\N
+63	345-04	FATSQ0EDR1BOWU	417441-002	1		\N	\N	{}	11	\N
 66	789	CNC119RH5D	XJ311A	1		\N	\N	{}	8	\N
-67	777M	FB7330AN3W80OEY	417966-001	1		\N	\N	{}	11	\N
 69	391	9428BY0LS436401363		1		\N	\N	{}	30	\N
-68	777T	BAUDU0OVB1J77M	537745-161	1		\N	\N	{}	9	\N
+82	804	5CG3323S9K		1		2012-03-07	2013-03-07	{"Usuario": "user", "Ip": "172.16.9.210", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "64 BITS", "Unidad Lectora": "CARD READER", "Procesador": "INTEL I5-3230M 2.66GHz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "NO"}	36	\N
 11	1275	2UA5231932		1	7616	2015-08-17	2018-08-17	{"Usuario": "AREYES", "Ip": "172.16.11.89", "Ram": "8 GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1 TB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "XEON 3.4Ghz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "NO"}	2	2
-65	777	MXL1491FQ5	XL504AV#244	1	1	2016-02-23	2016-02-24	{"Usuario": "fmontenegro", "Ip": "172.16.11.35", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "32 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7 2600 3.40 GHz", "Sistema Operativo": "UBUNTU", "Acceso Remoto": "SI"}	7	\N
+65	777	MXL1491FQ5	XL504AV#244	1		\N	\N	{"Usuario": "fmontenegro", "Ip": "172.16.11.35", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "32 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7 2600 3.40 GHz", "Sistema Operativo": "UBUNTU", "Acceso Remoto": "SI"}	7	\N
+83	1316	RVXZ023917		1	7614	2015-12-31	2017-12-31	{}	37	3
+71	449	CNG71601KB	396709-02	1		\N	\N	{}	32	\N
+74	956	MXL304045R	QV983AV#006	1		\N	\N	{"Sistema Operativo": "UBUNTU", "Usuario": "dsiavichay", "Acceso Remoto": "NO", "Ip": "172.16.8.68", "Ram": "4GB RAM", "Unidad Optica": "DVD Writer", "Disco": "1.5TB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-3770 3.40GHz", "Bits": "64 BITS"}	17	\N
+75	509	AQ22HVMQ203147P		1		\N	\N	{}	33	\N
+84	1284	5026129424K34	41G0050	1	7356	2015-11-04	2018-11-04	{"Ip": "172.16.8.51"}	38	3
+79	1302-02	COMARIFX832011154713-02		1	2590	2015-11-16	2018-11-16	{}	34	1
+81	1302-04	FB7330AN3UM09LU		1		\N	\N	{}	11	\N
+80	1302-03	COMARIFX832011154713-03		1	2590	2015-11-16	2018-11-16	{}	35	1
+78	1302	COMARIFX832011154713		1	2590	2015-11-16	2018-11-16	{"Usuario": "hp", "Ip": "172.16.8.70", "Ram": "4 GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "AMDFX 8320", "Sistema Operativo": "UBUNTU", "Acceso Remoto": "NO"}	1	1
+70	1200	MXL2361L9C	QV983AV#006	1		\N	\N	{"Usuario": "administrador", "Ip": "172.16.8.72", "Ram": "4 GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "32 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-3770 GHz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "SI"}	17	\N
+76	956-04	FCGLH0DHD3SJ52	537748-001	1		\N	\N	{}	21	\N
+64	345-03	C0405223396		1		\N	\N	{}	29	\N
+77	956-03	BDAEV0QVB3U2VJ	701428-161	1		\N	\N	{}	9	\N
+72	1200-03	BAUDU0OVB3B3HB	537745-161	1		\N	\N	{}	9	\N
+68	777-03	BAUDU0OVB1J77M	537745-161	1		\N	\N	{}	9	\N
+67	777-04	FB7330AN3W80OEY	417966-001	1		\N	\N	{}	11	\N
+73	1200-04	FCGLH0DFZ3CNEV	577748-001	1		\N	\N	{}	19	\N
+85	461	MXJ72508H3	EW287AV	1		\N	\N	{"Sistema Operativo": "UBUNTU", "Usuario": "fpallchisaca", "Acceso Remoto": "SI", "Ip": "172.16.11.14", "Ram": "1GB", "Unidad Optica": "DVD Rom", "Disco": "80GB", "Unidad Lectora": "FLOPPY", "Procesador": "PENTIUN D 3.4GHz", "Bits": "32 BITS"}	39	\N
+86	462	CNK71008RG	437327-001	1		\N	\N	{}	40	\N
+88	461-04	461-04		1		\N	\N	{}	11	\N
+87	461-03	BC3370BGAUH9F7	435302-161	1		\N	\N	{}	9	\N
 \.
 
 
@@ -1166,7 +1205,7 @@ COPY equipment_device (id, code, serial, part, state, invoice, date_purchase, da
 -- Name: equipment_device_id_seq; Type: SEQUENCE SET; Schema: public; Owner: coninf
 --
 
-SELECT pg_catalog.setval('equipment_device_id_seq', 69, true);
+SELECT pg_catalog.setval('equipment_device_id_seq', 88, true);
 
 
 --
@@ -1174,37 +1213,46 @@ SELECT pg_catalog.setval('equipment_device_id_seq', 69, true);
 --
 
 COPY equipment_model (id, name, specifications, type_id, trademark_id) FROM stdin;
-1	COMPUTADOR SOFISTICADO	{}	1	2
-2	WORKSTATION Z230 TWR	{}	1	1
 3	Z23I	{"Dimension": "23", "Tipo": "LCD"}	2	1
 4	KB 57211	{"Conector": "USB"}	3	1
 5	MOFYUO	{"Conector": "USB"}	4	1
 6	VR2008R	{}	5	3
-7	COMPAQ 6200 PRO MT	{}	1	1
 8	S1933	{"Dimension": "18.5\\"", "Tipo": "LCD"}	2	1
 9	KB-0316	{"Conector": "PS2"}	3	1
 10	SPEEDMIND	{}	5	4
 11	M-SBF96	{"Conector": "PS2"}	4	1
-12	GENERICO	{}	1	5
 13	W1943SI	{"Dimension": "18.5\\"", "Tipo": "LCD"}	2	6
 14	GK-070008	{"Conector": "PS2"}	3	7
 15	GM-03022P	{"Conector": "PS2"}	4	7
 16	CDP	{}	5	8
-17	COMPAQ 6300 PRO MT	{}	1	1
 18	LV1911	{"Dimension": "18.5\\"", "Tipo": "LCD"}	2	1
 19	S0005O	{"Conector": "PS2"}	4	1
 20	LS1000X	{}	5	3
-21	MOFX40	{"Conector": "PS2"}	4	1
 22	LASERJET PRO 400	{"Cart. Negro": "80A", "Tipo": "MONOCROMATICA", "Suministro": "TONNER"}	6	1
 23	COLOR LASERJET CP2025DN	{"Cart. Magenta": "CC533A", "Tipo": "COLOR", "Cart. Cyan": "CC531A", "Cart. Negro": "CC530A", "Cart. Amarillo": "CC532A", "Suministro": "TONNER"}	6	1
 24	COLOR LASERJET 2605DN	{"Cart. Magenta": "Q6003A", "Tipo": "COLOR", "Cart. Cyan": "Q6001A", "Cart. Negro": "Q6000A", "Cart. Amarillo": "Q6002A", "Suministro": "TONNER"}	6	1
 26	LASERJET P2015	{"Cart. Negro": "53A", "Tipo": "MONOCROMATICA", "Suministro": "TONNER"}	6	1
 25	LASERJET P2055DN	{"Cart. Negro": "CE505X", "Tipo": "MONOCROMATICA", "Suministro": "TONNER"}	6	1
-27	COMPAQ D220 MT	{}	1	1
 28	B1930N	{"Dimension": "18\\"                                                                                                         ", "Tipo": "LCD"}	2	11
 29	SK-1688	{"Conector": "PS2"}	3	1
 30	5WSUSA	{}	5	3
-31	PRODESK 400 G1 MT	{}	1	1
+32	LP2065	{"Dimension": "20\\"", "Tipo": "LCD"}	2	1
+33	2253LW	{"Dimension": "20\\"", "Tipo": "LCD"}	2	11
+21	MOFXKO	{"Conector": "PS2"}	4	1
+34	GL950A	{"Dimension": "18.5\\"", "Tipo": "LCD"}	2	2
+35	GENERICO	{"Conector": "USB"}	3	2
+1	GENERICO	{"Uso": "ESCRITORIO"}	1	2
+12	GENERICO	{"Uso": "ESCRITORIO"}	1	5
+7	COMPAQ 6200 PRO MT	{"Uso": "ESCRITORIO"}	1	1
+17	COMPAQ 6300 PRO MT	{"Uso": "ESCRITORIO"}	1	1
+27	COMPAQ D220 MT	{"Uso": "ESCRITORIO"}	1	1
+31	PRODESK 400 G1 MT	{"Uso": "ESCRITORIO"}	1	1
+2	WORKSTATION Z230 TWR	{"Uso": "ESCRITORIO"}	1	1
+36	1000-1422LA	{"Uso": "LAPTOP"}	1	1
+37	WORKFORCE GT-S55	{}	7	9
+38	C746DN	{"Cart. Magenta": "C746A1MG", "Tipo": "COLOR", "Cart. Cyan": "C746A1CG", "Cart. Negro": "C746A1KG", "Cart. Amarillo": "C746A1YG", "Suministro": "TONNER"}	6	12
+39	COMPAQ DC5700 MT	{"Uso": "ESCRITORIO"}	1	1
+40	L1706	{"Dimension": "14\\"", "Tipo": "LCD"}	2	1
 \.
 
 
@@ -1212,7 +1260,7 @@ COPY equipment_model (id, name, specifications, type_id, trademark_id) FROM stdi
 -- Name: equipment_model_id_seq; Type: SEQUENCE SET; Schema: public; Owner: coninf
 --
 
-SELECT pg_catalog.setval('equipment_model_id_seq', 31, true);
+SELECT pg_catalog.setval('equipment_model_id_seq', 40, true);
 
 
 --
@@ -1251,8 +1299,9 @@ COPY equipment_type (id, name, is_part, specifications) FROM stdin;
 3	TECLADO	f	[{"specification": ["Conector"], "options": ["USB", "PS2"], "for": "model"}]
 4	MOUSE	f	[{"specification": ["Conector"], "options": ["USB", "PS2"], "for": "model"}]
 5	REGULADOR	f	[]
-1	CPU	f	[{"specification": ["Procesador", "Ram", "Disco"], "options": [], "for": "device"}, {"specification": ["Unidad Optica"], "options": ["DVD Writer", "DVD Rom", "CD Writer", "CD Rom"], "for": "device"}, {"specification": ["Unidad Lectora"], "options": ["CARD READER", "FLOPPY", "NINGUNO"], "for": "device"}, {"specification": ["Ip", "Usuario"], "options": [], "for": "allocation"}, {"specification": ["Sistema Operativo"], "options": ["WINDOWS 7 PROFESIONAL", "WINDOWS XP PROFESIONAL", "UBUNTU", "UBUNTU SERVER", "CENTOS"], "for": "allocation"}, {"specification": ["Bits"], "options": ["32 BITS", "64 BITS"], "for": "allocation"}, {"specification": ["Acceso Remoto"], "options": ["SI", "NO"], "for": "allocation"}]
 6	IMPRESORA	f	[{"specification": ["Suministro"], "options": ["TONNER", "TINTA", "CINTA"], "for": "model"}, {"specification": ["Tipo"], "options": [{"name": "MONOCROMATICA", "suboptions": ["Cart. Negro"]}, {"name": "COLOR", "suboptions": ["Cart. Cyan", "Cart. Magenta", "Cart. Negro", "Cart. Amarillo"]}], "for": "model"}, {"specification": ["Ip"], "options": [], "for": "allocation"}]
+1	PC	f	[{"specification": ["Procesador", "Ram", "Disco"], "options": [], "for": "device"}, {"specification": ["Unidad Optica"], "options": ["DVD Writer", "DVD Rom", "CD Writer", "CD Rom"], "for": "device"}, {"specification": ["Unidad Lectora"], "options": ["CARD READER", "FLOPPY", "NINGUNO"], "for": "device"}, {"specification": ["Ip", "Usuario"], "options": [], "for": "allocation"}, {"specification": ["Sistema Operativo"], "options": ["WINDOWS 7 PROFESIONAL", "WINDOWS XP PROFESIONAL", "UBUNTU", "UBUNTU SERVER", "CENTOS"], "for": "allocation"}, {"specification": ["Bits"], "options": ["32 BITS", "64 BITS"], "for": "allocation"}, {"specification": ["Acceso Remoto"], "options": ["SI", "NO"], "for": "allocation"}, {"specification": ["Uso"], "options": ["ESCRITORIO", "LAPTOP"], "for": "model"}]
+7	SCANNER	f	[]
 \.
 
 
@@ -1260,7 +1309,7 @@ COPY equipment_type (id, name, is_part, specifications) FROM stdin;
 -- Name: equipment_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: coninf
 --
 
-SELECT pg_catalog.setval('equipment_type_id_seq', 6, true);
+SELECT pg_catalog.setval('equipment_type_id_seq', 7, true);
 
 
 --
@@ -1270,6 +1319,7 @@ SELECT pg_catalog.setval('equipment_type_id_seq', 6, true);
 COPY providers_provider (id, ruc, name, representative, address, city, cellphone, telephone) FROM stdin;
 1	1710124882001	COPI.COM	MONICA ELIZABETH PEREZ PAREDES	ACUÑA OE1-41 Y AV. 10 DE AGOSTO	QUITO		022236710
 2	1791772229001	TECNOPLUS	SANDRA ARACELY ROCA MERA	JIPIJAPA, ISLA SAN CRISTOBAL N44-534 E ISLA SEYMOUR	QUITO		022272459
+3	1711752996001	VAGADAMIA	PAUL DARIO DAVILA GONZALEZ	LA GRANJA, II ETAPA DOMINGO COMIN N31-97 GASPAR DE CARVAJAL	QUITO	0998323998	2244100
 \.
 
 
@@ -1277,7 +1327,7 @@ COPY providers_provider (id, ruc, name, representative, address, city, cellphone
 -- Name: providers_provider_id_seq; Type: SEQUENCE SET; Schema: public; Owner: coninf
 --
 
-SELECT pg_catalog.setval('providers_provider_id_seq', 2, true);
+SELECT pg_catalog.setval('providers_provider_id_seq', 3, true);
 
 
 --
