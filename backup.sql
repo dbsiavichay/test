@@ -474,6 +474,7 @@ COPY equipment_device (id, code, serial, part, state, invoice, date_purchase, da
 310	337-04	X48330006883		1		\N	\N	{}	86	\N
 311	337-03	B93CB0ACPRR4KT		1		\N	\N	{}	62	\N
 312	803	2CE1493863		1		\N	\N	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "jrevelo", "Acceso Remoto": "SI", "Ip": "172.16.9.139", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB DDR3", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I5-2410 2.3GHz", "Bits": "64 BITS"}	87	\N
+313	776	2CE14531F8	LR942LA#ABM	1		\N	\N	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "ltenecora", "Acceso Remoto": "NO", "Ip": "172.16.10.208/209", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I5-2410M 2.3GHz", "Bits": "64 BITS"}	87	\N
 \.
 
 
@@ -798,6 +799,7 @@ COPY allocation_allocation (id, employee, department, area, date_joined, is_acti
 324	0103797031	2	1	2016-03-11	t	201
 325	0103797031	2	1	2016-03-11	t	202
 326	1400457188	13	1	2016-03-11	t	312
+327	1400565030	10	1	2016-03-17	t	313
 \.
 
 
@@ -805,7 +807,7 @@ COPY allocation_allocation (id, employee, department, area, date_joined, is_acti
 -- Name: allocation_allocation_id_seq; Type: SEQUENCE SET; Schema: public; Owner: coninf
 --
 
-SELECT pg_catalog.setval('allocation_allocation_id_seq', 326, true);
+SELECT pg_catalog.setval('allocation_allocation_id_seq', 327, true);
 
 
 --
@@ -1039,7 +1041,7 @@ COPY django_session (session_key, session_data, expire_date) FROM stdin;
 -- Name: equipment_device_id_seq; Type: SEQUENCE SET; Schema: public; Owner: coninf
 --
 
-SELECT pg_catalog.setval('equipment_device_id_seq', 312, true);
+SELECT pg_catalog.setval('equipment_device_id_seq', 313, true);
 
 
 --

@@ -1,0 +1,3459 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: allocation_allocation; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE allocation_allocation (
+    id integer NOT NULL,
+    employee character varying(16) NOT NULL,
+    department double precision NOT NULL,
+    area double precision NOT NULL,
+    date_joined date NOT NULL,
+    is_active boolean NOT NULL,
+    device_id integer NOT NULL
+);
+
+
+ALTER TABLE allocation_allocation OWNER TO postgres;
+
+--
+-- Name: allocation_allocation_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE allocation_allocation_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE allocation_allocation_id_seq OWNER TO postgres;
+
+--
+-- Name: allocation_allocation_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE allocation_allocation_id_seq OWNED BY allocation_allocation.id;
+
+
+--
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE auth_group (
+    id integer NOT NULL,
+    name character varying(80) NOT NULL
+);
+
+
+ALTER TABLE auth_group OWNER TO postgres;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE auth_group_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_group_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE auth_group_id_seq OWNED BY auth_group.id;
+
+
+--
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE auth_group_permissions (
+    id integer NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE auth_group_permissions OWNER TO postgres;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE auth_group_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_group_permissions_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE auth_group_permissions_id_seq OWNED BY auth_group_permissions.id;
+
+
+--
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE auth_permission (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+ALTER TABLE auth_permission OWNER TO postgres;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE auth_permission_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_permission_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE auth_permission_id_seq OWNED BY auth_permission.id;
+
+
+--
+-- Name: auth_user; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE auth_user (
+    id integer NOT NULL,
+    password character varying(128) NOT NULL,
+    last_login timestamp with time zone,
+    is_superuser boolean NOT NULL,
+    username character varying(30) NOT NULL,
+    first_name character varying(30) NOT NULL,
+    last_name character varying(30) NOT NULL,
+    email character varying(254) NOT NULL,
+    is_staff boolean NOT NULL,
+    is_active boolean NOT NULL,
+    date_joined timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE auth_user OWNER TO postgres;
+
+--
+-- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE auth_user_groups (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+ALTER TABLE auth_user_groups OWNER TO postgres;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE auth_user_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_user_groups_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE auth_user_groups_id_seq OWNED BY auth_user_groups.id;
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE auth_user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_user_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE auth_user_id_seq OWNED BY auth_user.id;
+
+
+--
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE auth_user_user_permissions (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE auth_user_user_permissions OWNER TO postgres;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE auth_user_user_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_user_user_permissions_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE auth_user_user_permissions_id_seq OWNED BY auth_user_user_permissions.id;
+
+
+--
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE django_admin_log (
+    id integer NOT NULL,
+    action_time timestamp with time zone NOT NULL,
+    object_id text,
+    object_repr character varying(200) NOT NULL,
+    action_flag smallint NOT NULL,
+    change_message text NOT NULL,
+    content_type_id integer,
+    user_id integer NOT NULL,
+    CONSTRAINT django_admin_log_action_flag_check CHECK ((action_flag >= 0))
+);
+
+
+ALTER TABLE django_admin_log OWNER TO postgres;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE django_admin_log_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE django_admin_log_id_seq OWNER TO postgres;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE django_admin_log_id_seq OWNED BY django_admin_log.id;
+
+
+--
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE django_content_type (
+    id integer NOT NULL,
+    app_label character varying(100) NOT NULL,
+    model character varying(100) NOT NULL
+);
+
+
+ALTER TABLE django_content_type OWNER TO postgres;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE django_content_type_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE django_content_type_id_seq OWNER TO postgres;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE django_content_type_id_seq OWNED BY django_content_type.id;
+
+
+--
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE django_migrations (
+    id integer NOT NULL,
+    app character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    applied timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE django_migrations OWNER TO postgres;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE django_migrations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE django_migrations_id_seq OWNER TO postgres;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE django_migrations_id_seq OWNED BY django_migrations.id;
+
+
+--
+-- Name: django_session; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE django_session (
+    session_key character varying(40) NOT NULL,
+    session_data text NOT NULL,
+    expire_date timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE django_session OWNER TO postgres;
+
+--
+-- Name: equipment_device; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE equipment_device (
+    id integer NOT NULL,
+    code character varying(16) NOT NULL,
+    serial character varying(34),
+    part character varying(32),
+    specifications json,
+    state character varying(16),
+    invoice character varying(16),
+    date_purchase date,
+    date_warranty date,
+    model_id integer NOT NULL,
+    provider_id integer
+);
+
+
+ALTER TABLE equipment_device OWNER TO postgres;
+
+--
+-- Name: equipment_device_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE equipment_device_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE equipment_device_id_seq OWNER TO postgres;
+
+--
+-- Name: equipment_device_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE equipment_device_id_seq OWNED BY equipment_device.id;
+
+
+--
+-- Name: equipment_model; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE equipment_model (
+    id integer NOT NULL,
+    name character varying(128) NOT NULL,
+    specifications json,
+    trademark_id integer NOT NULL,
+    type_id integer NOT NULL
+);
+
+
+ALTER TABLE equipment_model OWNER TO postgres;
+
+--
+-- Name: equipment_model_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE equipment_model_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE equipment_model_id_seq OWNER TO postgres;
+
+--
+-- Name: equipment_model_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE equipment_model_id_seq OWNED BY equipment_model.id;
+
+
+--
+-- Name: equipment_trademark; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE equipment_trademark (
+    id integer NOT NULL,
+    name character varying(32) NOT NULL
+);
+
+
+ALTER TABLE equipment_trademark OWNER TO postgres;
+
+--
+-- Name: equipment_trademark_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE equipment_trademark_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE equipment_trademark_id_seq OWNER TO postgres;
+
+--
+-- Name: equipment_trademark_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE equipment_trademark_id_seq OWNED BY equipment_trademark.id;
+
+
+--
+-- Name: equipment_type; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE equipment_type (
+    id integer NOT NULL,
+    name character varying(32) NOT NULL,
+    is_part boolean NOT NULL,
+    specifications json,
+    print_sizes json
+);
+
+
+ALTER TABLE equipment_type OWNER TO postgres;
+
+--
+-- Name: equipment_type_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE equipment_type_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE equipment_type_id_seq OWNER TO postgres;
+
+--
+-- Name: equipment_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE equipment_type_id_seq OWNED BY equipment_type.id;
+
+
+--
+-- Name: providers_provider; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE providers_provider (
+    id integer NOT NULL,
+    ruc character varying(13) NOT NULL,
+    name character varying(32) NOT NULL,
+    representative character varying(128),
+    address character varying(128) NOT NULL,
+    city character varying(32),
+    cellphone character varying(10),
+    telephone character varying(10)
+);
+
+
+ALTER TABLE providers_provider OWNER TO postgres;
+
+--
+-- Name: providers_provider_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE providers_provider_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE providers_provider_id_seq OWNER TO postgres;
+
+--
+-- Name: providers_provider_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE providers_provider_id_seq OWNED BY providers_provider.id;
+
+
+--
+-- Name: technical_assistance_maintenance; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE technical_assistance_maintenance (
+    id integer NOT NULL,
+    date date NOT NULL,
+    problem text NOT NULL,
+    solution text NOT NULL,
+    device_id integer NOT NULL
+);
+
+
+ALTER TABLE technical_assistance_maintenance OWNER TO postgres;
+
+--
+-- Name: technical_assistance_maintenance_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE technical_assistance_maintenance_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE technical_assistance_maintenance_id_seq OWNER TO postgres;
+
+--
+-- Name: technical_assistance_maintenance_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE technical_assistance_maintenance_id_seq OWNED BY technical_assistance_maintenance.id;
+
+
+--
+-- Name: technical_assistance_parts; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE technical_assistance_parts (
+    id integer NOT NULL,
+    is_active boolean NOT NULL,
+    maintenance_id integer NOT NULL,
+    part_id integer NOT NULL
+);
+
+
+ALTER TABLE technical_assistance_parts OWNER TO postgres;
+
+--
+-- Name: technical_assistance_parts_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE technical_assistance_parts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE technical_assistance_parts_id_seq OWNER TO postgres;
+
+--
+-- Name: technical_assistance_parts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE technical_assistance_parts_id_seq OWNED BY technical_assistance_parts.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY allocation_allocation ALTER COLUMN id SET DEFAULT nextval('allocation_allocation_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_group ALTER COLUMN id SET DEFAULT nextval('auth_group_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_permission ALTER COLUMN id SET DEFAULT nextval('auth_permission_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_user ALTER COLUMN id SET DEFAULT nextval('auth_user_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_user_groups ALTER COLUMN id SET DEFAULT nextval('auth_user_groups_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('auth_user_user_permissions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY django_admin_log ALTER COLUMN id SET DEFAULT nextval('django_admin_log_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY django_content_type ALTER COLUMN id SET DEFAULT nextval('django_content_type_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY django_migrations ALTER COLUMN id SET DEFAULT nextval('django_migrations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY equipment_device ALTER COLUMN id SET DEFAULT nextval('equipment_device_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY equipment_model ALTER COLUMN id SET DEFAULT nextval('equipment_model_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY equipment_trademark ALTER COLUMN id SET DEFAULT nextval('equipment_trademark_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY equipment_type ALTER COLUMN id SET DEFAULT nextval('equipment_type_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY providers_provider ALTER COLUMN id SET DEFAULT nextval('providers_provider_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY technical_assistance_maintenance ALTER COLUMN id SET DEFAULT nextval('technical_assistance_maintenance_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY technical_assistance_parts ALTER COLUMN id SET DEFAULT nextval('technical_assistance_parts_id_seq'::regclass);
+
+
+--
+-- Data for Name: allocation_allocation; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY allocation_allocation (id, employee, department, area, date_joined, is_active, device_id) FROM stdin;
+1	1400598759	12	3	2015-08-17	t	1
+2	1400598759	12	3	2015-08-17	t	2
+3	1400598759	12	3	2015-08-17	t	3
+4	1400598759	12	3	2015-08-17	t	4
+5	1400598759	12	3	2015-08-17	t	5
+6	1400422414	7	3	2015-08-17	t	6
+7	1400422414	7	3	2015-08-17	t	7
+8	1400422414	7	3	2015-08-17	t	8
+9	1400422414	7	3	2015-08-17	t	9
+10	1400422414	7	3	2015-08-17	t	10
+11	1400446918	6	4	2015-08-17	t	31
+12	1400446918	6	4	2015-08-17	t	32
+13	1400446918	6	4	2015-08-17	t	33
+14	1400446918	6	4	2015-08-17	t	34
+15	1400446918	6	4	2015-08-17	t	35
+16	1709527418	7	2	2015-08-17	t	26
+17	1709527418	7	2	2015-08-17	t	27
+18	1709527418	7	2	2015-08-17	t	28
+19	1709527418	7	2	2015-08-17	t	29
+20	1709527418	7	2	2015-08-17	t	30
+26	0104852710	6	4	2015-08-17	t	16
+27	0104852710	6	4	2015-08-17	t	17
+28	0104852710	6	4	2015-08-17	t	18
+29	0104852710	6	4	2015-08-17	t	19
+30	0104852710	6	4	2015-08-17	t	20
+31	1400435770	12	3	2015-08-17	t	11
+32	1400435770	12	3	2015-08-17	t	12
+33	1400435770	12	3	2015-08-17	t	13
+34	1400435770	12	3	2015-08-17	t	14
+35	1400435770	12	3	2015-08-17	t	15
+46	1400194518	3	5	2016-01-26	t	36
+47	1400194518	3	5	2016-01-26	t	37
+48	1400194518	3	5	2016-01-26	t	38
+49	1400194518	3	5	2016-01-26	t	39
+50	1400194518	3	5	2016-01-26	t	40
+51	1400649305	3	5	2016-01-26	t	42
+52	1400649305	3	5	2016-01-26	t	43
+53	1400649305	3	5	2016-01-26	t	44
+54	1400649305	3	5	2016-01-26	t	45
+55	1400649305	3	5	2016-01-26	t	41
+56	1400479802	3	5	2016-01-26	t	46
+57	1400479802	3	5	2016-01-26	t	47
+58	1400479802	3	5	2016-01-26	t	48
+59	1400479802	3	5	2016-01-26	t	49
+60	1400479802	3	5	2016-01-26	t	50
+61	0201360815	3	5	2016-01-26	t	51
+62	0201360815	3	5	2016-01-26	t	52
+63	0201360815	3	5	2016-01-26	t	53
+64	0201360815	3	5	2016-01-26	t	54
+65	0201360815	3	5	2016-01-26	t	55
+66	1401022601	16	2	2016-01-26	t	56
+67	1400307409	14	4	2016-01-26	t	57
+68	1400363287	16	2	2016-01-27	t	58
+69	1400306609	11	5	2016-01-27	t	60
+70	1400306609	11	5	2016-01-27	t	61
+71	1400306609	11	5	2016-01-27	t	62
+72	1400306609	11	5	2016-01-27	t	63
+73	1400306609	11	5	2016-01-27	t	64
+74	1400306609	11	5	2016-01-27	t	65
+75	1400306609	11	5	2016-01-27	t	66
+76	1400306609	11	5	2016-01-27	t	67
+77	1400306609	11	5	2016-01-27	t	69
+78	1400306609	11	5	2016-01-27	t	68
+79	1400426753	4	2	2016-02-23	t	70
+80	1400426753	4	2	2016-02-23	t	71
+81	1400426753	4	2	2016-02-23	t	73
+82	1400426753	4	2	2016-02-23	t	72
+83	1400690143	4	2	2016-02-23	t	74
+84	1400690143	4	2	2016-02-23	t	75
+85	1400690143	4	2	2016-02-23	t	76
+86	1400690143	4	2	2016-02-23	t	77
+87	1400426753	4	2	2016-02-23	t	78
+88	1400426753	4	2	2016-02-23	t	79
+89	1400426753	4	2	2016-02-23	t	81
+90	1400426753	4	2	2016-02-23	t	80
+91	1803382710	4	4	2016-02-26	t	82
+92	1400371710	4	2	2016-02-26	t	83
+93	1400371710	4	2	2016-02-26	t	59
+94	1400371710	4	2	2016-02-26	t	84
+95	1400616080	11	3	2016-02-29	t	85
+96	1400616080	11	3	2016-02-29	t	86
+97	1400616080	11	3	2016-02-29	t	88
+98	1400616080	11	3	2016-02-29	t	87
+99	1400358832	17	1	2016-03-03	t	93
+100	1400358832	17	1	2016-03-03	t	94
+101	1400358832	17	1	2016-03-03	t	95
+102	1400358832	17	1	2016-03-03	t	96
+103	1708250624	17	1	2016-03-03	t	97
+104	1400336507	9	3	2016-03-04	t	98
+105	1400336507	9	3	2016-03-04	t	99
+106	1400336507	9	3	2016-03-04	t	101
+107	1400336507	9	3	2016-03-04	t	100
+108	1400336507	9	3	2016-03-04	t	102
+109	1704454287	9	2	2016-03-04	t	103
+110	1704454287	9	2	2016-03-04	t	104
+111	1704454287	9	2	2016-03-04	t	105
+112	1704454287	9	2	2016-03-04	t	106
+113	1704454287	9	2	2016-03-04	t	108
+114	0101675122	9	5	2016-03-04	t	109
+115	0101675122	9	5	2016-03-04	t	110
+116	0101675122	9	5	2016-03-04	t	111
+117	0101675122	9	5	2016-03-04	t	112
+118	0101675122	9	5	2016-03-04	t	113
+119	1704454287	9	2	2016-03-04	t	107
+23	0103801932	6	4	2015-08-17	t	23
+21	0103801932	6	4	2015-08-17	t	21
+120	0702115783	9	2	2016-03-04	t	114
+121	0702115783	9	2	2016-03-04	t	115
+122	0702115783	9	2	2016-03-04	t	116
+123	0702115783	9	2	2016-03-04	t	117
+124	0702115783	9	2	2016-03-04	t	118
+125	1400480800	9	2	2016-03-04	t	119
+126	1400480800	9	2	2016-03-04	t	120
+127	1400480800	9	2	2016-03-04	t	121
+128	1400480800	9	2	2016-03-04	t	122
+129	1400480800	9	2	2016-03-04	t	123
+130	1400475495	9	2	2016-03-04	t	129
+131	1400475495	9	2	2016-03-04	t	130
+132	1400475495	9	2	2016-03-04	t	131
+133	1400475495	9	2	2016-03-04	t	132
+134	1400475495	9	2	2016-03-04	t	133
+135	1400324883	9	1	2016-03-04	t	134
+136	1400324883	9	1	2016-03-04	t	139
+137	1400324883	9	1	2016-03-04	t	135
+138	1400324883	9	1	2016-03-04	t	136
+139	1400324883	9	1	2016-03-04	t	137
+140	1400324883	9	1	2016-03-04	t	138
+141	0912106143	9	2	2016-03-04	t	124
+142	0912106143	9	2	2016-03-04	t	125
+143	0912106143	9	2	2016-03-04	t	126
+144	0912106143	9	2	2016-03-04	t	128
+145	0912106143	9	2	2016-03-04	t	127
+146	1400343651	12	1	2016-03-08	t	140
+147	1400343651	12	1	2016-03-08	t	141
+148	1400343651	12	1	2016-03-08	t	142
+149	1400343651	12	1	2016-03-08	t	143
+150	1400343651	12	1	2016-03-08	t	144
+151	1400307409	14	1	2016-03-09	t	145
+152	1400307409	14	1	2016-03-09	t	146
+153	1400307409	14	1	2016-03-09	t	147
+154	1400307409	14	1	2016-03-09	t	148
+155	1400307409	14	1	2016-03-09	t	149
+156	1400307409	14	1	2016-03-09	t	150
+157	1400385702	6	4	2016-03-09	t	151
+158	1400385702	6	4	2016-03-09	t	152
+159	1400385702	6	4	2016-03-09	t	153
+160	1400385702	6	4	2016-03-09	t	155
+161	1400385702	6	4	2016-03-09	t	154
+162	1400385702	6	4	2016-03-09	t	156
+163	0104088786	6	4	2016-03-09	t	158
+164	0104088786	6	4	2016-03-09	t	157
+165	0104712708	6	5	2016-03-09	t	159
+166	0104712708	6	5	2016-03-09	t	160
+167	0104712708	6	5	2016-03-09	t	161
+168	0104712708	6	5	2016-03-09	t	162
+174	1400452718	6	5	2016-03-09	t	163
+175	1400452718	6	5	2016-03-09	t	165
+176	1400452718	6	5	2016-03-09	t	164
+177	1400452718	6	5	2016-03-09	t	166
+178	1710620558	6	4	2016-03-09	t	167
+179	1710620558	6	4	2016-03-09	t	168
+180	1710620558	6	4	2016-03-09	t	169
+181	1710620558	6	4	2016-03-09	t	170
+182	0915931653	6	5	2016-03-09	t	171
+183	0915931653	6	5	2016-03-09	t	172
+184	0915931653	6	5	2016-03-09	t	173
+185	0915931653	6	5	2016-03-09	t	174
+186	1400512768	6	5	2016-03-09	t	175
+187	1400512768	6	5	2016-03-09	t	176
+188	1400512768	6	5	2016-03-09	t	177
+189	1400512768	6	5	2016-03-09	t	178
+190	1400489975	6	5	2016-03-09	t	179
+191	1400489975	6	5	2016-03-09	t	180
+192	1400489975	6	5	2016-03-09	t	181
+193	1400489975	6	5	2016-03-09	t	182
+194	1400545537	6	5	2016-03-09	t	183
+195	1400545537	6	5	2016-03-09	t	184
+196	1400545537	6	5	2016-03-09	t	185
+197	1400545537	6	5	2016-03-09	t	186
+198	1400367601	6	6	2016-03-09	t	187
+199	1400367601	6	6	2016-03-09	t	188
+200	1400367601	6	6	2016-03-09	t	189
+201	1400367601	6	6	2016-03-09	t	190
+202	0602775249	6	6	2016-03-09	t	191
+203	0602775249	6	6	2016-03-09	t	192
+204	0602775249	6	6	2016-03-09	t	193
+205	0602775249	6	6	2016-03-09	t	194
+206	2000062808	6	6	2016-03-10	t	196
+207	2000062808	6	6	2016-03-10	t	195
+208	2000062808	6	6	2016-03-10	t	197
+209	2000062808	6	6	2016-03-10	t	198
+214	1400564306	6	6	2016-03-10	t	203
+215	1400564306	6	6	2016-03-10	t	204
+216	1400564306	6	6	2016-03-10	t	205
+217	1400564306	6	6	2016-03-10	t	206
+218	1400201313	7	1	2016-03-10	t	207
+219	1400201313	7	1	2016-03-10	t	208
+220	1400201313	7	1	2016-03-10	t	209
+221	1400201313	7	1	2016-03-10	t	210
+211	0103797031	6	6	2016-03-10	f	200
+212	0103797031	6	6	2016-03-10	f	201
+213	0103797031	6	6	2016-03-10	f	202
+222	1400201313	7	1	2016-03-10	t	215
+223	1400201313	7	1	2016-03-10	t	212
+224	1400201313	7	1	2016-03-10	t	213
+225	1400201313	7	1	2016-03-10	t	211
+24	0103801932	6	4	2015-08-17	t	24
+22	0103801932	6	4	2015-08-17	t	22
+226	1400201313	7	1	2016-03-10	t	216
+227	1400201313	7	1	2016-03-10	t	214
+228	1400422414	7	1	2016-03-10	t	217
+229	1400507248	7	2	2016-03-10	t	218
+230	1400507248	7	2	2016-03-10	t	219
+231	1400507248	7	2	2016-03-10	t	220
+232	1400507248	7	2	2016-03-10	t	221
+233	1400201313	7	1	2016-03-10	t	222
+234	1400468755	7	2	2016-03-10	t	223
+235	1400468755	7	2	2016-03-10	t	224
+236	1400468755	7	2	2016-03-10	t	225
+237	1400468755	7	2	2016-03-10	t	226
+238	1400484422	7	3	2016-03-10	t	227
+239	1400484422	7	3	2016-03-10	t	228
+240	1400484422	7	3	2016-03-10	t	229
+241	1400484422	7	3	2016-03-10	t	230
+242	1400344535	7	2	2016-03-10	t	231
+243	1400344535	7	2	2016-03-10	t	232
+244	1400344535	7	2	2016-03-10	t	233
+245	1400344535	7	2	2016-03-10	t	234
+246	1400458434	7	3	2016-03-10	t	235
+247	1400458434	7	3	2016-03-10	t	236
+248	1400458434	7	3	2016-03-10	t	237
+249	1400458434	7	3	2016-03-10	t	238
+250	1400503411	7	2	2016-03-10	t	239
+251	1400503411	7	2	2016-03-10	t	240
+252	1400503411	7	2	2016-03-10	t	241
+253	1400503411	7	2	2016-03-10	t	242
+254	1400430144	7	2	2016-03-10	t	243
+255	1400430144	7	2	2016-03-10	t	244
+256	1400430144	7	2	2016-03-10	t	245
+257	1400430144	7	2	2016-03-10	t	246
+258	1400469308	7	3	2016-03-10	t	247
+259	1400469308	7	3	2016-03-10	t	248
+260	1400469308	7	3	2016-03-10	t	249
+261	1400469308	7	3	2016-03-10	t	250
+262	1400490106	7	2	2016-03-10	t	251
+263	1400490106	7	2	2016-03-10	t	252
+264	1400490106	7	2	2016-03-10	t	253
+265	1400490106	7	2	2016-03-10	t	254
+266	1400485064	7	3	2016-03-10	t	255
+267	1400485064	7	3	2016-03-10	t	256
+268	1400485064	7	3	2016-03-10	t	257
+269	1400485064	7	3	2016-03-10	t	258
+270	1400584452	7	3	2016-03-10	t	263
+271	1400584452	7	3	2016-03-10	t	264
+272	1400584452	7	3	2016-03-10	t	265
+273	1400584452	7	3	2016-03-10	t	266
+274	0102428968	7	3	2016-03-10	t	259
+275	0102428968	7	3	2016-03-10	t	260
+276	0102428968	7	3	2016-03-10	t	261
+277	0102428968	7	3	2016-03-10	t	262
+278	1600486946	14	2	2016-03-10	t	267
+279	1600486946	14	2	2016-03-10	t	268
+280	1600486946	14	2	2016-03-10	t	269
+281	1600486946	14	2	2016-03-10	t	270
+282	1400681753	15	1	2016-03-11	t	271
+283	1400681753	15	1	2016-03-11	t	272
+284	1400681753	15	1	2016-03-11	t	273
+285	1400681753	15	1	2016-03-11	t	274
+286	1400628192	15	1	2016-03-11	t	275
+287	1400628192	15	1	2016-03-11	t	276
+288	1400628192	15	1	2016-03-11	t	277
+289	1400628192	15	1	2016-03-11	t	278
+290	1400628192	15	1	2016-03-11	t	283
+291	1400517866	15	1	2016-03-11	t	279
+292	1400517866	15	1	2016-03-11	t	280
+293	1400517866	15	1	2016-03-11	t	281
+294	1400517866	15	1	2016-03-11	t	282
+295	1600211856	15	1	2016-03-11	t	284
+296	1600211856	15	1	2016-03-11	t	285
+297	1600211856	15	1	2016-03-11	t	286
+298	1600211856	15	1	2016-03-11	t	287
+299	1102320643	15	1	2016-03-11	t	288
+300	1102320643	15	1	2016-03-11	t	289
+301	1102320643	15	1	2016-03-11	t	290
+302	1102320643	15	1	2016-03-11	t	291
+303	1600409997	15	1	2016-03-11	t	292
+304	1600409997	15	1	2016-03-11	t	293
+305	1600409997	15	1	2016-03-11	t	294
+306	1600409997	15	1	2016-03-11	t	295
+307	1600409997	15	1	2016-03-11	t	296
+308	1400196596	15	1	2016-03-11	t	298
+309	1400196596	15	1	2016-03-11	t	299
+310	1400196596	15	1	2016-03-11	t	300
+311	1400196596	15	1	2016-03-11	t	301
+312	1400196596	15	1	2016-03-11	t	297
+313	1400494793	15	1	2016-03-11	t	302
+314	1400494793	15	1	2016-03-11	t	306
+315	1400494793	15	1	2016-03-11	t	303
+316	1400494793	15	1	2016-03-11	t	304
+317	1400494793	15	1	2016-03-11	t	305
+318	1400670822	4	4	2016-03-11	t	308
+319	1400670822	4	4	2016-03-11	t	309
+320	1400670822	4	4	2016-03-11	t	310
+321	1400670822	4	4	2016-03-11	t	311
+210	0103797031	6	6	2016-03-10	f	199
+322	0103797031	2	1	2016-03-11	t	199
+323	0103797031	2	1	2016-03-11	t	200
+324	0103797031	2	1	2016-03-11	t	201
+325	0103797031	2	1	2016-03-11	t	202
+326	1400457188	13	1	2016-03-11	t	312
+327	1400565030	10	1	2016-03-17	t	313
+328	1400690143	4	2	2016-03-21	t	314
+329	1400484877	4	4	2016-03-21	t	317
+330	1400484877	4	4	2016-03-21	t	318
+331	1400484877	4	4	2016-03-21	t	315
+332	1400484877	4	4	2016-03-21	t	316
+333	1400670822	4	4	2016-03-21	t	319
+334	1102490008	4	1	2016-03-21	t	326
+335	1102490008	4	1	2016-03-21	t	325
+336	1102490008	4	1	2016-03-21	t	320
+337	1102490008	4	1	2016-03-21	t	323
+338	1102490008	4	1	2016-03-21	t	321
+339	1102490008	4	1	2016-03-21	t	322
+340	1102490008	4	1	2016-03-21	t	324
+341	1803382710	4	4	2016-03-21	t	328
+342	1803382710	4	4	2016-03-21	t	327
+343	1803382710	4	4	2016-03-21	t	329
+344	1400145270	11	1	2016-03-21	t	330
+345	1400145270	11	1	2016-03-21	t	331
+346	1400145270	11	1	2016-03-21	t	332
+347	1400145270	11	1	2016-03-21	t	333
+348	1400145270	11	1	2016-03-21	t	334
+349	1400145270	11	1	2016-03-21	t	335
+350	1400145270	11	1	2016-03-21	t	336
+351	1400365050	11	1	2016-03-21	t	338
+352	1400365050	11	1	2016-03-21	t	339
+353	1400365050	11	1	2016-03-21	t	337
+354	1400365050	11	1	2016-03-21	t	340
+355	1400458749	11	4	2016-03-21	t	341
+356	1400458749	11	4	2016-03-21	t	342
+357	1400300792	11	3	2016-03-21	t	344
+358	1400300792	11	3	2016-03-21	t	343
+359	1400300792	11	3	2016-03-21	t	346
+360	1400300792	11	3	2016-03-21	t	345
+361	1400432926	11	3	2016-03-21	t	347
+362	1400432926	11	3	2016-03-21	t	348
+363	1400432926	11	3	2016-03-21	t	349
+364	1400432926	11	3	2016-03-21	t	350
+365	1400521132	11	3	2016-03-21	t	351
+366	1400521132	11	3	2016-03-21	t	352
+367	1400521132	11	3	2016-03-21	t	353
+368	1400521132	11	3	2016-03-21	t	354
+369	1400597637	11	2	2016-03-21	t	359
+370	1400597637	11	2	2016-03-21	t	355
+371	1400597637	11	2	2016-03-21	t	356
+372	1400597637	11	2	2016-03-21	t	357
+373	1400597637	11	2	2016-03-21	t	358
+374	1400597637	11	2	2016-03-21	t	360
+375	0603154709	11	3	2016-03-21	t	361
+376	0603154709	11	3	2016-03-21	t	362
+377	0603154709	11	3	2016-03-21	t	363
+378	0603154709	11	3	2016-03-21	t	364
+379	1400201321	12	2	2016-03-21	t	366
+380	1400201321	12	2	2016-03-21	t	367
+381	1400201321	12	2	2016-03-21	t	365
+382	1400201321	12	2	2016-03-21	t	368
+383	1400201321	12	2	2016-03-21	t	369
+384	1400258883	11	3	2016-03-21	t	370
+385	0704252642	12	2	2016-03-21	t	376
+386	0704252642	12	2	2016-03-21	t	372
+387	0704252642	12	2	2016-03-21	t	373
+388	0704252642	12	2	2016-03-21	t	371
+389	0704252642	12	2	2016-03-21	t	374
+390	0704252642	12	2	2016-03-21	t	375
+391	1400229116	12	2	2016-03-21	t	378
+392	1400229116	12	2	2016-03-21	t	379
+393	1400229116	12	2	2016-03-21	t	377
+394	1400229116	12	2	2016-03-21	t	380
+395	1102444849	12	1	2016-03-21	t	385
+396	1102444849	12	1	2016-03-21	t	382
+397	1102444849	12	1	2016-03-21	t	383
+398	1102444849	12	1	2016-03-21	t	381
+399	1102444849	12	1	2016-03-21	t	384
+400	1102444849	12	1	2016-03-21	t	386
+401	1102444849	12	1	2016-03-21	t	387
+402	1400476733	12	2	2016-03-21	t	389
+403	1400476733	12	2	2016-03-21	t	390
+404	1400476733	12	2	2016-03-21	t	388
+405	1400476733	12	2	2016-03-21	t	391
+406	1400343651	12	1	2016-03-21	t	392
+407	1400516900	5	1	2016-03-22	t	393
+408	1400418784	11	1	2016-03-22	t	394
+409	1400763023	11	3	2016-03-22	t	395
+410	1708250624	17	1	2016-03-22	t	396
+411	1400363287	16	2	2016-03-22	t	397
+412	1400435713	4	4	2016-03-23	t	399
+413	1400435713	4	4	2016-03-23	t	398
+414	1400435713	4	4	2016-03-23	t	400
+415	1400371710	4	2	2016-03-23	t	401
+416	1400371710	4	2	2016-03-23	t	402
+417	0603154709	11	3	2016-03-23	t	403
+418	0603154709	11	3	2016-03-23	t	404
+419	0603154709	11	3	2016-03-23	t	405
+420	0603154709	11	3	2016-03-23	t	406
+421	0603154709	11	3	2016-03-23	t	407
+422	0603154709	11	3	2016-03-23	t	409
+423	0603154709	11	3	2016-03-23	t	410
+424	0603154709	11	3	2016-03-23	t	408
+425	0603154709	11	3	2016-03-23	t	411
+426	0603154709	11	3	2016-03-23	t	413
+427	0603154709	11	3	2016-03-23	t	414
+428	0603154709	11	3	2016-03-23	t	412
+429	0603154709	11	3	2016-03-23	t	415
+430	0603154709	11	3	2016-03-23	t	417
+431	0603154709	11	3	2016-03-23	t	418
+432	0603154709	11	3	2016-03-23	t	416
+433	0603154709	11	3	2016-03-23	t	419
+434	1708250624	17	1	2016-03-24	t	422
+435	1400542401	17	1	2016-03-24	t	423
+436	1400542401	17	1	2016-03-24	t	424
+437	1400542401	17	1	2016-03-24	t	425
+438	1400542401	17	1	2016-03-24	t	426
+439	1400210876	4	3	2016-03-24	t	428
+440	1400210876	4	3	2016-03-24	t	429
+441	1400210876	4	3	2016-03-24	t	427
+442	1400210876	4	3	2016-03-24	t	430
+443	0101136380	13	2	2016-03-24	t	432
+444	0101136380	13	2	2016-03-24	t	433
+445	0101136380	13	2	2016-03-24	t	431
+446	0101136380	13	2	2016-03-24	t	434
+447	0101136380	13	2	2016-03-24	t	435
+448	1400418784	11	1	2016-03-28	t	436
+449	0201360815	3	5	2016-03-28	t	437
+450	0201360815	3	5	2016-03-28	t	438
+25	0103801932	6	4	2015-08-17	t	25
+451	1400355416	10	1	2016-03-31	t	443
+452	1400355416	10	1	2016-03-31	t	445
+453	1400355416	10	1	2016-03-31	t	440
+454	1400355416	10	1	2016-03-31	t	441
+455	1400355416	10	1	2016-03-31	t	439
+456	1400355416	10	1	2016-03-31	t	442
+457	1400355416	10	1	2016-03-31	t	444
+458	1400250534	10	4	2016-03-31	t	447
+459	1400250534	10	4	2016-03-31	t	448
+460	1400250534	10	4	2016-03-31	t	446
+461	1400250534	10	4	2016-03-31	t	449
+462	1400250534	10	4	2016-03-31	t	450
+463	1400457394	10	4	2016-03-31	t	452
+464	1400457394	10	4	2016-03-31	t	453
+465	1400457394	10	4	2016-03-31	t	451
+466	1400457394	10	4	2016-03-31	t	454
+467	1400457394	10	4	2016-03-31	t	455
+468	1400517775	10	4	2016-03-31	t	456
+469	1400517775	10	4	2016-03-31	t	457
+470	1400517775	10	4	2016-03-31	t	458
+471	1400517775	10	4	2016-03-31	t	459
+472	0912106143	9	2	2016-03-31	t	460
+473	1400463657	13	1	2016-03-31	t	461
+474	1400123574	3	1	2016-03-31	t	462
+475	1709155350	8	1	2016-03-31	t	463
+476	1400445811	8	1	2016-03-31	t	464
+477	1709155350	8	1	2016-03-31	t	465
+478	1400450530	8	2	2016-03-31	t	466
+479	1400213557	8	3	2016-03-31	t	472
+480	1400213557	8	3	2016-03-31	t	471
+481	1400213557	8	3	2016-03-31	t	468
+482	1400213557	8	3	2016-03-31	t	469
+483	1400213557	8	3	2016-03-31	t	467
+484	1400213557	8	3	2016-03-31	t	470
+485	1400235964	8	3	2016-03-31	t	473
+486	1400235964	8	3	2016-03-31	t	474
+487	1400235964	8	3	2016-03-31	t	475
+488	1400235964	8	3	2016-03-31	t	476
+489	1400341879	5	1	2016-03-31	t	477
+490	1400592422	8	3	2016-03-31	t	478
+491	1400277941	4	1	2016-03-31	t	479
+492	1400235964	8	3	2016-03-31	t	480
+493	1400305817	8	4	2016-03-31	t	481
+494	1400388615	16	3	2016-04-01	t	482
+495	1400456347	16	3	2016-04-01	t	483
+496	1400462709	16	3	2016-04-01	t	484
+497	1400479802	3	5	2016-04-01	t	485
+498	1400545719	4	3	2016-04-01	t	486
+499	1400341150	9	4	2016-04-01	t	487
+500	1600346405	9	4	2016-04-01	t	488
+501	1600267155	10	2	2016-04-01	t	489
+502	1600267155	10	2	2016-04-01	t	490
+503	0601381742	5	1	2016-04-01	t	491
+504	1400468912	1	1	2016-04-01	t	492
+505	1400545719	4	3	2016-04-01	t	493
+506	0101136380	13	2	2016-04-01	t	494
+507	1400194518	3	5	2016-04-01	t	495
+508	1400371710	4	2	2016-04-01	t	497
+509	1400371710	4	2	2016-04-01	t	496
+510	1400371710	15	1	2016-04-01	t	498
+511	1400277420	16	1	2016-04-01	t	499
+512	1400510622	4	3	2016-04-01	t	500
+513	0104088786	6	4	2016-04-01	t	501
+514	1709527418	7	2	2016-04-01	t	502
+515	1400484422	7	3	2016-04-01	t	503
+516	0104088786	6	4	2016-04-01	t	504
+517	1400145270	11	1	2016-04-04	t	89
+518	1400285720	4	3	2016-04-06	t	505
+525	1400371710	16	2	2016-04-14	t	514
+526	1400371710	16	2	2016-04-14	t	515
+527	1400371710	16	2	2016-04-14	t	516
+528	1400371710	4	2	2016-04-14	t	517
+529	1400371710	4	2	2016-04-14	t	518
+530	1400371710	8	1	2016-04-14	t	519
+531	1400437412	10	4	2016-04-18	t	520
+532	1400437412	10	4	2016-04-18	t	521
+533	1400437412	10	4	2016-04-18	t	522
+534	1400437412	10	4	2016-04-18	t	523
+535	1600267155	10	2	2016-04-29	t	524
+536	1600267155	10	2	2016-04-29	t	525
+537	1600267155	10	2	2016-04-29	t	527
+538	1600267155	10	2	2016-04-29	t	526
+539	1400830780	9	4	2016-05-06	t	528
+540	1400830780	9	4	2016-05-06	t	529
+541	1400830780	9	4	2016-05-06	t	530
+542	1400830780	9	4	2016-05-06	t	531
+543	1600346405	9	4	2016-05-06	t	532
+544	1600346405	9	4	2016-05-06	t	533
+520	1400664049	3	4	2016-04-12	f	510
+524	1400664049	3	4	2016-04-12	f	513
+523	1400664049	3	4	2016-04-12	f	512
+519	1400435168	13	2	2016-04-08	f	508
+545	1600346405	9	4	2016-05-06	t	535
+546	1600346405	9	4	2016-05-06	t	534
+547	1600346405	9	4	2016-05-06	t	536
+548	1400341150	9	4	2016-05-06	t	537
+549	1400341150	9	4	2016-05-06	t	538
+550	1400341150	9	4	2016-05-06	t	539
+551	1400341150	9	4	2016-05-06	t	540
+552	1400545719	4	3	2016-05-06	t	541
+553	1400545719	4	3	2016-05-06	t	543
+554	1400545719	4	3	2016-05-06	t	542
+555	1400545719	4	3	2016-05-06	t	544
+556	1400545719	4	3	2016-05-06	t	545
+557	1400510622	4	3	2016-05-06	t	548
+558	1400510622	4	3	2016-05-06	t	549
+559	1102017926	4	3	2016-05-06	t	546
+560	1102017926	4	3	2016-05-06	t	550
+561	1102017926	4	3	2016-05-06	t	551
+562	1102017926	4	3	2016-05-06	t	547
+563	1400235964	8	3	2016-05-11	t	90
+564	1400235964	8	3	2016-05-11	t	91
+565	1101916755	11	4	2016-05-17	t	552
+566	1101916755	11	4	2016-05-17	t	553
+567	1101916755	11	4	2016-05-17	t	554
+568	1101916755	11	4	2016-05-17	t	555
+569	1400591259	14	1	2016-05-20	t	560
+570	1400591259	14	1	2016-05-20	t	563
+571	1400591259	14	1	2016-05-20	t	561
+572	1400591259	14	1	2016-05-20	t	562
+573	1400591259	14	1	2016-05-20	t	564
+574	1400591259	14	1	2016-05-23	t	565
+575	1400591259	14	1	2016-05-23	t	559
+576	1400591259	14	1	2016-05-23	t	557
+577	1400591259	14	1	2016-05-23	t	558
+578	1400591259	14	1	2016-05-23	t	566
+579	0912106143	9	2	2016-06-21	t	577
+580	0702115783	9	2	2016-06-21	t	578
+581	0101675122	9	5	2016-06-21	t	579
+582	1400480800	9	2	2016-06-21	t	580
+583	0101236222	9	2	2016-06-21	t	581
+584	0101236222	9	2	2016-06-21	t	582
+585	0101236222	9	2	2016-06-21	t	585
+586	0101236222	9	2	2016-06-21	t	583
+587	0101236222	9	2	2016-06-21	t	586
+588	0101236222	9	2	2016-06-21	t	584
+589	1400324883	9	1	2016-06-21	t	587
+590	1400324883	9	1	2016-06-21	t	588
+591	0602775249	6	6	2016-06-22	t	589
+592	2000062808	6	6	2016-06-22	t	590
+593	0104712708	6	5	2016-06-22	t	591
+594	1400452718	6	5	2016-06-21	t	592
+595	1400512768	6	4	2016-06-22	t	593
+596	1400489975	6	5	2016-06-22	t	594
+597	1400385702	6	4	2016-06-22	t	595
+598	0102428968	7	3	2016-06-23	t	596
+600	1709527418	7	2	2016-06-22	t	598
+599	1400422414	7	1	2016-06-23	f	597
+601	1400458434	7	3	2016-06-23	t	597
+602	1400468755	7	1	2016-06-23	t	599
+603	1400201313	7	1	2016-06-22	t	600
+604	0104088786	6	4	2016-06-24	t	602
+605	0104088786	6	4	2016-06-24	t	601
+606	1400422414	7	1	2016-06-24	t	603
+607	1400422414	7	1	2016-06-24	t	604
+608	0300578531	8	5	2016-06-27	t	605
+609	0300578531	8	5	2016-06-27	t	608
+610	0300578531	8	5	2016-06-27	t	607
+611	0300578531	8	5	2016-06-27	t	606
+612	0300578531	8	5	2016-06-27	t	609
+613	1400511240	8	5	2016-06-27	t	612
+614	1400511240	8	5	2016-06-27	t	611
+616	1400511240	8	5	2016-06-27	t	613
+617	1400511240	8	5	2016-06-27	t	614
+618	1400511240	8	5	2016-06-27	t	615
+619	1400442123	8	2	2016-06-27	t	616
+620	1400442123	8	2	2016-06-27	t	617
+621	1400442123	8	2	2016-06-27	t	620
+622	1400442123	8	2	2016-06-27	t	619
+623	1400442123	8	2	2016-06-27	t	621
+624	1400442123	8	2	2016-06-27	t	618
+625	1400420756	8	2	2016-06-27	t	623
+626	1400420756	8	2	2016-06-27	t	622
+627	1400420756	8	2	2016-06-27	t	624
+628	1400420756	8	2	2016-06-27	t	626
+629	1400420756	8	2	2016-06-27	t	627
+630	1400511240	8	5	2016-06-27	t	610
+631	1400445811	8	1	2016-06-28	t	628
+632	1400445811	8	1	2016-06-28	t	629
+633	1400445811	8	1	2016-06-28	t	633
+634	1400445811	8	1	2016-06-28	t	634
+635	1400445811	8	1	2016-06-28	t	630
+636	1400445811	8	1	2016-06-28	t	631
+637	1400445811	8	1	2016-06-28	t	636
+638	1400461529	8	1	2016-06-28	t	639
+639	1400461529	8	1	2016-06-28	t	638
+640	1400461529	8	1	2016-06-28	t	637
+641	1400461529	8	1	2016-06-28	t	632
+642	1400461529	8	1	2016-06-28	t	635
+643	1400461529	8	1	2016-06-28	t	640
+644	1400375265	8	2	2016-06-28	t	642
+645	1400375265	8	2	2016-06-28	t	645
+646	1400375265	8	2	2016-06-28	t	646
+647	1400375265	8	2	2016-06-28	t	643
+648	1400375265	8	2	2016-06-28	t	648
+649	1400317580	8	2	2016-06-28	t	641
+650	1400317580	8	2	2016-06-28	t	644
+651	1400317580	8	2	2016-06-28	t	650
+652	1400317580	8	2	2016-06-28	t	647
+653	1400317580	8	2	2016-06-28	t	649
+654	1400201321	12	2	2016-06-28	t	651
+655	1400450530	8	2	2016-06-28	t	657
+656	1400450530	8	2	2016-06-28	t	652
+657	1400450530	8	2	2016-06-28	t	654
+658	1400450530	8	2	2016-06-28	t	656
+659	1400450530	8	2	2016-06-28	t	655
+660	1400450530	8	2	2016-06-28	t	653
+661	0101700250	8	2	2016-06-29	t	658
+662	0101700250	8	2	2016-06-29	t	659
+663	0101700250	8	2	2016-06-29	t	660
+664	0101700250	8	2	2016-06-29	t	661
+665	0101700250	8	2	2016-06-29	t	662
+666	1400174403	8	2	2016-06-29	t	663
+667	1400174403	8	2	2016-06-29	t	664
+668	1400174403	8	2	2016-06-29	t	666
+669	1400174403	8	2	2016-06-29	t	665
+670	1400174403	8	2	2016-06-29	t	667
+671	1400174403	8	2	2016-06-29	t	668
+672	1400242713	12	1	2016-06-29	t	669
+673	1400242713	12	1	2016-06-29	t	670
+674	1400123574	3	1	2016-06-30	t	671
+675	1400123574	3	1	2016-06-30	t	673
+676	1400123574	3	1	2016-06-30	t	674
+677	1400123574	3	1	2016-06-30	t	675
+678	1400123574	3	1	2016-06-30	t	676
+679	1400123574	3	1	2016-06-30	t	672
+521	1400664049	3	4	2016-04-12	f	511
+522	1400664049	3	4	2016-04-12	f	509
+680	1400196596	3	4	2016-06-30	t	511
+681	1400196596	3	4	2016-06-30	t	509
+682	1400196596	3	4	2016-06-30	t	510
+683	1400196596	3	4	2016-06-30	t	513
+684	1400196596	3	4	2016-06-30	t	512
+685	1400196596	3	4	2016-06-30	t	677
+686	1400670541	3	1	2016-06-30	t	678
+687	1400670541	3	1	2016-06-30	t	679
+688	1400670541	3	1	2016-06-30	t	680
+689	1400670541	3	1	2016-06-30	t	681
+690	1400670541	3	1	2016-06-30	t	682
+691	1400175152	3	1	2016-06-30	t	683
+692	1400235469	3	1	2016-07-31	t	684
+693	1400235469	3	1	2016-07-31	t	685
+694	1400235469	3	1	2016-07-31	t	686
+695	1400235469	3	1	2016-07-31	t	688
+696	1400235469	3	1	2016-07-31	t	687
+697	1400480958	3	1	2016-07-31	t	689
+698	1400480958	3	1	2016-07-31	t	690
+699	1400480958	3	1	2016-07-31	t	691
+700	1400480958	3	1	2016-07-31	t	692
+701	1400491864	3	1	2016-07-31	t	695
+702	1400491864	3	1	2016-07-31	t	694
+703	1400491864	3	1	2016-07-31	t	696
+704	1400491864	3	1	2016-07-31	t	693
+705	1400491864	3	1	2016-07-31	t	697
+706	1400624076	3	1	2016-07-31	t	700
+707	1400624076	3	1	2016-07-31	t	702
+708	1400624076	3	1	2016-07-31	t	701
+709	1400624076	3	1	2016-07-31	t	698
+710	1400624076	3	1	2016-07-31	t	699
+711	1400624076	3	1	2016-07-31	t	703
+712	1803382710	4	4	2016-07-04	t	704
+713	1803382710	4	4	2016-07-04	t	705
+714	1400437412	4	7	2016-07-05	t	706
+715	1400437412	4	7	2016-07-05	t	707
+716	1400435713	4	7	2016-07-05	t	708
+717	1400457188	13	3	2016-07-05	t	710
+718	1400457188	13	3	2016-07-05	t	711
+719	1400457188	13	3	2016-07-05	t	709
+720	1400457188	13	3	2016-07-05	t	712
+721	1400457188	13	3	2016-07-05	t	713
+722	1400457188	13	3	2016-07-05	t	714
+723	1400457188	13	3	2016-07-05	t	715
+724	1400463657	13	1	2016-07-05	t	716
+725	1400463657	13	1	2016-07-05	t	717
+726	1400463657	13	1	2016-07-05	t	721
+727	1400463657	13	1	2016-07-05	t	720
+728	1400463657	13	1	2016-07-05	t	719
+729	1400463657	13	1	2016-07-05	t	718
+730	1400457188	13	1	2016-07-05	t	722
+731	1400371017	8	3	2016-07-06	t	725
+732	1400371017	8	3	2016-07-06	t	723
+733	1400371017	8	3	2016-07-06	t	726
+734	1400371017	8	3	2016-07-07	t	732
+735	1400371017	8	3	2016-07-07	t	731
+736	1400371017	8	3	2016-07-07	t	733
+737	1400371017	8	3	2016-07-07	t	730
+738	1400371017	8	3	2016-07-07	t	735
+739	1400371017	8	3	2016-07-07	t	734
+740	1400371017	8	3	2016-07-07	t	736
+741	1400371017	8	3	2016-07-07	t	724
+742	1400371017	8	3	2016-07-07	t	728
+743	1400371017	8	3	2016-07-07	t	727
+744	1400371017	8	3	2016-07-07	t	729
+745	1400752059	8	3	2016-07-07	t	740
+746	1400752059	8	3	2016-07-07	t	738
+747	1400752059	8	3	2016-07-07	t	737
+748	1400752059	8	3	2016-07-07	t	739
+749	1400209522	13	1	2016-07-07	t	742
+750	1400209522	13	1	2016-07-07	t	743
+751	1400209522	13	1	2016-07-07	t	744
+752	1400209522	13	1	2016-07-07	t	745
+753	1400209522	13	1	2016-07-07	t	746
+754	1400209522	13	1	2016-07-07	t	747
+755	1400475388	8	3	2016-07-08	t	751
+756	1400475388	8	3	2016-07-08	t	750
+757	1400475388	8	3	2016-07-08	t	749
+758	1400475388	8	3	2016-07-08	t	748
+759	1400475388	8	3	2016-07-08	t	752
+760	0601381742	5	1	2016-07-08	t	754
+761	0601381742	5	1	2016-07-08	t	753
+762	0601381742	5	1	2016-07-08	t	756
+763	0601381742	5	1	2016-07-08	t	755
+764	0601381742	5	1	2016-07-08	t	757
+765	1400180202	5	1	2016-07-08	t	759
+766	1400180202	5	1	2016-07-08	t	760
+767	1400180202	5	1	2016-07-08	t	761
+768	1400180202	5	1	2016-07-08	t	762
+769	1400180202	5	1	2016-07-08	t	508
+770	1400235964	8	3	2016-07-11	t	764
+771	1400235964	8	3	2016-07-11	t	763
+772	1400235964	8	3	2016-07-11	t	765
+773	1400235964	8	3	2016-07-11	t	766
+774	1400235964	8	3	2016-07-11	t	767
+775	1400343651	12	1	2016-08-02	t	772
+776	1400394746	12	1	2016-08-02	t	768
+777	1400394746	12	1	2016-08-02	t	769
+778	1400394746	12	1	2016-08-02	t	770
+779	1400394746	12	1	2016-08-02	t	771
+780	1400394746	12	1	2016-08-02	t	773
+781	1400463541	8	4	2016-08-16	t	775
+782	1400463541	8	4	2016-08-16	t	781
+783	1400463541	8	4	2016-08-16	t	777
+784	1400463541	8	4	2016-08-16	t	779
+785	1400670822	8	4	2016-08-16	t	774
+786	1400670822	8	4	2016-08-16	t	780
+787	1400670822	8	4	2016-08-16	t	778
+788	1400670822	8	4	2016-08-16	t	776
+789	1400670822	8	4	2016-08-16	t	782
+790	1400556385	8	3	2016-08-16	t	786
+791	1400556385	8	3	2016-08-16	t	788
+792	1400659783	8	3	2016-08-16	t	783
+793	1400659783	8	3	2016-08-16	t	784
+794	1400659783	8	3	2016-08-16	t	790
+795	1400659783	8	3	2016-08-16	t	785
+796	1400659783	8	3	2016-08-16	t	787
+797	1400556385	8	3	2016-08-16	t	791
+798	1400556385	8	3	2016-08-16	t	789
+799	1400592422	8	3	2016-08-16	t	795
+800	1400592422	8	3	2016-08-16	t	796
+801	1400592422	8	3	2016-08-16	t	793
+802	1400592422	8	3	2016-08-16	t	794
+803	1400592422	8	3	2016-08-16	t	792
+\.
+
+
+--
+-- Name: allocation_allocation_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('allocation_allocation_id_seq', 803, true);
+
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('auth_group_id_seq', 1, false);
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('auth_group_permissions_id_seq', 1, false);
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add log entry	1	add_logentry
+2	Can change log entry	1	change_logentry
+3	Can delete log entry	1	delete_logentry
+4	Can add permission	2	add_permission
+5	Can change permission	2	change_permission
+6	Can delete permission	2	delete_permission
+7	Can add group	3	add_group
+8	Can change group	3	change_group
+9	Can delete group	3	delete_group
+10	Can add user	4	add_user
+11	Can change user	4	change_user
+12	Can delete user	4	delete_user
+13	Can add content type	5	add_contenttype
+14	Can change content type	5	change_contenttype
+15	Can delete content type	5	delete_contenttype
+16	Can add session	6	add_session
+17	Can change session	6	change_session
+18	Can delete session	6	delete_session
+19	Can add trademark	7	add_trademark
+20	Can change trademark	7	change_trademark
+21	Can delete trademark	7	delete_trademark
+22	Can add type	8	add_type
+23	Can change type	8	change_type
+24	Can delete type	8	delete_type
+25	Can add model	9	add_model
+26	Can change model	9	change_model
+27	Can delete model	9	delete_model
+28	Can add device	10	add_device
+29	Can change device	10	change_device
+30	Can delete device	10	delete_device
+31	Can add allocation	11	add_allocation
+32	Can change allocation	11	change_allocation
+33	Can delete allocation	11	delete_allocation
+34	Can add department	12	add_department
+35	Can change department	12	change_department
+36	Can delete department	12	delete_department
+37	Can add section	13	add_section
+38	Can change section	13	change_section
+39	Can delete section	13	delete_section
+40	Can add contributor	14	add_contributor
+41	Can change contributor	14	change_contributor
+42	Can delete contributor	14	delete_contributor
+43	Can add employee	15	add_employee
+44	Can change employee	15	change_employee
+45	Can delete employee	15	delete_employee
+46	Can add provider	16	add_provider
+47	Can change provider	16	change_provider
+48	Can delete provider	16	delete_provider
+49	Can add maintenance	17	add_maintenance
+50	Can change maintenance	17	change_maintenance
+51	Can delete maintenance	17	delete_maintenance
+52	Can add parts	18	add_parts
+53	Can change parts	18	change_parts
+54	Can delete parts	18	delete_parts
+\.
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('auth_permission_id_seq', 54, true);
+
+
+--
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
+1	pbkdf2_sha256$20000$ZJhb2BNx4sIk$Y9/+O9F7KkE/jGCssi0l4VIFJKBqlo+PZZuSMKrZpuU=	2016-03-30 14:31:24.990133-05	t	dbsiavichay			dsiavichay@mmorona.gob.ec	t	t	2016-03-30 14:00:34.863381-05
+\.
+
+
+--
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY auth_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('auth_user_groups_id_seq', 1, false);
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('auth_user_id_seq', 1, true);
+
+
+--
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('auth_user_user_permissions_id_seq', 1, false);
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+1	2016-03-30 14:40:20.854006-05	173	Allocation object	3		11	1
+2	2016-03-30 14:40:20.870014-05	172	Allocation object	3		11	1
+3	2016-03-30 14:40:20.872312-05	171	Allocation object	3		11	1
+4	2016-03-30 14:40:20.874581-05	170	Allocation object	3		11	1
+5	2016-03-30 14:40:20.876753-05	169	Allocation object	3		11	1
+6	2016-03-30 14:40:47.924779-05	25	Allocation object	2	Modificado/a is_active.	11	1
+7	2016-03-30 14:41:03.453885-05	24	Allocation object	2	Modificado/a is_active.	11	1
+8	2016-03-30 14:41:13.45163-05	23	Allocation object	2	Modificado/a is_active.	11	1
+9	2016-03-30 14:41:25.290933-05	22	Allocation object	2	Modificado/a is_active.	11	1
+10	2016-03-30 14:41:33.602005-05	21	Allocation object	2	Modificado/a is_active.	11	1
+\.
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('django_admin_log_id_seq', 10, true);
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY django_content_type (id, app_label, model) FROM stdin;
+1	admin	logentry
+2	auth	permission
+3	auth	group
+4	auth	user
+5	contenttypes	contenttype
+6	sessions	session
+7	equipment	trademark
+8	equipment	type
+9	equipment	model
+10	equipment	device
+11	allocation	allocation
+12	organization	department
+13	organization	section
+14	organization	contributor
+15	organization	employee
+16	providers	provider
+17	technical_assistance	maintenance
+18	technical_assistance	parts
+\.
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('django_content_type_id_seq', 18, true);
+
+
+--
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY django_migrations (id, app, name, applied) FROM stdin;
+1	contenttypes	0001_initial	2016-03-17 16:30:44.143124-05
+2	auth	0001_initial	2016-03-17 16:30:44.214637-05
+3	admin	0001_initial	2016-03-17 16:30:44.237074-05
+4	providers	0001_initial	2016-03-17 16:30:44.245652-05
+5	equipment	0001_initial	2016-03-17 16:30:44.344742-05
+6	allocation	0001_initial	2016-03-17 16:30:44.36402-05
+7	contenttypes	0002_remove_content_type_name	2016-03-17 16:30:44.415294-05
+8	auth	0002_alter_permission_name_max_length	2016-03-17 16:30:44.432633-05
+9	auth	0003_alter_user_email_max_length	2016-03-17 16:30:44.451391-05
+10	auth	0004_alter_user_username_opts	2016-03-17 16:30:44.467534-05
+11	auth	0005_alter_user_last_login_null	2016-03-17 16:30:44.484556-05
+12	auth	0006_require_contenttypes_0002	2016-03-17 16:30:44.486291-05
+13	sessions	0001_initial	2016-03-17 16:30:44.496768-05
+14	technical_assistance	0001_initial	2016-03-17 16:30:44.541847-05
+\.
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('django_migrations_id_seq', 12, true);
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY django_session (session_key, session_data, expire_date) FROM stdin;
+0l0dburf6894dm6ohqfg550mkus0g97i	YjBjOTE5ZjgzM2E1ZGE5YjE3NDg0MmYzMTA1YTlkZGU0YzIyZTViNDp7Il9hdXRoX3VzZXJfaGFzaCI6IjM3Y2U3OTk3MWRhOWNkMmEyN2E5YWE4NTMxOTZjMzRiMTdhMjM1YzciLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-04-13 14:31:25.007333-05
+\.
+
+
+--
+-- Data for Name: equipment_device; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY equipment_device (id, code, serial, part, specifications, state, invoice, date_purchase, date_warranty, model_id, provider_id) FROM stdin;
+22	1266	3CQ5024KGT		{}	1	7616	2015-08-17	2018-08-17	3	2
+23	1277-03	BDMHE0CHH7WAWH		{}	1	7616	2015-08-17	\N	4	2
+3	1274-03	BDMHEOCHH7WAFI		{}	1	7616	2015-08-17	\N	4	2
+8	1273-03	BDMHE0CHH7WAWI		{}	1	7616	2015-08-17	\N	4	2
+15	1275-05	2432APBL5762404141		{}	1	7616	2015-08-17	2017-08-17	6	2
+29	1278-04	X75270801846		{}	1	7616	2015-08-17	\N	5	2
+7	1269	3CQ5024KGL		{}	1	7616	2015-08-17	2018-08-17	3	2
+33	1272-03	BDMHE0CHH7WAON		{}	1	7616	2015-08-17	\N	4	2
+48	980-04	FCGLH0DN33U387	600553-002	{}	1		\N	\N	19	\N
+25	1277-05	2432APBL5762404147		{}	1	7616	2015-08-17	2017-08-17	6	2
+2	1267	3CQ5024KGB		{}	1	7616	2015-08-17	2018-08-17	3	2
+59	945	VNB3K13607		{"Ip": "172.16.8.50"}	1		\N	\N	22	\N
+26	1278	2UA5231Y2F		{"Usuario": "SMONTALUISA", "Ip": "172.16.10.142", "Ram": "8 GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1TB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "XEON  3.4 Ghz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "NO"}	1	7616	2015-08-17	2018-08-17	2	2
+32	1264	3CQ5024KGD		{}	1	7616	2015-08-17	2018-08-17	3	2
+18	1276-03	BDMHEOCHH7WAFG		{}	1	7616	2015-08-17	\N	4	2
+9	1273-04	FCMHHOAHD8KO86		{}	1	7616	2015-08-17	\N	5	2
+20	1276-05	2432APBL5762404144		{}	1	7616	2015-08-17	2017-08-17	6	2
+21	1277	2UA5231Y2R		{"Usuario": "vlopez", "Ip": "172.16.9.32", "Ram": "8GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1 TB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "XEON 3.4 Ghz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "SI"}	1	7616	2015-08-17	2018-08-17	2	2
+27	1265	3CQ5024KFZ		{}	1	7616	2015-08-17	2018-08-17	3	2
+38	785-03	B77670AVBQF2LX	352750-161	{}	1		\N	\N	9	\N
+19	1276-04	FCMHHOAHD8KOB9		{}	1	7616	2015-08-17	\N	5	2
+14	1275-04	FCMHHOAHD8KOB1		{}	1	7616	2015-08-17	\N	5	2
+35	1272-05	2432APBC5762404143		{}	1	7616	2015-08-17	2017-08-17	6	2
+58	498	CNHC81107X		{"Ip": "USB"}	1		\N	\N	24	\N
+17	1268	3CQ5024K8G		{}	1	7616	2015-08-17	2018-08-17	3	2
+13	1275-03	BDMHEOCHH7WAOO		{}	1	7616	2015-08-17	\N	4	2
+34	1272-04	FCMHHOAHD8KOB5		{}	1	7616	2015-08-17	\N	5	2
+5	1274-05	2432APB25762404145		{}	1	7616	2015-08-17	2017-08-17	6	2
+6	1273	2UA5231Y2X		{"Usuario": "USER4", "Ip": "172.16.10.161", "Ram": "8GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1TB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL XEON 3.4GHz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "SI"}	1	7616	2015-08-17	2018-08-17	2	2
+12	1271	3CQ5024KGX		{}	1	7616	2015-08-17	2018-08-17	3	2
+28	1278-03	BDMHEOC5Y8K05B		{}	1	7616	2015-08-17	\N	4	2
+24	1277-04	FCMHHOAHD8KOBA		{}	1	7616	2015-08-17	\N	5	2
+30	1278-05	2432APBL5762404148		{}	1	7616	2015-08-17	2017-08-17	6	2
+40	842	SMAVR1006		{}	1		\N	\N	10	\N
+42	710	102UXUN58782		{}	1		\N	\N	13	\N
+46	981	GCM3020BR3		{}	1		\N	\N	18	\N
+39	785-04	FATSQ0EDR1BOBT	417441-002	{}	1		\N	\N	11	\N
+49	225	225		{}	1		\N	\N	20	\N
+55	914	MXL2470937		{"Usuario": "walarcon", "Ip": "172.16.8.216", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7 3770 3.40 GHz", "Sistema Operativo": "UBUNTU", "Acceso Remoto": "NO"}	1		\N	\N	17	\N
+37	797	CNC119R7CN	625366-001	{}	1		\N	\N	8	\N
+52	914-03	BAUDU0OVB3CD26		{}	1		\N	\N	9	\N
+10	1273-05	2432APBL5762404146		{}	1	7616	2015-08-17	2017-08-17	6	2
+53	914-04	FCGLH0DHD3KVTO		{}	1		\N	\N	21	\N
+45	693	09061604003028		{}	1		\N	\N	16	\N
+51	913	6CM2300Q5H	675802-001	{}	1		\N	\N	18	\N
+43	1169-03	ZCE1A1600999		{}	1		\N	\N	14	\N
+4	1274-04	FCMHHOAHD8KOB8		{}	1	7616	2015-08-17	\N	5	2
+54	142	L245APBL5710712001		{}	1		\N	\N	6	\N
+44	1169-04	X75270801857		{}	1		\N	\N	15	\N
+56	950	VNB3D12656		{"Ip": "172.16.12.130"}	1		\N	\N	22	\N
+57	582	CNBSD01066		{"Ip": "172.16.11.130"}	1		\N	\N	23	\N
+61	696	 CNB9068816		{"Ip": "172.16.11.4"}	1		\N	\N	25	\N
+62	657	YC5RH9LZ908313D	5670972	{}	1		\N	\N	28	\N
+60	345	MXD42806GS	DV670A#ABM	{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "fmontenegro", "Acceso Remoto": "NO", "Ip": "172.16.11.20", "Ram": "512MB DDR", "Unidad Optica": "CD Writer", "Disco": "40GB", "Unidad Lectora": "FLOPPY", "Procesador": "PENTIUM 4 2.80GHz", "Bits": "32 BITS"}	1		\N	\N	27	\N
+93	976	MXL304045C	QV983AV#006	{"Sistema Operativo": "UBUNTU", "Usuario": "osolis", "Ip": "172.16.12.77", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-3370 3.4GHz", "Bits": "32 BITS", "Acceso Remoto": "SI"}	1		\N	\N	17	\N
+63	345-04	FATSQ0EDR1BOWU	417441-002	{}	1		\N	\N	11	\N
+66	789	CNC119RH5D	XJ311A	{}	1		\N	\N	8	\N
+94	975	6CM30312TT	A5V72A	{}	1		\N	\N	18	\N
+41	1169	1169-01		{"Usuario": "hp", "Ip": "172.16.8.212", "Ram": "2GB", "Unidad Optica": "DVD Writer", "Disco": "350GB", "Bits": "32 BITS", "Unidad Lectora": "CARD READER", "Procesador": "DUAL CORE E2220 2.40 GHz", "Sistema Operativo": "UBUNTU", "Acceso Remoto": "SI"}	1		\N	\N	12	\N
+50	980	MXL3021QP9		{"Usuario": "tculcay", "Ip": "172.16.8.211", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7 3770 3.40 GHz", "Sistema Operativo": "UBUNTU", "Acceso Remoto": "SI"}	1		\N	\N	17	\N
+36	785	MXL1491FKR		{"Usuario": "mpalacios", "Ip": "172.16.8.213", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "32 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL CORE I7 2600 3.40Ghz", "Sistema Operativo": "UBUNTU", "Acceso Remoto": "SI"}	1		\N	\N	7	\N
+16	1276	2UA5231Y34		{"Usuario": "MBARAHONA", "Ip": "172.16.9.37", "Ram": "8GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1TB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "XEON 3.4 Ghz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "SI"}	1	7616	2015-08-17	2018-08-17	2	2
+69	391	9428BY0LS436401363		{}	1		\N	\N	30	\N
+82	804	5CG3323S9K		{"Usuario": "user", "Ip": "172.16.9.210", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "64 BITS", "Unidad Lectora": "CARD READER", "Procesador": "INTEL I5-3230M 2.66GHz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "NO"}	1		2012-03-07	2013-03-07	36	\N
+65	777	MXL1491FQ5	XL504AV#244	{"Usuario": "fmontenegro", "Ip": "172.16.11.35", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "32 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7 2600 3.40 GHz", "Sistema Operativo": "UBUNTU", "Acceso Remoto": "SI"}	1		\N	\N	7	\N
+83	1316	RVXZ023917		{}	1	7614	2015-12-31	2017-12-31	37	3
+71	449	CNG71601KB	396709-02	{}	1		\N	\N	32	\N
+74	956	MXL304045R	QV983AV#006	{"Sistema Operativo": "UBUNTU", "Usuario": "dsiavichay", "Acceso Remoto": "NO", "Ip": "172.16.8.68", "Ram": "4GB RAM", "Unidad Optica": "DVD Writer", "Disco": "1.5TB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-3770 3.40GHz", "Bits": "64 BITS"}	1		\N	\N	17	\N
+75	509	AQ22HVMQ203147P		{}	1		\N	\N	33	\N
+84	1284	5026129424K34	41G0050	{"Ip": "172.16.8.51"}	1	7356	2015-11-04	2018-11-04	38	3
+79	1302-02	COMARIFX832011154713-02		{}	1	2590	2015-11-16	2018-11-16	34	1
+81	1302-04	FB7330AN3UM09LU		{}	1		\N	\N	11	\N
+80	1302-03	COMARIFX832011154713-03		{}	1	2590	2015-11-16	2018-11-16	35	1
+78	1302	COMARIFX832011154713		{"Usuario": "hp", "Ip": "172.16.8.70", "Ram": "4 GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "AMDFX 8320", "Sistema Operativo": "UBUNTU", "Acceso Remoto": "NO"}	1	2590	2015-11-16	2018-11-16	1	1
+70	1200	MXL2361L9C	QV983AV#006	{"Usuario": "administrador", "Ip": "172.16.8.72", "Ram": "4 GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "32 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-3770 GHz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "SI"}	1		\N	\N	17	\N
+76	956-04	FCGLH0DHD3SJ52	537748-001	{}	1		\N	\N	21	\N
+64	345-03	C0405223396		{}	1		\N	\N	29	\N
+77	956-03	BDAEV0QVB3U2VJ	701428-161	{}	1		\N	\N	9	\N
+72	1200-03	BAUDU0OVB3B3HB	537745-161	{}	1		\N	\N	9	\N
+68	777-03	BAUDU0OVB1J77M	537745-161	{}	1		\N	\N	9	\N
+67	777-04	FB7330AN3W80OEY	417966-001	{}	1		\N	\N	11	\N
+73	1200-04	FCGLH0DFZ3CNEV	577748-001	{}	1		\N	\N	19	\N
+85	461	MXJ72508H3	EW287AV	{"Sistema Operativo": "UBUNTU", "Usuario": "fpallchisaca", "Acceso Remoto": "SI", "Ip": "172.16.11.14", "Ram": "1GB", "Unidad Optica": "DVD Rom", "Disco": "80GB", "Unidad Lectora": "FLOPPY", "Procesador": "PENTIUN D 3.4GHz", "Bits": "32 BITS"}	1		\N	\N	39	\N
+86	462	CNK71008RG	437327-001	{}	1		\N	\N	40	\N
+88	461-04	461-04		{}	1		\N	\N	11	\N
+87	461-03	BC3370BGAUH9F7	435302-161	{}	1		\N	\N	9	\N
+92	CNDCGBD1NK	CNDCGBD1NK	CE993A	{}	1	7691	2016-03-01	2019-03-01	41	3
+31	1272	2UA5231Y30		{"Usuario": "frubio", "Ip": "172.16.9.15", "Ram": "8GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1TB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "XEON 3.4 Ghz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "NO"}	1	7616	2015-08-17	2018-08-17	2	2
+99	610	CM20H9LS422433P	LS20CMYKF/ZM	{}	1		\N	\N	43	\N
+95	976-04	FCGLH0DFZ3CNEZ	600553-002	{}	1		\N	\N	19	\N
+96	976-03	BDAEV0QVB3U2SK	701428-161	{}	1		\N	\N	9	\N
+97	624	CNB9N91375	CE459A	{"Ip": "172.16.12.75"}	1		\N	\N	25	\N
+101	55	ZCE1C3102985		{}	1		\N	\N	45	\N
+100	54	139613006193		{}	1		\N	\N	44	\N
+102	58	AGLS600Q2		{}	1		\N	\N	46	\N
+104	812	812		{}	1		\N	\N	48	\N
+105	811-04	FCGLH0D5B1Y2YW	600553-002	{}	1		\N	\N	19	\N
+106	811-03	BAUDU0OVB1S85G	434820-162	{}	1		\N	\N	9	\N
+110	715	3CQ1113HB5		{}	1		\N	\N	50	\N
+111	714-04	FATSK0LN30GEPS		{}	1		\N	\N	51	\N
+112	714-03	BAUDU0KVB0FGRO	434820-162	{}	1		\N	\N	9	\N
+113	77	U0050921	16-1707	{}	1		\N	\N	52	\N
+107	823	SM-AVR1006		{}	1		\N	\N	10	\N
+172	646	CNC93612VN		{}	1		\N	\N	68	\N
+173	706-04	FCGLF0DN33IG25		{}	1		\N	\N	70	\N
+174	706-03	BAUHR0IGAZR29F		{}	1		\N	\N	9	\N
+229	635-04	F5320B05BWF09BH		{}	1		\N	\N	51	\N
+230	635-03	BAUDU0HVBY602T		{}	1		\N	\N	9	\N
+109	714	2UA11714YN	XV070T#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "osilva", "Acceso Remoto": "SI", "Ip": "172.16.10.81", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "CARD READER", "Procesador": "INTEL XEON 2.4GHz", "Bits": "64 BITS"}	1		\N	\N	49	\N
+115	717	3CQ1102KT5	MM274A	{}	1		\N	\N	50	\N
+116	716-04	FATSK0LN30GEQI	537749-001	{}	1		\N	\N	51	\N
+117	716-03	BAUBU0KVB0FGRP	434820-162	{}	1		\N	\N	9	\N
+297	801	VNB3R03647	CE459A	{"Ip": "172.16.12.4"}	1		\N	\N	25	\N
+108	1317	RVXZ023918		{}	1	7614	2015-12-31	2017-12-31	37	3
+118	937-05	2245APBLS710711992		{}	1		\N	\N	53	\N
+523	222-03	B93CB0ACPT2CRF		{}	1		\N	\N	62	\N
+89	1326	CNDCGBD1NT	CE993A	{"Ip": "172.16.11.2"}	1	7691	2016-03-01	2019-03-01	41	3
+90	1327	CNDCGBD23S	CE993A	{"Ip": "172.16.9.71"}	1	7691	2016-03-01	2019-03-01	41	3
+91	1328	CNDCGBD1Q3	CE993A	{"Ip": "172.16.9.72"}	1	7691	2016-03-01	2019-03-01	41	3
+103	811	2UA2120TQK	VS933AV#529	{"Usuario": "ialvarez", "Ip": "172.16.10.85", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "64 BITS", "Unidad Lectora": "CARD READER", "Procesador": "INTEL XEON 2.53GHz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "SI"}	1		\N	\N	47	\N
+114	716	2UA11714YP	XV070LT#AVM	{"Usuario": "mvintimilla", "Ip": "172.16.10.79", "Ram": "10GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "64 BITS", "Unidad Lectora": "CARD READER", "Procesador": "INTEL XEON 2.4GHZ", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "SI"}	1		\N	\N	49	\N
+629	333	0F15550880		{"Ip": "172.16.11.193", "Mac": "00085D3310D8", "Extension": "1600"}	1		\N	\N	90	\N
+636	45	45.05		{}	1		\N	\N	52	\N
+120	814	814		{}	1		\N	\N	48	\N
+121	813-04	FCGLH0D5B1Y3AI	600553-002	{}	1		\N	\N	19	\N
+122	813-03	BAUDU0OVB1S85J	434820-162	{}	1		\N	\N	9	\N
+123	824	110730-03197		{}	1		\N	\N	10	\N
+129	1198	1998-01		{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "kchico", "Acceso Remoto": "SI", "Ip": "172.16.10.84", "Ram": "8GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1TB SATA", "Unidad Lectora": "CARD READER", "Procesador": "INTEL I7 3.4GHz", "Bits": "64 BITS"}	1		\N	\N	12	\N
+130	1198-02	308NDMTAA179		{}	1		\N	\N	57	\N
+131	1198-04	1198-04		{}	1		\N	\N	58	\N
+132	1198-03	1198-03		{}	1		\N	\N	59	\N
+133	1198-05	C13311573		{}	1		\N	\N	60	\N
+134	397	2UA54600VJ	PY950UA#ABM	{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "tmendoza", "Acceso Remoto": "NO", "Ip": "172.16.10.76", "Ram": "4GB DDR2", "Unidad Optica": "DVD Writer", "Disco": "750GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "PENTIUM 4 3.20GHz", "Bits": "32 BITS"}	1		\N	\N	42	\N
+139	931	VNB3D12566		{"Ip": "172.16.10.65"}	1		\N	\N	22	\N
+135	866	201NDTC48625		{}	1		\N	\N	61	\N
+136	59	59-04		{}	1		\N	\N	15	\N
+137	397-03	B93CB0ACPS66TX		{}	1		\N	\N	62	\N
+138	397-05	397-05		{}	1		\N	\N	46	\N
+125	1090	1090		{}	1		\N	\N	48	\N
+126	1089-04	FCMHH0CAU4W7WX	672652-001	{}	1		\N	\N	55	\N
+128	399	9428BY0LS436401364		{}	1		\N	\N	46	\N
+127	1089-03	BDMHE0CVB4V8VW	672647-163	{}	1		\N	\N	56	\N
+152	443	CNG63605CJ	EF227A	{}	1		\N	\N	32	\N
+141	965	C6M3060KVF		{}	1		\N	\N	18	\N
+142	964-04	FCGLH0DHD3SCXU		{}	1		\N	\N	21	\N
+143	964-03	BDAEV0Q5Y3Y5Y4		{}	1		\N	\N	9	\N
+144	219	U0050934		{}	1		\N	\N	52	\N
+140	964	MXL311148V	QV983AV#006	{"Usuario": "vjaramillo", "Ip": "172.16.8.147", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-3770 3.4 GHz", "Sistema Operativo": "UBUNTU", "Acceso Remoto": "SI"}	1		\N	\N	17	\N
+145	467	MXJ72508G7	EW287AV	{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "duzho", "Acceso Remoto": "NO", "Ip": "172.16.11.143", "Ram": "2GB DDR2", "Unidad Optica": "DVD Writer", "Disco": "80GB IDE", "Unidad Lectora": "FLOPPY", "Procesador": "PENTIUM D 3.4GHz", "Bits": "32 BITS"}	1		\N	\N	39	\N
+146	468	CNN7124348		{}	1		\N	\N	40	\N
+147	467-04	FB7330AN3UM09KZ		{}	1		\N	\N	11	\N
+148	467-03	B93CB0ACPT2CR7		{}	1		\N	\N	62	\N
+149	469	9248AY0LS436400917		{}	1		\N	\N	46	\N
+150	1122	PHGFD06797		{"Ip": "172.16.11.131"}	1		\N	\N	22	\N
+151	442	2UA64319X4	RL340LA#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "acesen", "Acceso Remoto": "SI", "Ip": "172.16.9.18", "Ram": "8GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB DDR3", "Unidad Lectora": "FLOPPY", "Procesador": "INTEL CORE 2 DUO 2.13 GHz", "Bits": "64 BITS"}	1		\N	\N	63	\N
+153	442-04	FCGLH0D9W3XDK9		{}	1		\N	\N	21	\N
+155	833	110730-03194		{}	1		\N	\N	10	\N
+154	160	B13AA0T39IJ2KB		{}	1		\N	\N	64	\N
+156	1075	CN365WH0FN		{}	1		\N	\N	65	\N
+158	721	CNB9089467	CE4594	{"Ip": "172.16.9.3"}	1		\N	\N	25	\N
+157	620	CNGS311633	CB495A	{"Ip": "172.16.9.2"}	1		\N	\N	23	\N
+159	821	2UA2120TQH	VS933AV#529	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "cpina", "Acceso Remoto": "SI", "Ip": "172.16.9.27", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "CARD READER", "Procesador": "INTEL XEON 2.53GHz", "Bits": "64 BITS"}	1		\N	\N	47	\N
+160	822	822-02		{}	1		\N	\N	48	\N
+161	821-04	FCGLH0D9W1WYN3		{}	1		\N	\N	21	\N
+162	821-03	BAUDU0OVB1S85D		{}	1		\N	\N	9	\N
+163	645	2UA0010S25	WE831LA#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "asinchi", "Acceso Remoto": "SI", "Ip": "172.16.9.13", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "CARD READER", "Procesador": "INTEL CORE 2 QUAD 2.66GHz", "Bits": "64 BITS"}	1		\N	\N	67	\N
+165	689	CNC93612VR		{}	1		\N	\N	68	\N
+164	645-04	W65646200763		{}	1		\N	\N	15	\N
+166	645-03	BAUDU0HVBY60CP		{}	1		\N	\N	9	\N
+167	708	2UA11007VX	XV067LT#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "nespinoza", "Acceso Remoto": "SI", "Ip": "172.16.9.26", "Ram": "10GB DRR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL XEON 2.4 GHz", "Bits": "64 BITS"}	1		\N	\N	49	\N
+168	690	CNC925090L		{}	1		\N	\N	68	\N
+169	708-04	M310090328812		{}	1		\N	\N	69	\N
+170	708-03	BAUDU0OVB1G5RW		{}	1		\N	\N	9	\N
+171	706	2UA11007W0		{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "preyes", "Acceso Remoto": "SI", "Ip": "172.16.9.11", "Ram": "10GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL XEON 2.4 GHz", "Bits": "64 BITS"}	1		\N	\N	49	\N
+175	1085	2UA3392FDX	E2A37LT#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "plopez", "Acceso Remoto": "SI", "Ip": "172.16.9.12", "Ram": "16GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL XEON 3.00GHz", "Bits": "64 BITS"}	1		\N	\N	54	\N
+176	1086	1086-02		{}	1		\N	\N	48	\N
+177	1085-04	FCGLF0DN33IG2T		{}	1		\N	\N	70	\N
+178	1085-03	BDMHE0CVB4V8VV		{}	1		\N	\N	56	\N
+179	439	2UA64319SF	RL340LA#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "rtenecora", "Acceso Remoto": "SI", "Ip": "172.16.9.14", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "150GB SATA", "Unidad Lectora": "FLOPPY", "Procesador": "INTEL CORE 2 DUO 2.13 GHz", "Bits": "64 BITS"}	1		\N	\N	63	\N
+180	440	CNG63605CH		{}	1		\N	\N	32	\N
+181	440-04	440-04		{}	1		\N	\N	71	\N
+182	170	B13AAQT39IJ463		{}	1		\N	\N	64	\N
+124	1089	2UA3392FDS	E2A37LT#ABM	{"Usuario": "jguzman", "Ip": "172.16.10.82", "Ram": "16GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL XEON 3.00GHz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "SI"}	1		\N	\N	54	\N
+183	707	2UA11007VZ	XV067LT#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "jsinchi", "Acceso Remoto": "SI", "Ip": "172.16.9.33", "Ram": "8GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL XEON 2.40 GHz", "Bits": "64 BITS"}	1		\N	\N	49	\N
+184	688	CNC937016V		{}	1		\N	\N	68	\N
+185	707-04	FATSK0LN3ZY8OO		{}	1		\N	\N	51	\N
+186	707-03	BAUHR0HVBYS6KI		{}	1		\N	\N	9	\N
+187	450	2UA64815XN	RL3440LA#ABM	{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "lcastillo", "Acceso Remoto": "NO", "Ip": "172.16.11.18", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "250GB IDE", "Unidad Lectora": "FLOPPY", "Procesador": "INTEL CORE 2 DUO 2.13 GHz", "Bits": "32 BITS"}	1		\N	\N	63	\N
+188	453	CNG71601JX		{}	1		\N	\N	32	\N
+189	450-04	FCMHF0A9W5Y4RY		{}	1		\N	\N	21	\N
+190	450-03	B93CB0ACPTHFNP		{}	1		\N	\N	62	\N
+192	737	CNC134PL2J		{}	1		\N	\N	8	\N
+193	736-04	FATSQ0E671A1DZ		{}	1		\N	\N	72	\N
+194	736-03	BAUDU0OVB1G3J5		{}	1		\N	\N	9	\N
+196	739	CNC134PKTT	XJ311A	{}	1		\N	\N	8	\N
+197	738-04	FATSQ0E671GAAD		{}	1		\N	\N	72	\N
+198	738-03	BAUBU0OVB1IDPC		{}	1		\N	\N	9	\N
+200	735	CNC134PL2Q	XJ311A	{}	1		\N	\N	8	\N
+201	734-04	FATSQ0E5B3177WV		{}	1		\N	\N	11	\N
+202	734-03	BAUHR0IGAZR295		{}	1		\N	\N	9	\N
+203	317	2UA4390749	DY791AW#ABM	{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "fpuenchera", "Acceso Remoto": "SI", "Ip": "172.16.9.30", "Ram": "4GB DDR2", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "FLOPPY", "Procesador": "INTEL PENTUM 4 3.0GHz", "Bits": "32 BITS"}	1		\N	\N	73	\N
+204	995	ETB4D01240SL0		{}	1		\N	\N	74	\N
+205	317-04	X77664202390		{}	1		\N	\N	15	\N
+206	317-03	ZCE261901318		{}	1		\N	\N	14	\N
+209	1049-04	FCGLH0DN033MLLH		{}	1		\N	\N	19	\N
+212	713	102UXEZ58780		{}	1		\N	\N	13	\N
+213	120-04	X77664202375		{}	1		\N	\N	15	\N
+211	120	MXJ344028B	DG061A#ABM	{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "jnoguera", "Acceso Remoto": "SI", "Ip": "172.16.10.153", "Ram": "512MB DDR2", "Unidad Optica": "DVD Writer", "Disco": "150GB IDE", "Unidad Lectora": "FLOPPY", "Procesador": "INTEL PENTIUM 4 2.66GHz", "Bits": "32 BITS"}	1		\N	\N	75	\N
+216	1076	CN365WH02D		{}	1		\N	\N	65	\N
+214	119	B69220KGAP96BG		{}	1		\N	\N	76	\N
+217	651	CNGS311640	CB495A	{"Ip": "172.16.10.130"}	1		\N	\N	23	\N
+218	1149	MXL3481X49	QV983AV#293	{"Sistema Operativo": "UBUNTU", "Usuario": "csanunga", "Acceso Remoto": "SI", "Ip": "172.16.10.144", "Ram": "2GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL PENTIUM G2030 3.0GHz", "Bits": "32 BITS"}	1		\N	\N	17	\N
+219	1150	6CM3312CP1	A5V72A	{}	1		\N	\N	18	\N
+220	1149-04	FCGLH0DHD5KBIO		{}	1		\N	\N	21	\N
+221	1149-03	BDAEV0Q5Y5F9OY		{}	1		\N	\N	9	\N
+222	652	CNB9022405		{"Ip": "172.16.10.129"}	1		\N	\N	25	\N
+224	1156	6CM3312CBK		{}	1		\N	\N	18	\N
+225	1155-04	FCGLH0DHD5KB6F		{}	1		\N	\N	21	\N
+226	1155-03	BDAEV0Q5Y5F9LR		{}	1		\N	\N	9	\N
+228	636	CNC937011Z		{}	1		\N	\N	68	\N
+227	635	2UA0010S22	WE831LA#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "dmancheno", "Acceso Remoto": "SI", "Ip": "172.16.10.154", "Ram": "8GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "CARD READER", "Procesador": "INTEL CORE 2 QUAD 2.66GHz", "Bits": "64 BITS"}	1		\N	\N	67	\N
+231	1093	2UA3392FDV	E2A37LT#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "bojeda", "Acceso Remoto": "SI", "Ip": "172.16.10.152", "Ram": "16GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1TB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL XEON 3.0GHz", "Bits": "64 BITS"}	1		\N	\N	54	\N
+232	1094	1094-02		{}	1		\N	\N	48	\N
+233	1094-04	FB7330AN3UM09MK		{}	1		\N	\N	11	\N
+234	1093-03	BDMHE0CVB4V8Z		{}	1		\N	\N	56	\N
+235	438	2UA64319SJ	RL304LA#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "gsuarez", "Acceso Remoto": "SI", "Ip": "172.16.10.146", "Ram": "6GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "250GB SATA", "Unidad Lectora": "FLOPPY", "Procesador": "INTEL CORE 2 DUO 2.13GHz", "Bits": "64 BITS"}	1		\N	\N	63	\N
+236	649	649-02		{}	1		\N	\N	68	\N
+237	438-04	X77045309690		{}	1		\N	\N	77	\N
+238	438-03	ZM9215007897		{}	1		\N	\N	78	\N
+239	1051	MXL3211S41	QV983AV#006	{"Sistema Operativo": "UBUNTU", "Usuario": "dcazar", "Acceso Remoto": "SI", "Ip": "172.16.10.143", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-3770 3.4GHz", "Bits": "32 BITS"}	1		\N	\N	17	\N
+240	653	CNC93700Y8	KE289A	{}	1		\N	\N	68	\N
+241	1051-04	FCGLH0DN33ML55		{}	1		\N	\N	19	\N
+242	1051-03	BDAEV0QVB4I6CN		{}	1		\N	\N	9	\N
+454	783-03	BAUDU0OVB3CD9B		{}	1		\N	\N	9	\N
+575	U3SK4X02047	U3SK4X02047		{}	1	10426	2016-06-13	2018-06-13	134	5
+207	1049	MXL322011T	QV983AV#008	{"Usuario": "jnoguera", "Ip": "172.16.10.139", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-3770 3.4GHz", "Sistema Operativo": "UBUNTU", "Acceso Remoto": "SI"}	1		\N	\N	17	\N
+208	1050	C6M3060LVV		{}	1		\N	\N	18	\N
+215	947	VNB3D12554		{"Ip": "172.16.10.132"}	1		\N	\N	22	\N
+210	1049-03	BDAEV0Q5Y4H9IB		{}	1		\N	\N	9	\N
+639	281	0D12243745		{"Ip": "172.16.11.199", "Mac": "00085D355AC1", "Extension": "1614"}	1		\N	\N	88	\N
+637	1098-04	1098-04	600553-002	{}	1		\N	\N	140	\N
+191	736	MXL1451KT9	XL504AV#104	{"Usuario": "jgarbay", "Ip": "172.16.9.22", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-2600 3.4 GHz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "SI"}	1		\N	\N	7	\N
+243	1152	MXL3481X33	QV983AV#293	{"Sistema Operativo": "UBUNTU", "Usuario": "dmaldonado", "Acceso Remoto": "SI", "Ip": "172.16.10.158", "Ram": "2GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL PENTUIM G2030 3.0GHz", "Bits": "32 BITS"}	1		\N	\N	17	\N
+244	1153	6CM3312CN5		{}	1		\N	\N	18	\N
+245	1152-04	FCGLH0DHD5KBGN		{}	1		\N	\N	21	\N
+246	1152-03	BDAEV0Q5Y5F8SA		{}	1		\N	\N	9	\N
+247	451	2UA64815Y8	RL340LA#ABM	{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "vgomez", "Acceso Remoto": "SI", "Ip": "172.16.10.147", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "250GB SATA", "Unidad Lectora": "FLOPPY", "Procesador": "INTEL 2 DUO 2.13GHz", "Bits": "32 BITS"}	1		\N	\N	63	\N
+248	452	452-02		{}	1		\N	\N	32	\N
+249	451-04	FATSK0J9WT7S0B		{}	1		\N	\N	5	\N
+250	451-03	B93CB0LGAT705T		{}	1		\N	\N	9	\N
+251	1087	2UA3392FDT	E2A37LT#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "azavala", "Acceso Remoto": "SI", "Ip": "172.16.9.39", "Ram": "16GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL XEON 3.0GHz", "Bits": "64 BITS"}	1		\N	\N	54	\N
+252	1088	1088-02		{}	1		\N	\N	48	\N
+253	1087-04	FCGLF0DN33IG1Z		{}	1		\N	\N	70	\N
+254	1087-03	BDMHE0CVB4V8V1		{}	1		\N	\N	56	\N
+255	543	2UA8411BXJ	KF243LA#ABM	{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "jgonzales", "Acceso Remoto": "SI", "Ip": "172.16.10.150", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "250GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL CORE 2 QUAD 2.4GHz", "Bits": "32 BITS"}	1		\N	\N	67	\N
+256	867	202NDXQ9N490		{}	1		\N	\N	79	\N
+257	189	W65646200764		{}	1		\N	\N	15	\N
+258	543-03	BC3370GVBWV0K5		{}	1		\N	\N	9	\N
+263	641	2UA0010S1L	WE831LA#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "bsalinas", "Acceso Remoto": "SI", "Ip": "172.16.10.141", "Ram": "8GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "CARD READER", "Procesador": "INTEL CORE 2 QUAD 2.66GHz", "Bits": "32 BITS"}	1		\N	\N	67	\N
+264	642	CNC937016X		{}	1		\N	\N	68	\N
+265	641-04	FATSK0J9WY7WDA		{}	1		\N	\N	5	\N
+266	641-03	BAUDU0HVBY602H		{}	1		\N	\N	9	\N
+259	545	2UA8411BXD	KF243LA#ABM	{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "cgranda", "Acceso Remoto": "SI", "Ip": "172.16.10.140", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "250GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL CORE 2 QUAD 2.4GHz", "Bits": "32 BITS"}	1		\N	\N	67	\N
+260	544	CNT82520RP		{}	1		\N	\N	80	\N
+261	545-04	FATSK0J9WY7S0J		{}	1		\N	\N	5	\N
+262	545-03	BC3370GVBWEG3V		{}	1		\N	\N	9	\N
+267	815	2UA2120TQF	VS933AV#529	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "rguevara", "Acceso Remoto": "SI", "Ip": "172.16.11.145", "Ram": "12GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "6.5TB SATA", "Unidad Lectora": "CARD READER", "Procesador": "INTEL XEON 2.53GHz", "Bits": "64 BITS"}	1		\N	\N	47	\N
+268	816	816-02		{}	1		\N	\N	48	\N
+269	815-04	FCGLH0D5B1Y3AV		{}	1		\N	\N	19	\N
+270	815-03	BAUDU0OVB1S85C		{}	1		\N	\N	9	\N
+271	764	MXL1412Q50	XL504AV#104	{"Sistema Operativo": "UBUNTU", "Usuario": "eortiz", "Acceso Remoto": "SI", "Ip": "172.16.12.13", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-2600 3.4GHz", "Bits": "32 BITS"}	1		\N	\N	7	\N
+272	769	CNC134PKRS		{}	1		\N	\N	8	\N
+273	764-04	764-04		{}	1		\N	\N	11	\N
+274	764-03	BAUDU0OVB1G4H0		{}	1		\N	\N	9	\N
+275	758	MXL1480CNZ	XL504AV#244	{"Sistema Operativo": "UBUNTU", "Usuario": "jayuy", "Acceso Remoto": "SI", "Ip": "172.16.12.17", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-2600 3.4GHz", "Bits": "32 BITS"}	1		\N	\N	7	\N
+276	759	CNC047PY05		{}	1		\N	\N	8	\N
+277	758-04	FATSQ0E671GAAT		{}	1		\N	\N	72	\N
+278	758-03	BAUDU0OVB1IDO2		{}	1		\N	\N	9	\N
+283	730	CNBJ553741	CE459A	{"Ip": "172.16.12.3"}	1		\N	\N	25	\N
+280	765	CNC134PKRN		{}	1		\N	\N	8	\N
+281	768-04	FATSQ0ECU21H96		{}	1		\N	\N	11	\N
+282	768-03	BAUDU0OVB0WCX9		{}	1		\N	\N	9	\N
+279	768	MXL1451KD6	XL504AV#104	{"Sistema Operativo": "UBUNTU", "Usuario": "mpujupata", "Acceso Remoto": "SI", "Ip": "172.16.12.14", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-2600 3.4GHz", "Bits": "32 BITS"}	1		\N	\N	7	\N
+284	102	6Y27-KN8Z-R06P		{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "bescobar", "Acceso Remoto": "SI", "Ip": "172.16.12.18", "Ram": "1GB DDR2", "Unidad Optica": "CD Writer", "Disco": "40GB IDE", "Unidad Lectora": "FLOPPY", "Procesador": "PENTIUM 4 2.0GHz", "Bits": "32 BITS"}	1		\N	\N	81	\N
+285	497	CNN741043P		{}	1		\N	\N	40	\N
+286	102-04	X77664202380		{}	1		\N	\N	15	\N
+287	102-03	ZCE261901319		{}	1		\N	\N	45	\N
+289	767	CNC134PKH3		{}	1		\N	\N	8	\N
+290	766-04	FATSQ0E671GFCO		{}	1		\N	\N	72	\N
+291	766-03	BAUDU0OVB1IDPG		{}	1		\N	\N	9	\N
+292	760	MXL137047G	XL504AV#104	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "mguanoluisa", "Acceso Remoto": "SI", "Ip": "172.16.12.11", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-2600 3.4GHz", "Bits": "32 BITS"}	1		\N	\N	7	\N
+293	1180	910NDWEB4113		{}	1		\N	\N	61	\N
+294	760-04	FATSQ0E671A888		{}	1		\N	\N	72	\N
+295	760-03	BAUDU0OVB0UB11		{}	1		\N	\N	9	\N
+296	731	CNB9L68719		{"Ip": "172.16.12.1"}	1		\N	\N	25	\N
+298	770	MXL1451KRC	XL504AV#104	{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "jcardenas", "Acceso Remoto": "SI", "Ip": "172.16.12.12", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-2600 3.4GHz", "Bits": "32 BITS"}	1		\N	\N	7	\N
+299	771	CNC134PKPY		{}	1		\N	\N	8	\N
+300	770-04	FATSQ0E671A4H7		{}	1		\N	\N	72	\N
+301	770-03	BAUDU0OVB1G5O0		{}	1		\N	\N	9	\N
+302	762	MXL1451KD9	XL504AV#104	{"Sistema Operativo": "UBUNTU", "Usuario": "mmero", "Acceso Remoto": "SI", "Ip": "172.16.12.15", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-2600 3.4GHz", "Bits": "32 BITS"}	1		\N	\N	7	\N
+303	763	CNC134PKQR		{}	1		\N	\N	8	\N
+304	762-04	762-04		{}	1		\N	\N	11	\N
+305	762-03	BAUDU0OVB1G4HB		{}	1		\N	\N	9	\N
+307	20051004	20051004	LQ036AA	{}	1	6845	2013-12-02	2014-12-02	83	2
+199	734	MXL1451KCX	XL504AV#104	{"Usuario": "jmartinez", "Ip": "172.16.9.23", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-2600 34GHz", "Sistema Operativo": "UBUNTU", "Acceso Remoto": "SI"}	1		\N	\N	7	\N
+308	337	MXJ43904K4	PB650A#ABM	{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "srevelo", "Acceso Remoto": "SI", "Ip": "172.16.9.213", "Ram": "2GB DDR2", "Unidad Optica": "DVD Writer", "Disco": "150GB IDE", "Unidad Lectora": "FLOPPY", "Procesador": "PENTIUM 4 2.53GHz", "Bits": "32 BITS"}	1		\N	\N	84	\N
+309	338	338-02		{}	1		\N	\N	85	\N
+310	337-04	X48330006883		{}	1		\N	\N	86	\N
+311	337-03	B93CB0ACPRR4KT		{}	1		\N	\N	62	\N
+313	776	2CE14531F8	LR942LA#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "ltenecora", "Acceso Remoto": "NO", "Ip": "172.16.10.208/209", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I5-2410M 2.3GHz", "Bits": "64 BITS"}	1		\N	\N	87	\N
+314	248	0D122437E5		{"Ip": "172.16.8.126", "Extension": "1311"}	1		\N	\N	88	\N
+47	980-03	BDAEV0QVB3Q6B3	434820-167	{}	1		\N	\N	9	\N
+317	1069	CN365WH0FS		{}	1		\N	\N	65	\N
+318	929	VNB3K14197		{"Ip": "172.16.9.195"}	1		\N	\N	22	\N
+315	658	CNF04476CL	XL370LT#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "pdominguez", "Acceso Remoto": "SI", "Ip": "172.16.9.208", "Ram": "3GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I3-M370 2.40GHz", "Bits": "32 BITS"}	1		\N	\N	89	\N
+316	251	0D122437F7		{"Ip": "172.16.9.248", "Extension": "1321"}	1		\N	\N	88	\N
+319	246	0D12243783		{"Ip": "172.16.9.252", "Extension": "1302"}	1		\N	\N	88	\N
+326	872	CN1C1VCH0HY		{}	1		\N	\N	65	\N
+325	928	VNB3D14150		{"Ip": "172.16.9.197"}	1		\N	\N	22	\N
+320	1048	6CM3152KRP		{}	1		\N	\N	18	\N
+323	1047-04	FCGLH0DN33MEJ0		{}	1		\N	\N	19	\N
+321	1047	MXL3211QW7	QV983AV#006	{"Sistema Operativo": "UBUNTU", "Usuario": "emerizalde", "Acceso Remoto": "SI", "Ip": "172.16.9.204", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-3770 3.40GHz", "Bits": "32 BITS"}	1		\N	\N	17	\N
+322	1047-03	BDAEV0QVB4I66N		{}	1		\N	\N	9	\N
+328	1315	RVXZ023901		{}	1	7614	2015-12-31	2017-12-31	37	3
+324	329	0F12250822		{"Ip": "172.16.9.254", "Extension": "1300"}	1		\N	\N	90	\N
+327	951	CNDF205971	CE957A	{"Ip": "172.16.9.196"}	1		\N	\N	91	\N
+329	252	0D122437F3		{"Ip": "172.1.6.9.247", "Extension": "1322"}	1		\N	\N	88	\N
+330	1073	CN365WH0FX		{}	1		\N	\N	65	\N
+331	808	VNB3R03728		{"Ip": "172.16.11.2"}	1		\N	\N	25	\N
+332	798	CNC119R7CK		{}	1		\N	\N	8	\N
+333	786-04	FATSQ0EDR1BOGO		{}	1		\N	\N	11	\N
+334	786	MXL1491FH3	XL504AV#244	{"Sistema Operativo": "UBUNTU", "Usuario": "cchiriboga2", "Acceso Remoto": "SI", "Ip": "172.16.11.24", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-2600 3.4GHz", "Bits": "32 BITS"}	1		\N	\N	7	\N
+335	786-03	BAUDU0OVB1J0EQ		{}	1		\N	\N	9	\N
+336	328	0F122508AB		{"Ip": "172.16.11.62", "Extension": "1200"}	1		\N	\N	90	\N
+338	513	ETLAP080248100EE484201		{}	1		\N	\N	92	\N
+339	512-04	512-04		{}	1		\N	\N	51	\N
+337	512	2UA83211RQ	KF243LA#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "ambiente", "Acceso Remoto": "SI", "Ip": "172.16.11.26", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "250GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL CORE 2 QUAD 2.4GHz", "Bits": "64 BITS"}	1		\N	\N	67	\N
+340	512-03	BC3370FVBW20JG		{}	1		\N	\N	9	\N
+341	871	871		{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "icrespo", "Acceso Remoto": "SI", "Ip": "172.16.11.27", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I5-2450M 2.5GHz", "Bits": "64 BITS"}	1		\N	\N	93	\N
+342	244	0D122437B2		{"Ip": "172.16.8.58", "Extension": "1212"}	1		\N	\N	88	\N
+344	791	CNC119RHGT		{}	1		\N	\N	8	\N
+343	779	MXL14919VY		{"Sistema Operativo": "UBUNTU", "Usuario": "marcos", "Acceso Remoto": "SI", "Ip": "172.16.11.12", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-2600 3.4GHz", "Bits": "32 BITS"}	1		\N	\N	7	\N
+346	779-03	BAUDU0OVB1ICUO		{}	1		\N	\N	9	\N
+345	779-04	FATSQ0EDR1BOMY		{}	1		\N	\N	11	\N
+347	800	CNC119RHJ4		{}	1		\N	\N	8	\N
+348	788-04	FCGLH0DHD3HB3L		{}	1		\N	\N	21	\N
+349	788	MXL1491FJ8		{"Sistema Operativo": "UBUNTU", "Usuario": "vgranda", "Acceso Remoto": "SI", "Ip": "172.16.11.29", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-2600 3.4GHz", "Bits": "64 BITS"}	1		\N	\N	7	\N
+350	788-03	BDAEV0QVB3Q673		{}	1		\N	\N	9	\N
+351	969	6CM30312TW		{}	1		\N	\N	18	\N
+352	968-04	FB7330AN3UM2SSO		{}	1		\N	\N	11	\N
+354	968-03	BAUDU0OVB3C2K0		{}	1		\N	\N	9	\N
+576	U3SK4X01830	U3SK4X01830		{}	1	10426	2016-06-13	2018-06-13	134	5
+306	733	CNB9L69986		{"Ip": "172.16.12.6"}	1		\N	\N	25	\N
+455	307	0D1224376D		{"Ip": "172.16.10.251", "Mac": "00085D355AE9", "Extension": "1803"}	1		\N	\N	88	\N
+628	915	6CM2300QSJ		{}	1		\N	\N	18	\N
+353	968	MXL3021QP8		{"Sistema Operativo": "UBUNTU", "Usuario": "pchacon", "Acceso Remoto": "SI", "Ip": "172.16.11.30", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-3770 3.4GHz", "Bits": "64 BITS"}	1		\N	\N	17	\N
+359	863	CN1CGVH1TG		{}	1		\N	\N	65	\N
+355	794	CNC119R728		{}	1		\N	\N	8	\N
+356	782-04	FATSQ0EDR1BAH7		{}	1		\N	\N	11	\N
+357	782	MXL2021F2V		{"Sistema Operativo": "UBUNTU", "Usuario": "xvillazhanay", "Acceso Remoto": "SI", "Ip": "172.16.11.21", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-2600 3.4GHz", "Bits": "32 BITS"}	1		\N	\N	7	\N
+358	782-03	BAUDU0OVB1LKUK		{}	1		\N	\N	9	\N
+392	314	0D1224378B		{"Ip": "172.16.11.124", "Extension": "1902"}	1		\N	\N	88	\N
+361	1297-02	COMARIFX832011154708-02		{}	1		\N	\N	34	\N
+362	1297-04	COMARIFX832011154713-04		{}	1		\N	\N	94	\N
+397	375	0D11461457		{"Ip": "172.16.12.186", "Mac": "0D11461457", "Extension": "2210"}	1	1117557648	2016-02-10	2017-02-25	88	4
+364	1297-03	COMARIFX832011154708-03		{}	1		\N	\N	35	\N
+366	402	CNC4280WG3		{}	1		\N	\N	95	\N
+367	401-04	120455500440		{}	1		\N	\N	77	\N
+365	401	2UA54600VH	PY950UA#ABM	{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "fzabala", "Acceso Remoto": "SI", "Ip": "172.16.11.82", "Ram": "4GB DDR2", "Unidad Optica": "DVD Writer", "Disco": "150GB IDE", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL PENTIUM 4 3.2GHz", "Bits": "32 BITS"}	1		\N	\N	42	\N
+368	401-03	B93CB0ACPS66U3		{}	1		\N	\N	62	\N
+375	316	0D122437A8		{"Ip": "172.16.11.122", "Extension": "1904"}	1		\N	\N	88	\N
+370	474	CNU7213050	GJ678LA#ABM	{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "svelin", "Acceso Remoto": "NO", "Ip": "172.16.11.16/17", "Ram": "1GB DDR2", "Unidad Optica": "DVD Writer", "Disco": "150GB IDE", "Unidad Lectora": "NINGUNO", "Procesador": "CORE 2 DUO 2GHz", "Bits": "32 BITS"}	1		\N	\N	96	\N
+376	952	CNDF305480	CE957A	{"Ip": "172.16.11.68"}	1		\N	\N	91	\N
+372	820	820-02		{}	1		\N	\N	48	\N
+373	819-04	FCGLH0D6B1Y2V4		{}	1		\N	\N	19	\N
+371	819	2UA2120TQJ		{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "jvillazhanay", "Acceso Remoto": "SI", "Ip": "172.16.11.81", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "CARD READER", "Procesador": "INTEL XEON 2.53GHz", "Bits": "64 BITS"}	1		\N	\N	47	\N
+374	819-03	BAUDU0OVB1S85N		{}	1		\N	\N	9	\N
+396	289	0D122437A7		{"Ip": "172.16.12.126", "Extension": "2400"}	1		\N	\N	88	\N
+1	1274	2UA5231Y35	L0P01LA#ABM	{"Usuario": "bparra", "Ip": "172.16.11.88", "Ram": "8 GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1 TB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "XEON (R) 3.4 Ghz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "NO"}	1	7616	2015-08-17	2018-08-17	2	2
+378	1141	6CM3312CBL		{}	1		\N	\N	18	\N
+379	1140-04	FCGLH0DHD5KBI9		{}	1		\N	\N	21	\N
+377	1140	MXL3481X39		{"Sistema Operativo": "UBUNTU", "Usuario": "ijaramillo", "Acceso Remoto": "SI", "Ip": "172.16.11.79", "Ram": "2GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL G2030 3.00GHz", "Bits": "32 BITS"}	1		\N	\N	17	\N
+380	1140-03	BDAEV0Q5Y5F9OV		{}	1		\N	\N	9	\N
+11	1275	2UA5231Y32	L0P01LA#ABM	{"Usuario": "areyes", "Ip": "172.16.11.89", "Ram": "8 GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1 TB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "XEON 3.4Ghz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "SI"}	1	7616	2015-08-17	2018-08-17	2	2
+385	926	VNB3D14154		{"Ip": "172.16.11.67"}	1		\N	\N	22	\N
+382	1135	6CM3312CB6		{}	1		\N	\N	18	\N
+383	1134-04	FCGLH0D5D5G19H		{}	1		\N	\N	19	\N
+381	1134	MXL3481X4B		{"Sistema Operativo": "UBUNTU", "Usuario": "mchamba", "Acceso Remoto": "SI", "Ip": "172.16.11.87", "Ram": "2GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL G2030 3.00GHz", "Bits": "32 BITS"}	1		\N	\N	17	\N
+384	1134-03	BDAEV0Q5Y5F4N1		{}	1		\N	\N	9	\N
+360	243	0D122437C6		{"Ip": "172.16.11.59", "Extension": "1211"}	1		\N	\N	88	\N
+387	1074	CN365WH092		{}	1		\N	\N	65	\N
+389	675-02	ETLAL080048370CC3F4203		{}	1		\N	\N	97	\N
+390	675-04	675-04		{}	1		\N	\N	98	\N
+388	675	675-01		{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "dmontenegro", "Acceso Remoto": "NO", "Ip": "172.16.11.78", "Ram": "2GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "250GB IDE", "Unidad Lectora": "CARD READER", "Procesador": "CORE 2 DUO 2.66GHz", "Bits": "32 BITS"}	1		\N	\N	12	\N
+391	675-03	675-03		{}	1		\N	\N	99	\N
+369	315	0D12243994		{"Ip": "172.16.11.123", "Extension": "1903"}	1		\N	\N	88	\N
+393	704	USH05200FA	XT948UTR#ABA	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "xrivadeneira", "Acceso Remoto": "NO", "Ip": "172.16.10.13/14", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I5-M460 2.53GHz", "Bits": "64 BITS"}	1		\N	\N	100	\N
+394	1110	CND3510HV2	F2Q63LT#ABM	{"Usuario": "jfcardenas", "Ip": "172.16.11.32/33", "Ram": "8GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-4700MQ 2.40GHz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "SI"}	1		\N	\N	66	\N
+395	868	CNU2020T0F	A7K18LT#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "usuario", "Acceso Remoto": "SI", "Ip": "172.16.11.28", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I5-2450M 2.50GHz", "Bits": "64 BITS"}	1		\N	\N	93	\N
+452	795	CNC119RHHR		{}	1		\N	\N	8	\N
+399	1318	RVXZ023803		{}	1		\N	\N	37	\N
+386	336	0F1225085F		{"Ip": "172.16.11.126", "Extension": "1900"}	1		\N	\N	90	\N
+400	250	0D122437D5		{"Ip": "172.16.9.249", "Extension": "1320"}	1		\N	\N	88	\N
+398	1160	5CG43405C1	F2Q91LT#ABM	{"Usuario": "pcabrera", "Ip": "172.16.9.211", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-4600M 2.90GHz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "SI"}	1		\N	\N	102	\N
+401	1081	PAKK3800120	H388A	{}	1		\N	\N	103	\N
+402	1082	PAKK3800123	H388A	{}	1		\N	\N	103	\N
+404	1322	CN453413YZ	K7B99-60001	{}	1		\N	\N	105	\N
+405	1321-04	FCMHH0AKZ9PJ3I	672652-001	{}	1		\N	\N	5	\N
+406	1321	2UA6021TXF	L0N98LA#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "trodriguez", "Acceso Remoto": "SI", "Ip": "172.16.11.22", "Ram": "8GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1TB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL XEON E3-1231 3.40GHz", "Bits": "64 BITS"}	1		\N	\N	104	\N
+407	1321-03	BDMHE0D5Y9O05I		{}	1		\N	\N	56	\N
+363	1297	COMARIFX832011154708		{"Usuario": "trodriguez", "Ip": "172.16.11.39", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "AMD FX-8320", "Sistema Operativo": "UBUNTU", "Acceso Remoto": "SI"}	1		\N	\N	1	\N
+409	1296-02	COMARIFX832011154707-02		{}	1		\N	\N	34	\N
+410	1296-04	COMARIFX832011154707-04		{}	1		\N	\N	94	\N
+408	1296	COMARIFX832011154707		{"Sistema Operativo": "UBUNTU", "Usuario": "usuario", "Ip": "172.16.11.37", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "AMD FX-8320E", "Bits": "64 BITS", "Acceso Remoto": "SI"}	1		\N	\N	1	\N
+411	1296-03	COMARIFX832011154707-03		{}	1		\N	\N	35	\N
+413	1298-02	COMARIFX832011154709-02		{}	1		\N	\N	34	\N
+414	1298-04	COMARIFX832011154709-04		{}	1		\N	\N	94	\N
+412	1298	COMARIFX832011154709		{"Sistema Operativo": "UBUNTU", "Usuario": "usuario", "Acceso Remoto": "SI", "Ip": "172.16.11.38", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "AMD FX-8320E", "Bits": "64 BITS"}	1		\N	\N	1	\N
+415	1298-03	COMARIFX832011154709-03		{}	1		\N	\N	35	\N
+417	905	6CM2300PP4	A5V72A	{}	1		\N	\N	18	\N
+418	906-04	FB7330AN3UM09L0		{}	1		\N	\N	11	\N
+416	906	MXL24610JR	QV983AV#006	{"Sistema Operativo": "UBUNTU", "Usuario": "trodriguez", "Acceso Remoto": "SI", "Ip": "172.16.11.36", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-3770 3.40GHz", "Bits": "64 BITS"}	1		\N	\N	17	\N
+419	906-03	BAUDU0OVB1JCQV		{}	1		\N	\N	9	\N
+403	376	0D11460BB8		{"Ip": "172.16.11.57", "Mac": "00085D31A55C", "Extension": "1213"}	1	1117557648	2016-02-10	2017-02-25	88	4
+420	0D11460BB4	0D11460BB4		{"Mac": "0D11460BB4"}	1	1117557648	2016-02-10	2017-02-25	88	4
+421	0D11340EA7	0D11340EA7		{"Mac": "0D11340EA7"}	1	1117557648	2016-02-10	2017-02-25	88	4
+422	623	CNU8462Y90	FS242LA#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "municipio", "Acceso Remoto": "SI", "Ip": "172.16.12.78", "Ram": "2GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "250GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL CORE 2 DUO 2.40GHz", "Bits": "32 BITS"}	1		\N	\N	106	\N
+423	974	MXL311149F		{"Sistema Operativo": "UBUNTU", "Usuario": "mfarez", "Acceso Remoto": "SI", "Ip": "172.16.12.76", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-3770 3.40GHz", "Bits": "32 BITS"}	1		\N	\N	17	\N
+424	977	6CM30312TM		{}	1		\N	\N	18	\N
+425	974-04	FCGLH0D9W3MHK9		{}	1		\N	\N	21	\N
+426	974-03	BDAEV0Q5Y3Y5W7		{}	1		\N	\N	9	\N
+428	1118	6CM35025DB		{}	1		\N	\N	18	\N
+429	1117-04	FCMHF0A9W5S1TF		{}	1		\N	\N	5	\N
+427	1117	MXL4071DF1	E2D13AV#004	{"Sistema Operativo": "UBUNTU", "Usuario": "mrivadeneira", "Acceso Remoto": "SI", "Ip": "176.16.9.142", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-4770 3.40GHz", "Bits": "64 BITS"}	1		\N	\N	31	\N
+430	1117-03	BDMEP0CVB5X0YS		{}	1		\N	\N	56	\N
+432	1116	6CM35022SG		{}	1		\N	\N	18	\N
+433	1115-04	FCMHF0A9W5S1A7		{}	1		\N	\N	21	\N
+431	1115	MXL4071G8Z		{"Sistema Operativo": "UBUNTU", "Usuario": "luis", "Acceso Remoto": "SI", "Ip": "172.16.9.141", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500 SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-4770 3.40GHz", "Bits": "32 BITS"}	1		\N	\N	31	\N
+434	1115-03	BDMEP0CVB5X3M4		{}	1		\N	\N	56	\N
+435	290	0D122437DE		{"Ip": "172.16.11.208", "Mac": "00085D355B5A", "Extension": "1635"}	1		\N	\N	88	\N
+436	953	CNDF305486		{"Ip": "172.16.11.3"}	1		\N	\N	91	\N
+437	580	CNB9H09964	CE461A	{"Ip": "USB"}	1		\N	\N	107	\N
+441	954-04	FB7330AN3UM09LI		{}	1		\N	\N	11	\N
+438	240	0D122437BB		{"Ip": "172.16.8.246", "Mac": "00085D355B37", "Extension": "1130"}	1		\N	\N	88	\N
+443	1071	CN365WH09S		{}	1		\N	\N	65	\N
+445	946	VNB3D12667		{"Ip": "172.16.10.195"}	1		\N	\N	22	\N
+440	955	6CM3081BLM		{}	1		\N	\N	18	\N
+439	954		MXL311149V	{"Sistema Operativo": "UBUNTU", "Usuario": "njaramillo", "Acceso Remoto": "SI", "Ip": "172.16.11.184", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-3770 3.40GHz", "Bits": "32 BITS"}	1		\N	\N	17	\N
+442	954-03	954-03		{}	1		\N	\N	108	\N
+450	308	0D12243790		{"Ip": "172.16.10.249", "Mac": "00085D355B0C", "Extension": "1804"}	1		\N	\N	88	\N
+447	799	CNC119R8FD		{}	1		\N	\N	8	\N
+448	787-04	FATSQ0EDR1BOHX		{}	1		\N	\N	11	\N
+446	787	MXL1491FHW	XL504AV#244	{"Sistema Operativo": "UBUNTU", "Usuario": "mmerino", "Acceso Remoto": "SI", "Ip": "172.16.10.215", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-2600 3.40GHz", "Bits": "32 BITS"}	1		\N	\N	7	\N
+449	787-03	BAUDU0OVB1JCP2		{}	1		\N	\N	9	\N
+453	783-04	FATSQ0EN31BY68		{}	1		\N	\N	11	\N
+522	222-04	FB7330AN3W11420		{}	1		\N	\N	11	\N
+444	335	0F1225087C		{"Ip": "172.16.10.254", "Mac": "00085D3310D7", "Extension": "1800"}	1		\N	\N	90	\N
+577	302	0D122438FE		{"Ip": "172.16.10.120", "Mac": "00085D355C7A", "Extension": "1720"}	1		\N	\N	88	\N
+451	783	MXL1491FND		{"Sistema Operativo": "UBUNTU", "Usuario": "mpallchisaca", "Acceso Remoto": "SI", "Ip": "172.16.10.213", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-2600 3.40GHz", "Bits": "32 BITS"}	1		\N	\N	7	\N
+456	922	MXL247093W		{"Sistema Operativo": "UBUNTU", "Usuario": "aavila", "Acceso Remoto": "SI", "Ip": "172.16.10.218", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-3770 3.40GHz", "Bits": "32 BITS"}	1		\N	\N	17	\N
+457	919	6CM2300SMW		{}	1		\N	\N	18	\N
+458	922-04	FCGLH0DHD3KVUL		{}	1		\N	\N	21	\N
+459	922-03	BAUDU0OVB1J7E6		{}	1		\N	\N	9	\N
+460	775	CNGS493482	CB495A	{"Ip": "172.16.10.66"}	1		\N	\N	23	\N
+461	927	VNB3K14213	CF285A	{"Ip": "172.16.9.180"}	1		\N	\N	22	\N
+462	1288	VND3F54269	CE528A	{"Ip": "172.16.8.194"}	1		\N	\N	109	\N
+463	1320	502634942554K		{"Ip": "172.16.9.65"}	1	7621	2016-01-07	2019-01-07	38	3
+464	718	CNB9985830	CE459A	{"Ip": "172.16.9.69"}	1		\N	\N	25	\N
+465	949	VNB3K14606		{"Ip": "172.16.9.75"}	1		\N	\N	22	\N
+466	1037	FCTY168377		{"Ip": "USB"}	1		\N	\N	110	\N
+472	722	CN161VH0Y0		{}	1		\N	\N	65	\N
+471	1106	PHGFB09273	CF399A	{"Ip": "172.16.9.70"}	1		\N	\N	22	\N
+468	903	6CM2300P8T		{}	1		\N	\N	18	\N
+469	904-04	FCGLH0DHD3HB36		{}	1		\N	\N	21	\N
+467	904	MXL24610JP		{"Sistema Operativo": "UBUNTU", "Usuario": "raide2", "Acceso Remoto": "SI", "Ip": "172.16.9.109", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-3770 3.40GHz", "Bits": "64 BITS"}	1		\N	\N	17	\N
+470	904-03	BAUDU0OVB3C0KX		{}	1		\N	\N	9	\N
+473	429	CNL1J10894	Q5927A	{"Ip": "USB"}	1		\N	\N	111	\N
+474	809	VNB3R03277	CE459A	{"Ip": "USB"}	1		\N	\N	25	\N
+475	924	VNB3K14211		{"Ip": "172.16.9.72"}	1		\N	\N	22	\N
+477	457	CNB1R13822	CB366A	{"Ip": "USB"}	1		\N	\N	26	\N
+478	930	VNB3D14171		{"Ip": "172.16.9.73"}	1		\N	\N	22	\N
+479	361	CNBC49X19M		{"Ip": "USB"}	1		\N	\N	111	\N
+480	807	VNB3R03729		{"Ip": "172.16.9.67"}	1		\N	\N	25	\N
+481	948	VNB3D12587		{"Ip": "172.16.9.74"}	1		\N	\N	22	\N
+482	619	CNU9511WR5		{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "usuario", "Acceso Remoto": "SI", "Ip": "172.16.12.156", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "250GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL CORE2DUO 2.53GHz", "Bits": "32 BITS"}	1		\N	\N	106	\N
+483	1286	VND3Q42960	CE528A	{"Ip": "USB"}	1		\N	\N	109	\N
+484	1285	VND3Q42954	CE528A	{"Ip": "USB"}	1		\N	\N	109	\N
+485	925	VNB3K14195		{"Ip": "172.16.8.195"}	1		\N	\N	22	\N
+486	810	VNB3R03102		{"Ip": "172.16.9.220"}	1		\N	\N	25	\N
+476	923	VNB3D14152		{"Ip": "172.16.9.67"}	1		\N	\N	22	\N
+488	1157	ZDF3BJFF200017E		{"Ip": "172.16.10.67"}	1		\N	\N	113	\N
+489	697	CNB1837991		{"Ip": "USB"}	1		\N	\N	25	\N
+490	727	CNB9986485		{"Ip": "172.16.10.194"}	1		\N	\N	25	\N
+491	1287	VND3Q42955	CE528A	{"Ip": "172.16.10.2"}	1		\N	\N	109	\N
+492	732	CNBJ553703		{"Ip": "172.16.8.130"}	1		\N	\N	25	\N
+493	932	FCTY157303		{"Ip": "USB"}	1		\N	\N	110	\N
+494	1184	PRFK076336		{"Ip": "USB"}	2		\N	\N	114	\N
+495	1170	PRFK029935		{"Ip": "USB"}	2		\N	\N	114	\N
+497	938	XEH074382		{"Ip": "172.16.8.53"}	1		\N	\N	116	\N
+496	XEK501272	XEK501272		{"Ip": "172.16.8.52"}	1		\N	\N	115	\N
+498	937	XEH069710		{"Ip": "172.16.8.54"}	1		\N	\N	116	\N
+499	1129	MAE975652		{"Ip": "172.16.8.56"}	1		\N	\N	117	\N
+500	1035	MAE912811		{"Ip": "172.16.8.55"}	1		\N	\N	117	\N
+501	174	SG15T2103D		{}	1		\N	\N	118	\N
+502	637	MY9AC08044		{}	1		\N	\N	119	\N
+503	1061	PXXE000889		{}	1		\N	\N	120	\N
+504	1104	CN3B6GK014		{}	1		\N	\N	121	\N
+505	772	5CB1314S9T	LR971LT#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "usuario", "Acceso Remoto": "NO", "Ip": "172.16.9.123", "Ram": "2GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I3-2310M 2.10GHz", "Bits": "32 BITS"}	1		\N	\N	122	\N
+506	RAKWK8DXCODG41	RAKWK8DXCODG41	NL797AA	{}	1		\N	\N	123	\N
+507	RAKWK8DXCODG48	RAKWK8DXCODG48	NL797AA	{}	1		\N	\N	123	\N
+508	321	0D122437EE		{"Ip": "172.16.9.184", "Mac": "00085D355B6A", "Extension": "2011"}	1		\N	\N	88	\N
+119	813	2UA2120TQD	VS933AV#529	{"Usuario": "djara", "Ip": "172.16.10.86", "Ram": "8GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "64 BITS", "Unidad Lectora": "CARD READER", "Procesador": "INTEL XEON 2.53GHz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "SI"}	1		\N	\N	47	\N
+510	985	6CM30312V1		{}	1		\N	\N	18	\N
+511	984-04	FCGLH0DN33B7UL		{}	1		\N	\N	19	\N
+509	984	MXL30402H3		{"Sistema Operativo": "UBUNTU", "Usuario": "alema", "Acceso Remoto": "SI", "Ip": "172.16.8.220", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-3770 3.40 GHz", "Bits": "64 BITS"}	1		\N	\N	17	\N
+512	984-03	BDAEV0QVB3U24A		{}	1		\N	\N	9	\N
+513	0D122437C3	0D122437C3		{"Ip": "172.16.8.247", "Mac": "00085D355B3F", "Extension": "1121"}	1		\N	\N	88	\N
+487	616	VNB3D00932		{"Ip": "172.16.10.67"}	1		\N	\N	112	\N
+521	711	102UXWE58833		{}	1		\N	\N	13	\N
+517	317.CIP	1F01D65PAF00010		{"Ip": "172.16.13.10"}	1		\N	\N	124	\N
+516	322.CIP	1F01D65PAF00025		{"Ip": "172.16.13.42"}	1		\N	\N	124	\N
+518	318.CIP	1F01D65PAF00013		{"Ip": "172.16.13.12"}	1		\N	\N	124	\N
+519	319.CIP	1F01D65PAF00020		{"Ip": "172.16.13.13"}	1		\N	\N	124	\N
+515	321.CIP	1F01D65PAF00024		{"Ip": "172.16.13.41"}	1		\N	\N	124	\N
+514	320.CIP	1F01D65PAF00023		{"Ip": "172.16.13.40"}	1		\N	\N	124	\N
+520	222	6Y1A-GMZ-90LC		{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "aavila", "Acceso Remoto": "NO", "Ip": "172.16.10.220", "Ram": "1.25GB", "Unidad Optica": "CD Writer", "Disco": "80GB IDE", "Unidad Lectora": "FLOPPY", "Procesador": "PENTIUM 4 1.50GHZ", "Bits": "32 BITS"}	1		\N	\N	125	\N
+524	528	MXJ74702KS	RL170AW#ABM	{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "rorozco", "Acceso Remoto": "NO", "Ip": "172.16.10.231", "Ram": "2GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "150GB SATA", "Unidad Lectora": "FLOPPY", "Procesador": "INTEL CORE2", "Bits": "32 BITS"}	1		\N	\N	39	\N
+525	594	810UXJX3D572		{}	1		\N	\N	126	\N
+527	528-04	528-04		{}	1		\N	\N	58	\N
+526	528-03	BC3370BVBUR9A7		{}	1		\N	\N	9	\N
+528	1137	MXL3481X6X	QV983AV#293	{"Sistema Operativo": "UBUNTU", "Usuario": "ccoello", "Acceso Remoto": "SI", "Ip": "172.16.10.95", "Ram": "2GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL PENTIUM G2030 3.00 GHZ", "Bits": "32 BITS"}	1		\N	\N	17	\N
+529	1138	6CM3312CB3	A5V72A	{}	1		\N	\N	18	\N
+530	1137-03	BAUDU0OVB1G4H6		{}	1		\N	\N	9	\N
+531	1137-04	SFGGLH0D5D5GTDL		{}	1		\N	\N	19	\N
+532	748	MXL1451KG2	XL504AV#104	{"Sistema Operativo": "UBUNTU", "Usuario": "wguato", "Acceso Remoto": "SI", "Ip": "172.16.10.90", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-2600 3.40GHz", "Bits": "64 BITS"}	1		\N	\N	7	\N
+533	749	6CM2441HKB	A5V72A	{}	1		\N	\N	18	\N
+535	748-04	FATSQ0E5B2176M		{}	1		\N	\N	11	\N
+534	748-03	BDAEV0Q5Y5F9PX		{}	1		\N	\N	9	\N
+536	0D12243902	0D12243902		{"Ip": "172.16.10.118", "Mac": "00085D355C7E", "Extension": "1740"}	1		\N	\N	88	\N
+537	958	MXL30402HM	QV983AV#006	{"Sistema Operativo": "UBUNTU", "Usuario": "jvalencia", "Acceso Remoto": "SI", "Ip": "172.16.10.93", "Ram": "4GB", "Unidad Optica": "DVD Writer", "Disco": "500 GB", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL i7-3770 3.40 GHZ", "Bits": "32 BITS"}	1		\N	\N	17	\N
+538	959	6CM3020C3Q	A5V72A	{}	1		\N	\N	18	\N
+539	958-03	BDAEV0QVB3U21V		{}	1		\N	\N	9	\N
+540	958-04	FCGLH0DN33B7UP		{}	1		\N	\N	19	\N
+541	1059	MXL3211S3N	QV983AV#006	{"Sistema Operativo": "UBUNTU", "Usuario": "epuwainchir", "Acceso Remoto": "SI", "Ip": "172.16.9.222", "Ram": "4GB", "Unidad Optica": "DVD Writer", "Disco": "500GB", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL i7-3770 3.40GHZ", "Bits": "32 BITS"}	1		\N	\N	17	\N
+543	1059-03	BDAEV0QVB4I6H0		{}	1		\N	\N	9	\N
+542	1060	6CM3152L4H	A5V72A	{}	1		\N	\N	18	\N
+544	1059-4	FCGLH0DN33MG24		{}	1		\N	\N	19	\N
+545	0D12243789	0D12243789		{"Ip": "172.16.9.246", "Mac": "00085D355V05", "Extension": "1332"}	1		\N	\N	88	\N
+548	997	CNU319BVJR		{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "cnavarro", "Acceso Remoto": "NO", "Ip": "172.16.9.226", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I5-3230 2.60GHz", "Bits": "64 BITS"}	1		\N	\N	127	\N
+549	0D12243752	0D12243752		{"Ip": "172.16.9.244", "Mac": "00085D355ACE", "Extension": "1331"}	1		\N	\N	88	\N
+546	496	MXJ8110C40	EW287AV	{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "mjaramillo", "Acceso Remoto": "NO", "Ip": "172.16.9.223", "Ram": "1GB", "Unidad Optica": "DVD Writer", "Disco": "250GB", "Unidad Lectora": "CARD READER", "Procesador": "INTEL CORE 2 DUO 2.40GHZ", "Bits": "32 BITS"}	1		\N	\N	39	\N
+550	496-03	ZCE151801561		{}	1		\N	\N	14	\N
+551	496-04	FATSQ0E5B2178E		{}	1		\N	\N	11	\N
+547	900	208NDAY67024	E1942C-BNA.AWPMRSN	{}	1		\N	\N	128	\N
+223	1155	MXL3481X6P	QV983AV#293	{"Usuario": "jaguirre", "Ip": "172.16.10.145", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL PENTIUM G2030 3.0GHz", "Sistema Operativo": "UBUNTU", "Acceso Remoto": "SI"}	1		\N	\N	17	\N
+552	1295	COMARIFX832011154706		{"Sistema Operativo": "UBUNTU", "Usuario": "agonzales", "Acceso Remoto": "SI", "Ip": "172.16.11.19", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "400GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "AMD FX-8320E", "Bits": "64 BITS"}	1		\N	\N	1	\N
+553	1295.MON	COMARIFX832011154706.MON		{}	1		\N	\N	34	\N
+554	1295.MOU	COMARIFX832011154706.MOU		{}	1		\N	\N	94	\N
+555	1295.TEC	COMARIFX832011154706.TEC		{}	1		\N	\N	35	\N
+556	210	6X28KN8Z802		{"Unidad Lectora": "NINGUNO", "Procesador": "INTEL PENTIUM 4", "Ram": "1280MB DDR", "Unidad Optica": "DVD Writer", "Disco": "80GB IDE"}	1		\N	\N	81	\N
+563	936	210NDKD75221		{}	1		\N	\N	128	\N
+561	504.TEC	504.TEC		{}	1		\N	\N	131	\N
+562	504.MOU	504.MOU		{}	1		\N	\N	132	\N
+564	504.REG	090615-04006575		{}	1		\N	\N	133	\N
+560	504	504		{"Usuario": "kcoronel", "Ip": "N/A", "Ram": "2GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "400GB SATA", "Bits": "32 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL CORE 2 DUO 2.40GHz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "NO"}	1		\N	\N	130	\N
+565	75	75		{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "kcoronel", "Acceso Remoto": "NO", "Ip": "N/A", "Ram": "3GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "1300GB SATA", "Unidad Lectora": "CARD READER", "Procesador": "INTEL DUAL CORE", "Bits": "64 BITS"}	1		\N	\N	12	\N
+559	84	159012301714		{}	1		\N	\N	15	\N
+557	609	CM20H9LS323779E		{}	1		\N	\N	43	\N
+558	85	B21B50FGAJR5D9		{}	1		\N	\N	129	\N
+566	75.REG	061110-1290190		{}	1		\N	\N	133	\N
+288	766	MXL1480CN6	XL504AV#244	{"Usuario": "sgarcia", "Ip": "172.16.12.16", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-2600 3.4GHz", "Sistema Operativo": "UBUNTU", "Acceso Remoto": "SI"}	1		\N	\N	7	\N
+567	U3SK4X02045	U3SK4X02045		{}	1	10426	2016-06-13	2018-06-13	134	5
+568	U3SK4X01908	U3SK4X01908		{}	1	10426	2016-06-13	2018-06-13	134	5
+569	U3SK4X02005	U3SK4X02005		{}	1	10426	2016-06-13	2018-06-13	134	5
+570	U3SK4X01906	U3SK4X01906		{}	1	10426	2016-06-13	2018-06-13	134	5
+571	U3SK4X02004	U3SK4X02004		{}	1	10426	2016-06-13	2018-06-13	134	5
+572	U3SK4X01997	U3SK4X01997		{}	1	10426	2016-06-13	2018-06-13	134	5
+573	U3SK4X01998	U3SK4X01998		{}	1	10426	2016-06-13	2018-06-13	134	5
+574	U3SK4X01831	U3SK4X01831		{}	1	10426	2016-06-13	2018-06-13	134	5
+98	404	2UA5390FR4	PY95QUA#ABM	{"Usuario": "jmena", "Ip": "172.16.10.80", "Ram": "4GB DDR2", "Unidad Optica": "DVD Writer", "Disco": "150GB IDE", "Bits": "32 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "PENTIUM 4 3.20GHz", "Sistema Operativo": "WINDOWS XP PROFESIONAL", "Acceso Remoto": "SI"}	1		\N	\N	42	\N
+578	299	0D122438E7		{"Ip": "172.16.10.123", "Mac": "00085D355C63", "Extension": "1703"}	1		\N	\N	88	\N
+579	303	0D122438DB		{"Ip": "172.16.10.119", "Mac": "00085D355C57", "Extension": "1730"}	1		\N	\N	88	\N
+580	298	0D1224387B		{"Ip": "172.16.10.124", "Mac": "00085D355BF7", "Extension": "1702"}	1		\N	\N	88	\N
+581	705	2UA11007VC	XV067LT#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "ftapia", "Acceso Remoto": "SI", "Ip": "172.16.10.78", "Ram": "10GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500 GB SATA", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL XEON X3430 2.40GHZ", "Bits": "64 BITS"}	1		\N	\N	49	\N
+582	694	CNC9200D59	KE289A	{}	1		\N	\N	68	\N
+585	301	0D122438F6		{"Ip": "172.16.10.121", "Mac": "00085D355C72", "Extension": "1710"}	1		\N	\N	88	\N
+583	694.04	694		{}	1		\N	\N	51	\N
+586	695	090616-040030		{}	1		\N	\N	133	\N
+584	694.03	694.03		{}	1		\N	\N	135	\N
+587	334	0F1225085C		{"Ip": "172.16.10.126", "Mac": "00085D3310B7", "Extension": "1700"}	1		\N	\N	90	\N
+588	1077	1077	L1911B#AC3	{}	1		\N	\N	65	\N
+589	269	0D1224374A		{"Ip": "172.16.9.55", "Mac": "00085D355AC6", "Extension": "1420"}	1		\N	\N	88	\N
+590	270	0D12243735		{"Ip": "172.16.9.54", "Mac": "00085D355AB1", "Extension": "1421"}	1		\N	\N	88	\N
+591	264	0d122437b4		{"Ip": "172.16.9.60", "Mac": "00085D355B30", "Extension": "1402"}	1		\N	\N	88	\N
+592	266	0D1223750		{"Ip": "172.16.9.58", "Mac": "00085D355ACC", "Extension": "1404"}	1		\N	\N	88	\N
+593	276	0D1224373F		{"Ip": "172.16.9.57", "Mac": "00085D355ABB", "Extension": "1405"}	1		\N	\N	88	\N
+594	268	0D12243747		{"Ip": "172.16.9.56", "Mac": "00085D355AC3", "Extension": "1406"}	1		\N	\N	88	\N
+595	331	0F1225082D		{"Ip": "172.16.9.62", "Mac": "00085D331088", "Extension": "1400"}	1		\N	\N	90	\N
+596	275	0D12243729		{"Ip": "172.16.10.185", "Mac": "00085D355AA5", "Extension": "1521"}	1		\N	\N	88	\N
+598	273	0D1224374E		{"Ip": "172.16.10.187", "Mac": "00085D3555ACA", "Extension": "1511"}	1		\N	\N	88	\N
+597	639	CN99VA61KD		{}	1		\N	\N	136	\N
+599	272	0D1224375A		{"Ip": "172.16.10.128", "Mac": "00085D355AD6", "Extension": "1510"}	1		\N	\N	88	\N
+600	322	0F12250857		{"Ip": "172.16.10.190", "Mac": "00085D3310B2", "Extension": "1500"}	1		\N	\N	90	\N
+602	263	0D12243751		{"Ip": "172.16.9.61", "Mac": "00085D355ACD", "Extension": "1401"}	1		\N	\N	88	\N
+601	1114	CND3510HRG	F2Q63LT#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "FVELECELA", "Acceso Remoto": "SI", "Ip": "172.16.9.17", "Ram": "8.00 GB", "Unidad Optica": "CD Writer", "Disco": "500 GB", "Unidad Lectora": "NINGUNO", "Procesador": "64 BITS", "Bits": "64 BITS"}	1		\N	\N	66	\N
+603	1113	CN03510HRY	F2Q631#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "JAUCAY", "Acceso Remoto": "SI", "Ip": "172.16.10.151", "Ram": "8 GB", "Unidad Optica": "CD Writer", "Disco": "500 GB", "Unidad Lectora": "NINGUNO", "Procesador": "64 BITS", "Bits": "64 BITS"}	1		\N	\N	66	\N
+604	271	OD12243753		{"Ip": "172.16.10.189", "Mac": "00085D355ACF", "Extension": "1501"}	1		\N	\N	88	\N
+605	756	MKL1451KT2	UXL504AV#104	{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "M avila", "Acceso Remoto": "SI", "Ip": "172.16.9.99", "Ram": "3", "Unidad Optica": "DVD Rom", "Disco": "250", "Unidad Lectora": "NINGUNO", "Procesador": "64", "Bits": "64 BITS"}	1		\N	\N	7	\N
+608	757	CNC134PKVG		{}	1		\N	\N	8	\N
+607	756-04	756		{}	1		\N	\N	72	\N
+606	756-03	BAUDU0OVB1G4B3		{}	1		\N	\N	9	\N
+609	283	0D122437B8		{"Ip": "172.16.11.201", "Mac": "00085D355B34", "Extension": "1620"}	1		\N	\N	88	\N
+612	724	3CQ118BC5N		{}	1		\N	\N	138	\N
+613	723.03	BAUDUOKVB0N9F2		{}	1		\N	\N	9	\N
+614	723.04	723.04		{}	1		\N	\N	11	\N
+615	723.05	723.05		{}	1		\N	\N	139	\N
+611	294	0D122437C9		{"Ip": "172.16.11.202", "Mac": "00085D355B45", "Extension": "1621"}	1		\N	\N	88	\N
+616	1101	6CM34311S1		{}	1		\N	\N	18	\N
+638	1098-3	BDAEV0Q5Y5B64N		{}	1		\N	\N	9	\N
+620	1161.04	1161.04	600553-002	{}	1		\N	\N	19	\N
+619	1161.03	BDAEV0Q5Y5B64K		{}	1		\N	\N	9	\N
+621	943	01121-1291142		{}	1		\N	\N	133	\N
+618	278	D01224372C		{"Ip": "172.16.11.196", "Mac": "00085D355B38", "Extension": "1611"}	1		\N	\N	88	\N
+625	277	2770D122437BE		{"Mac": "00087D355B3A"}	1		\N	\N	88	\N
+623	750	MXL1480CMM	XL504AB#244	{"Sistema Operativo": "UBUNTU", "Usuario": "C VELIN", "Acceso Remoto": "SI", "Ip": "172.16.8.69", "Ram": "4 GB", "Unidad Optica": "CD Writer", "Disco": "500 GB", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-2600 CPU", "Bits": "64 BITS"}	1		\N	\N	7	\N
+622	1191	810NDJXZ8572		{}	1		\N	\N	141	\N
+624	1209	X75270801851		{}	1		\N	\N	15	\N
+626	23	B13AA0T39137W6		{}	1		\N	\N	64	\N
+627	750.05	2245APBLS710711990		{}	1		\N	\N	53	\N
+610	723	MXL1270CGN		{"Usuario": "BRIGITH ALARCON", "Acceso Remoto": "SI", "Ip": "172.16.9.100", "Ram": "4GB", "Unidad Optica": "CD Rom", "Disco": "500GB", "Bits": "32 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-2600", "Sistema Operativo": "UBUNTU"}	1		\N	\N	7	\N
+633	865	CN1CCVH07N		{}	1		\N	\N	65	\N
+630	916.03	BAUDU0OVB1J7AE		{}	1		\N	\N	9	\N
+631	916.04	916.04	537748-001	{}	1		\N	\N	21	\N
+632	1098	MXL3472NMN	QV983AN#006	{"Sistema Operativo": "UBUNTU", "Usuario": "Smolina", "Acceso Remoto": "SI", "Ip": "172.16.9.104", "Ram": "4 GB", "Unidad Optica": "CD Writer", "Disco": "500", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-3770 CPU @ 3.40GHz \\u00d7 8 ", "Bits": "64 BITS"}	1		\N	\N	17	\N
+634	916	MXL247093D	QV983AV#006	{"Sistema Operativo": "UBUNTU", "Usuario": "Tania Merino", "Acceso Remoto": "SI", "Ip": "172.16.9.97", "Ram": "4GB", "Unidad Optica": "CD Writer", "Disco": "500GB", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-3770 ", "Bits": "32 BITS"}	1		\N	\N	17	\N
+617	1161	MXL3472NN7		{"Usuario": "DORIS BAUTISTA", "Ip": "172.16.9.102", "Ram": "4GB", "Unidad Optica": "CD Writer", "Disco": "500GB", "Bits": "32 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-3770 ", "Sistema Operativo": "UBUNTU", "Acceso Remoto": "SI"}	1		\N	\N	17	\N
+635	1099	6CM34311SG	A5V72A	{}	1		\N	\N	18	\N
+640	1098-05	2245APBLS710711888		{}	1		\N	\N	53	\N
+642	1102	MXL3472NNT	QV983AV#006	{"Sistema Operativo": "UBUNTU", "Usuario": "N rivadeneira", "Acceso Remoto": "SI", "Ip": "172.16.9.103", "Ram": "4 GB", "Unidad Optica": "CD Writer", "Disco": "500GB", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-3770 CPU @ 3.40GHz \\u00d7 8 ", "Bits": "32 BITS"}	1		\N	\N	17	\N
+645	1102-04	600553-002		{}	1		\N	\N	19	\N
+646	1102-03	BDAEV0Q5Y5B61B		{}	1		\N	\N	9	\N
+643	1103	6CM34311RJ		{}	1		\N	\N	18	\N
+648	1102-05	054107753		{}	1		\N	\N	145	\N
+641	6822	001NDBP1D901		{}	1		\N	\N	61	\N
+644	436	MXL629171B	EZ308LA#ABM	{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "MARIA A. MOLINA JARA", "Acceso Remoto": "SI", "Ip": "172.16.9.10", "Ram": "2GB", "Unidad Optica": "CD Writer", "Disco": "75GB", "Unidad Lectora": "NINGUNO", "Procesador": "PENTIUM(R) 4 CPU", "Bits": "32 BITS"}	1		\N	\N	142	\N
+650	27.05	27.05		{}	1		\N	\N	146	\N
+649	436.03	436.03	537748-001	{}	1		\N	\N	144	\N
+651	403.05	AGLS600Q21		{}	1		\N	\N	52	\N
+657	853	110730-01612		{}	1		\N	\N	10	\N
+652	752	MXL1450T1Q	XL504AV#104	{"Sistema Operativo": "UBUNTU", "Usuario": "CARMITA VELEZ", "Acceso Remoto": "SI", "Ip": "172.16.9.113", "Ram": "4GB", "Unidad Optica": "CD Writer", "Disco": "500GB", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-2600 CPU ", "Bits": "32 BITS"}	1		\N	\N	7	\N
+654	753	CNC134PKQQ		{}	1		\N	\N	8	\N
+656	752.04	752.04	537748-001	{}	1		\N	\N	72	\N
+655	752.03	BAUDU0OVB1I3QU		{}	1		\N	\N	9	\N
+653	280	0D122437BF		{"Ip": "172.16.11.198", "Mac": "00085D355B3B", "Extension": "1613"}	1		\N	\N	88	\N
+658	1096	MXL3472MXM	QV983AV#008	{"Sistema Operativo": "UBUNTU", "Usuario": "LURDIALES", "Acceso Remoto": "SI", "Ip": "172.16.9.105", "Ram": "4GB", "Unidad Optica": "CD Writer", "Disco": "500GB", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-3770 CPU ", "Bits": "32 BITS"}	1		\N	\N	17	\N
+659	1097	6CM34311SQ		{}	1		\N	\N	18	\N
+660	282	0D12243713		{"Ip": "172.16.11.200", "Mac": "00085D355A8F", "Extension": "1615"}	1		\N	\N	88	\N
+661	1096.04	BDAEV0Q5Y5B33L		{}	1		\N	\N	9	\N
+662	1210	1210		{}	1		\N	\N	19	\N
+663	754	MXL1451KDH	XL50AV#104	{"Sistema Operativo": "UBUNTU", "Usuario": "E palacios", "Acceso Remoto": "SI", "Ip": "172.16.9.101", "Ram": "4GB", "Unidad Optica": "CD Writer", "Disco": "500GB", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-2600 CPU @ 3.40GHz \\u00d7 8 ", "Bits": "32 BITS"}	1		\N	\N	7	\N
+664	755	CNC134PL28		{}	1		\N	\N	8	\N
+666	754.04	417441-002		{}	1		\N	\N	140	\N
+665	754.03	BAUDU0OVB1G4H1		{}	1		\N	\N	9	\N
+667	279	0D122437CD		{"Ip": "172.16.11.197", "Mac": "00085D355B49", "Extension": "1612"}	1		\N	\N	88	\N
+668	754.05	9342B100LS436400151		{}	1		\N	\N	46	\N
+669	1112	CND3510HTS	F2Q63LT#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "E cortes", "Acceso Remoto": "SI", "Ip": "172.16.11.86", "Ram": "8 GB", "Unidad Optica": "CD Writer", "Disco": "500", "Unidad Lectora": "NINGUNO", "Procesador": "Intel core  i7 4700 MQ CPU", "Bits": "64 BITS"}	1		\N	\N	66	\N
+670	313	0D1224377B		{"Ip": "172.16.11.125", "Mac": "00085D355AF7", "Extension": "1901"}	1		\N	\N	88	\N
+671	743	CNC134PKQH	625761-001	{}	1		\N	\N	8	\N
+673	327	0F122508AC		{"Ip": "172.16.8.204", "Mac": "00085D331107", "Extension": "1100"}	1		\N	\N	90	\N
+674	742.04	742.04	537748-001	{}	1		\N	\N	144	\N
+675	742.03	B69220MVBQA2DY		{}	1		\N	\N	76	\N
+676	1168.05	2432APBLS762405810		{}	1		\N	\N	6	\N
+672	742	MXL1451KD7	XL504AV#104	{"Sistema Operativo": "UBUNTU", "Usuario": "MARIA JARA", "Acceso Remoto": "SI", "Ip": "172.16.8.204", "Ram": "4GB", "Unidad Optica": "CD Writer", "Disco": "500GB", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-2600 CPU ", "Bits": "64 BITS"}	1		\N	\N	7	\N
+677	894	120511-040004670		{}	1		\N	\N	133	\N
+683	702	5CG04902Q5	XL403LT#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "FJARAMILLO", "Acceso Remoto": "SI", "Ip": "172.16.10.148", "Ram": "2GB", "Unidad Optica": "CD Writer", "Disco": "300GB", "Unidad Lectora": "NINGUNO", "Procesador": "Pentiu(R) Dual-Core CPU", "Bits": "64 BITS"}	1		\N	\N	147	\N
+678	1124	6CM35022T1		{}	1		\N	\N	18	\N
+679	1123	MXL4071G96		{"Sistema Operativo": "UBUNTU", "Usuario": "Rosa Heras", "Acceso Remoto": "SI", "Ip": "172.16.10.160", "Ram": "4GB", "Unidad Optica": "DVD Writer", "Disco": "500GB", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-4770 CPU", "Bits": "32 BITS"}	1		\N	\N	31	\N
+680	1123.03	BDMEP0CVB5X0WO		{}	1		\N	\N	56	\N
+681	1123.04	FCMHF0A9W551A9	672651-001	{}	1		\N	\N	21	\N
+682	950.05	2245APBLS710712127		{}	1		\N	\N	53	\N
+684	740	MXL1451JR6	XL504AV#104	{"Sistema Operativo": "UBUNTU", "Usuario": "Lrivadeneira", "Acceso Remoto": "SI", "Ip": "172.16.8.205", "Ram": "4 GB", "Unidad Optica": "CD Writer", "Disco": "500 GB", "Unidad Lectora": "NINGUNO", "Procesador": "ntel\\u00ae Core\\u2122 i7-2600 CPU @ 3.40GHz \\u00d7 8 ", "Bits": "32 BITS"}	1		\N	\N	7	\N
+685	741	CNC044S9RL		{}	1		\N	\N	8	\N
+686	740.04	417411-002		{}	1		\N	\N	11	\N
+688	825	110730-03198		{}	1		\N	\N	10	\N
+687	740.03	BAUDU0OVB1I5ZF		{}	1		\N	\N	135	\N
+690	354	CNN4501VR4	P9621D	{}	1		\N	\N	95	\N
+691	354.4	X78950901707		{}	1		\N	\N	15	\N
+692	354.03	B77670ACPR42SR		{}	1		\N	\N	62	\N
+647	177	B55680AGANG2OC		{}	1		\N	\N	9	\N
+689	435	MXJ6280745		{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "Jgaleas", "Acceso Remoto": "SI", "Ip": "172.16.10.217", "Ram": "2 GB", "Unidad Optica": "CD Rom", "Disco": "100", "Unidad Lectora": "NINGUNO", "Procesador": "PENTIMUM 4  3.00GHz", "Bits": "32 BITS"}	1		\N	\N	84	\N
+695	744.03	BAUDU0OVB1I0HU		{}	1		\N	\N	9	\N
+694	744.04	417441-001		{}	1		\N	\N	144	\N
+696	745	CNC134PL2B		{}	1		\N	\N	8	\N
+693	744	MXL1451JR8	XL504AV#104	{"Sistema Operativo": "UBUNTU", "Usuario": "jsalinas", "Acceso Remoto": "SI", "Ip": "172.16.8.216", "Ram": "4GB", "Unidad Optica": "CD Rom", "Disco": "500GB", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-2600 CPU @ 3.40GHz \\u00d7 8", "Bits": "64 BITS"}	1		\N	\N	7	\N
+697	234	0d12243762		{"Ip": "172.16.8.252", "Mac": "00085D355ADE", "Extension": "1102"}	1		\N	\N	88	\N
+700	982.4	600553-022		{}	1		\N	\N	21	\N
+702	982.3	BDAEV0Q5Y3Y5WA		{}	1		\N	\N	9	\N
+701	983	6CM30313C2		{}	1		\N	\N	18	\N
+698	982	MXL311494	QV983AV#006	{"Sistema Operativo": "UBUNTU", "Usuario": "N flores", "Acceso Remoto": "SI", "Ip": "172.16.8.207", "Ram": "4 GB", "Unidad Optica": "CD Writer", "Disco": "500 GB", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-3770 CPU @ 3.40GHz \\u00d7 8 ", "Bits": "64 BITS"}	1		\N	\N	17	\N
+699	235	0D12243759		{"Ip": "172.16.8.251", "Mac": "00085D355AD5", "Extension": "1103"}	1		\N	\N	88	\N
+703	132	132		{}	1		\N	\N	52	\N
+704	1109	CNV401BJ1X	D8D58LT#ABM	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "JSERGIO", "Acceso Remoto": "SI", "Ip": "172.16.9.210", "Ram": "4GB", "Unidad Optica": "CD Writer", "Disco": "500GB", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL(R) CORE(TM) I5-3230M", "Bits": "64 BITS"}	1		\N	\N	127	\N
+705	829	110730-03202		{}	1		\N	\N	133	\N
+706	1131	MXL3490LGC	QV983AV*006	{"Sistema Operativo": "UBUNTU", "Usuario": "L gina", "Acceso Remoto": "SI", "Ip": "172.16.9.213", "Ram": "4 GB", "Unidad Optica": "CD Writer", "Disco": "500 GB", "Unidad Lectora": "NINGUNO", "Procesador": "ntel\\u00ae Pentium(R) CPU G2030 @ 3.00GHz \\u00d7 2 ", "Bits": "32 BITS"}	1		\N	\N	17	\N
+707	1132	6CM3312CN6		{}	1		\N	\N	18	\N
+708	946.reg	946.reg		{}	1		\N	\N	53	\N
+710	792	CNC117R10L		{}	1		\N	\N	8	\N
+734	193	016033122213		{}	1		\N	\N	155	\N
+709	780	MXL2022PX8	XL504AV#244	{"Sistema Operativo": "UBUNTU", "Usuario": "Jairo Revelo", "Acceso Remoto": "SI", "Ip": "172.16.9.134", "Ram": "4 GB", "Unidad Optica": "CD Writer", "Disco": "500 GB", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-2600 CPU @ 3.40GHz \\u00d7 8 ", "Bits": "32 BITS"}	1		\N	\N	7	\N
+712	575	575		{}	1		\N	\N	148	\N
+713	780.03	BAUDU0OBV1P519		{}	1		\N	\N	9	\N
+714	780.04	780.04	417441-002	{}	1		\N	\N	72	\N
+715	780.05	9248AY0LS436400916		{}	1		\N	\N	46	\N
+716	712	102UXEZ58828		{}	1		\N	\N	149	\N
+717	540	MXJ816003B	RL174AW#ABM	{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "CLAVELINA PANDAMA", "Acceso Remoto": "SI", "Ip": "172.16.8.150", "Ram": "1GB", "Unidad Optica": "DVD Writer", "Disco": "75GB", "Unidad Lectora": "NINGUNO", "Procesador": "INTERL(R) CORE(TM) 2 CPU", "Bits": "32 BITS"}	1		\N	\N	39	\N
+721	540.04	X77045309694		{}	1		\N	\N	77	\N
+720	540.03	YB3BC1U23792		{}	1		\N	\N	150	\N
+718	199	U1054615		{}	1		\N	\N	52	\N
+711	319	0D1224398E		{"Ip": "172.16.9.186", "Mac": "00085D355D0A", "Extension": "2003"}	1		\N	\N	88	\N
+722	0D12243788	0D12243788		{"Ip": "172.16.9.189", "Mac": "00085D355B04", "Extension": "2001"}	1		\N	\N	88	\N
+719	0F12250877	0F12250877		{"Ip": "172.16.9.190", "Mac": "00085D3310D2", "Extension": "2000"}	1		\N	\N	90	\N
+725	178	6y27-KN8Z-RO7D		{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "Omerci", "Acceso Remoto": "SI", "Ip": "172.16.9.112", "Ram": "1GB", "Unidad Optica": "CD Writer", "Disco": "40GB", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL PENTIUM 4", "Bits": "32 BITS"}	1		\N	\N	153	\N
+723	579	811MXZJ38789		{}	1		\N	\N	151	\N
+726	176	176		{}	1		\N	\N	77	\N
+732	728.04	728.04	417441-002	{}	1		\N	\N	72	\N
+731	728.03	BAUDU0OVB0O72L		{}	1		\N	\N	9	\N
+733	729	3CQ1170SPT	516736-001	{}	1		\N	\N	138	\N
+730	291	0D122437DC		{"Ip": "172.16.11.209", "Mac": "00085D355B58", "Extension": "1640"}	1		\N	\N	88	\N
+735	728	MXL13123WM	XL504AV#104	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "M ortiz", "Acceso Remoto": "SI", "Ip": "172.16.9.108", "Ram": "4 GB", "Unidad Optica": "CD Writer", "Disco": "500 GB", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL CORE I7", "Bits": "32 BITS"}	1		\N	\N	7	\N
+736	547	547		{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "TESORERIA", "Acceso Remoto": "SI", "Ip": "172.16.9.125", "Ram": "2GB", "Unidad Optica": "CD Writer", "Disco": "250GB", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL(R) PENTIUM DUAL PC", "Bits": "32 BITS"}	1		\N	\N	12	\N
+724	1168	001TPPB20136		{}	1		\N	\N	152	\N
+728	547.04	547.04	537748-001	{}	1		\N	\N	21	\N
+727	432	YB3BC1U22999		{}	1		\N	\N	150	\N
+729	851	851.05		{}	1		\N	\N	154	\N
+741	1034	1034		{}	1		\N	\N	9	\N
+740	1042.04	600553-00000002		{}	1		\N	\N	140	\N
+738	1039	MXL3211QVT	QV983AV#0065	{"Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Usuario": "JLOPEZ", "Acceso Remoto": "SI", "Ip": "172.16.9.112", "Ram": "4 GB", "Unidad Optica": "CD Writer", "Disco": "500 GB", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-3770 CPU @ 3.40GHz \\u00d7 8 ", "Bits": "32 BITS"}	1		\N	\N	17	\N
+737	1042	6CM3152KR1		{}	1		\N	\N	18	\N
+739	292	0D12243779		{"Ip": "172.16.11.210", "Mac": "0085D355AF5", "Extension": "1641"}	1		\N	\N	88	\N
+743	911	6CM2300Q57		{}	1		\N	\N	18	\N
+744	318	0D122437B5		{"Ip": "172.16.9.187", "Mac": "00085D355B31", "Extension": "2002"}	1		\N	\N	88	\N
+745	912.03	BAUDU0OVB3CDJW		{}	1		\N	\N	9	\N
+746	912.04	912.04	600553-002	{}	1		\N	\N	21	\N
+747	52	52		{}	1		\N	\N	52	\N
+742	912	MXL247092W	QV983AV#006	{"Sistema Operativo": "UBUNTU", "Usuario": "RJIMMY", "Acceso Remoto": "SI", "Ip": "172.16.9.132", "Ram": "4GB", "Unidad Optica": "CD Writer", "Disco": "500GB", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL ICORE I7", "Bits": "32 BITS"}	1		\N	\N	17	\N
+751	1045.04	1045.03	537748-001	{}	1		\N	\N	140	\N
+750	1045.03	BDAEV0QVB4145B		{}	1		\N	\N	9	\N
+749	1040	6CM3152KS5		{}	1		\N	\N	18	\N
+748	1045	MXL3211QGQ	QV983AV#006	{"Sistema Operativo": "UBUNTU", "Usuario": "VENTANILLA2", "Acceso Remoto": "SI", "Ip": "172.16.9.87", "Ram": "4 GB", "Unidad Optica": "CD Writer", "Disco": "500 GB", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-3770 CPU @ 3.40GHz \\u00d7 8 ", "Bits": "32 BITS"}	1		\N	\N	17	\N
+752	1045.05	2245APBLS710711988		{}	1		\N	\N	53	\N
+754	970	MXL3021RBN	QV983AV#006	{"Sistema Operativo": "UBUNTU", "Usuario": "BNIETO", "Acceso Remoto": "SI", "Ip": "172.16.10.11", "Ram": "4GB", "Unidad Optica": "CD Writer", "Disco": "500GB", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-3770 CPU ", "Bits": "32 BITS"}	1		\N	\N	17	\N
+753	971	6CM3060MQY		{}	1		\N	\N	18	\N
+756	970.03	BDAEV0QVB3Q497		{}	1		\N	\N	9	\N
+755	970.04	970.04	417966-001	{}	1		\N	\N	144	\N
+757	324	0F1225089E		{"Ip": "172.16.10.55", "Mac": "00085D3310F9", "Extension": "1010"}	1		\N	\N	90	\N
+758	921	6CM2300SNT		{}	1		\N	\N	18	\N
+759	920	MXL247093G	QV983AV#006	{"Sistema Operativo": "UBUNTU", "Usuario": "GFLOR", "Acceso Remoto": "SI", "Ip": "172.16.10.15", "Ram": "4GB", "Unidad Optica": "CD Writer", "Disco": "500GB", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-3770 CPU", "Bits": "32 BITS"}	1		\N	\N	17	\N
+760	920.04	920.04	537748-001	{}	1		\N	\N	21	\N
+761	920.03	BAUDU0OVB3CDJS		{}	1		\N	\N	9	\N
+762	855	110730-01617		{}	1		\N	\N	10	\N
+764	902	MXL24610JL	QV983AV#006	{"Sistema Operativo": "UBUNTU", "Usuario": "MPABLO", "Acceso Remoto": "SI", "Ip": "172.16.9.81", "Ram": "4GB", "Unidad Optica": "CD Writer", "Disco": "500GB", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-3770 CPU", "Bits": "32 BITS"}	1		\N	\N	17	\N
+763	901	6CM2300P8B		{}	1		\N	\N	18	\N
+765	902.04	902.04	605533-002	{}	1		\N	\N	21	\N
+766	902.03	BAUDU0OVB3C2JZ		{}	1		\N	\N	9	\N
+767	285	0D129437CF		{"Ip": "172.16.11.203", "Mac": "00085D355B4B", "Extension": "1630"}	1		\N	\N	88	\N
+195	738	MXL1480CNP	XL504AV#244	{"Usuario": "dcarpio", "Ip": "172.16.9.21", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB SATA", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I7-2600 3.4GHz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "SI"}	1		\N	\N	7	\N
+312	803	2CE1493863	LR942LA#ABM	{"Usuario": "jrevelo", "Ip": "172.16.9.139", "Ram": "4GB DDR3", "Unidad Optica": "DVD Writer", "Disco": "500GB DDR3", "Bits": "64 BITS", "Unidad Lectora": "NINGUNO", "Procesador": "INTEL I5-2410 2.3GHz", "Sistema Operativo": "WINDOWS 7 PROFESIONAL", "Acceso Remoto": "SI"}	1		\N	\N	87	\N
+772	1329	CNDC6BD1NK		{"Ip": "172.16.11.69"}	1		\N	\N	41	\N
+768	967	6CM3081D8V		{}	1		\N	\N	18	\N
+769	966.04	BDAEV0Q5Y3Y5VX		{}	1		\N	\N	9	\N
+770	966.03	966.03		{}	1		\N	\N	21	\N
+771	966	MXL311149J	QV983AV#006	{"Sistema Operativo": "UBUNTU", "Usuario": "VJARAMILLO", "Acceso Remoto": "SI", "Ip": "172.16.11.83", "Ram": "4 GB", "Unidad Optica": "DVD Writer", "Disco": "500 GB", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-3770 CPU @ 3.40GHz \\u00d7 8 ", "Bits": "64 BITS"}	1		\N	\N	17	\N
+773	936.05	2245APBLS710711892		{}	1		\N	\N	53	\N
+775	1054	6CM3152KT2		{}	1		\N	\N	18	\N
+781	1055	MXL3211Q27		{"Sistema Operativo": "UBUNTU", "Usuario": "AZABALA", "Acceso Remoto": "SI", "Ip": "172.16.9.80", "Ram": "4 GB", "Unidad Optica": "DVD Rom", "Disco": "500 GB", "Unidad Lectora": "NINGUNO", "Procesador": "32 BITS", "Bits": "32 BITS"}	1		\N	\N	17	\N
+777	1054.04	1054.04		{}	1		\N	\N	140	\N
+779	1054.03	BDAEV0QVB4I68D		{}	1		\N	\N	9	\N
+774	1053	MXL3211S3F		{"Sistema Operativo": "UBUNTU", "Usuario": "ventanilla2", "Acceso Remoto": "SI", "Ip": "172.16.9.79", "Ram": "4GB", "Unidad Optica": "CD Writer", "Disco": "500GB", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-3770 CPU @ 3.40GHz \\u00d7 8 ", "Bits": "64 BITS"}	1		\N	\N	17	\N
+780	1053.04	600553-0002		{}	1		\N	\N	140	\N
+778	1053.03	BDAEV0QVB4I6CS		{}	1		\N	\N	9	\N
+776	1056	6CM3060MPN		{}	1		\N	\N	18	\N
+782	105.05	9342DY0LS436400152		{}	1		\N	\N	30	\N
+786	574.03	X75270801863		{}	1		\N	\N	15	\N
+788	574.04	574.04		{}	1		\N	\N	14	\N
+783	918	MXL247093F	QV983AV#006	{"Sistema Operativo": "UBUNTU", "Usuario": "NOTIFICADOR", "Acceso Remoto": "SI", "Ip": "172.16.9.85", "Ram": "4GB", "Unidad Optica": "CD Writer", "Disco": "500GB", "Unidad Lectora": "NINGUNO", "Procesador": "Intel\\u00ae Core\\u2122 i7-3770 CPU @ 3.40GHz \\u00d7 8 ", "Bits": "64 BITS"}	1		\N	\N	17	\N
+784	726	CNC119Q4SH		{}	1		\N	\N	8	\N
+790	858	110730-01293		{}	1		\N	\N	10	\N
+785	918.03	600553-00002		{}	1		\N	\N	21	\N
+787	918.04	BAUDU0OVB3CFF1		{}	1		\N	\N	9	\N
+791	437	MXL629172D		{"Sistema Operativo": "WINDOWS XP PROFESIONAL", "Usuario": "Avillavicencio", "Acceso Remoto": "SI", "Ip": "172.16.9.118", "Ram": "2 GB", "Unidad Optica": "DVD Writer", "Disco": "100GB", "Unidad Lectora": "NINGUNO", "Procesador": "32 BITS", "Bits": "32 BITS"}	1		\N	\N	7	\N
+789	574	L177WSBS		{}	1		\N	\N	141	\N
+795	1300.04	COMARIFX8320111547111		{}	1		\N	\N	35	\N
+796	1300.03	COMARIFX832012115471111		{}	1		\N	\N	94	\N
+793	13000	COMARI9FX832011154711		{}	1		\N	\N	34	\N
+794	296	0D122437DF		{"Ip": "172.16.11.213", "Mac": "0085D355B5B", "Extension": "1661"}	1		\N	\N	88	\N
+792	1300	COMARIFX832011154711		{"Sistema Operativo": "UBUNTU", "Usuario": "Acozar", "Acceso Remoto": "SI", "Ip": "172.16.9.83", "Ram": "4", "Unidad Optica": "DVD Rom", "Disco": "400", "Unidad Lectora": "NINGUNO", "Procesador": "64", "Bits": "64 BITS"}	1		\N	\N	1	\N
+\.
+
+
+--
+-- Name: equipment_device_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('equipment_device_id_seq', 796, true);
+
+
+--
+-- Data for Name: equipment_model; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY equipment_model (id, name, specifications, trademark_id, type_id) FROM stdin;
+3	Z23I	{"Dimension": "23", "Tipo": "LCD"}	1	2
+4	KB 57211	{"Conector": "USB"}	1	3
+5	MOFYUO	{"Conector": "USB"}	1	4
+6	VR2008R	{}	3	5
+8	S1933	{"Dimension": "18.5\\"", "Tipo": "LCD"}	1	2
+9	KB-0316	{"Conector": "PS2"}	1	3
+11	M-SBF96	{"Conector": "PS2"}	1	4
+13	W1943SI	{"Dimension": "18.5\\"", "Tipo": "LCD"}	6	2
+15	GM-03022P	{"Conector": "PS2"}	7	4
+16	CDP	{}	8	5
+68	LP2275W	{"Dimension": "18.5\\"", "Tipo": "LCD"}	1	2
+18	LV1911	{"Dimension": "18.5\\"", "Tipo": "LCD"}	1	2
+20	LS1000X	{}	3	5
+23	COLOR LASERJET CP2025DN	{"Cart. Magenta": "CC533A", "Tipo": "COLOR", "Cart. Cyan": "CC531A", "Cart. Negro": "CC530A", "Cart. Amarillo": "CC532A", "Suministro": "TONNER"}	1	6
+24	COLOR LASERJET 2605DN	{"Cart. Magenta": "Q6003A", "Tipo": "COLOR", "Cart. Cyan": "Q6001A", "Cart. Negro": "Q6000A", "Cart. Amarillo": "Q6002A", "Suministro": "TONNER"}	1	6
+25	LASERJET P2055DN	{"Cart. Negro": "CE505X", "Tipo": "MONOCROMATICA", "Suministro": "TONNER"}	1	6
+28	B1930N	{"Dimension": "18\\"                                                                                                         ", "Tipo": "LCD"}	11	2
+29	SK-1688	{"Conector": "PS2"}	1	3
+30	5WSUSA	{}	3	5
+32	LP2065	{"Dimension": "20\\"", "Tipo": "LCD"}	1	2
+33	2253LW	{"Dimension": "20\\"", "Tipo": "LCD"}	11	2
+21	MOFXKO	{"Conector": "PS2"}	1	4
+69	M312	{"Conector": "PS2"}	15	4
+34	GL950A	{"Dimension": "18.5\\"", "Tipo": "LCD"}	2	2
+35	GENERICO	{"Conector": "USB"}	2	3
+70	M-U0031-O	{"Conector": "USB"}	1	4
+71	M-S69	{"Conector": "PS2"}	1	4
+72	MOAFKOA	{"Conector": "PS2"}	1	4
+73	WORKSTATION XW4100	{"Uso": "ESCRITORIO"}	1	1
+74	GL950	{"Dimension": "15\\"", "Tipo": "LCD"}	16	2
+85	1502	{"Dimension": "14\\"", "Tipo": "LCD"}	1	2
+75	COMPAQ D530	{"Uso": "ESCRITORIO"}	1	1
+1	GENERICO	{"Uso": "ESCRITORIO"}	2	1
+12	GENERICO	{"Uso": "ESCRITORIO"}	5	1
+7	COMPAQ 6200 PRO MT	{"Uso": "ESCRITORIO"}	1	1
+17	COMPAQ 6300 PRO MT	{"Uso": "ESCRITORIO"}	1	1
+27	COMPAQ D220 MT	{"Uso": "ESCRITORIO"}	1	1
+31	PRODESK 400 G1 MT	{"Uso": "ESCRITORIO"}	1	1
+2	WORKSTATION Z230 TWR	{"Uso": "ESCRITORIO"}	1	1
+36	1000-1422LA	{"Uso": "LAPTOP"}	1	1
+37	WORKFORCE GT-S55	{}	9	7
+38	C746DN	{"Cart. Magenta": "C746A1MG", "Tipo": "COLOR", "Cart. Cyan": "C746A1CG", "Cart. Negro": "C746A1KG", "Cart. Amarillo": "C746A1YG", "Suministro": "TONNER"}	12	6
+39	COMPAQ DC5700 MT	{"Uso": "ESCRITORIO"}	1	1
+40	L1706	{"Dimension": "14\\"", "Tipo": "LCD"}	1	2
+42	XW4300 WORKSTATION	{"Uso": "ESCRITORIO"}	1	1
+43	2033SN	{"Dimension": "17\\"", "Tipo": "LCD"}	11	2
+44	GM-050009P	{"Conector": "PS2"}	7	4
+45	KB-220E	{"Conector": "USB"}	7	3
+46	LS606X	{}	3	5
+47	Z400 WORKSTATION	{"Uso": "ESCRITORIO"}	1	1
+48	ZR2240W	{"Dimension": "20\\"", "Tipo": "LCD"}	1	2
+19	M-S0005O	{"Conector": "PS2"}	1	4
+49	Z200 WORKSTATION	{"Uso": "ESCRITORIO"}	1	1
+50	LA2205WG	{"Dimension": "20\\"", "Tipo": "LCD"}	1	2
+51	M-UAE96	{"Conector": "USB"}	1	4
+52	LS604AX	{}	3	5
+53	VR1208R	{}	3	5
+10	SM-AVR1006	{}	4	5
+54	Z420 WORKSTATION	{"Uso": "ESCRITORIO"}	1	1
+55	APOLLO-OU	{"Conector": "USB"}	1	4
+56	KU-1156	{"Conector": "USB"}	1	3
+57	19EN33S	{"Dimension": "18.5\\"", "Tipo": "LED"}	6	2
+58	GENERICO	{"Conector": "USB"}	13	4
+59	XK-C07M	{"Conector": "USB"}	13	3
+60	AVR200M	{}	13	5
+61	W1943CV	{"Dimension": "15\\"", "Tipo": "LCD"}	6	2
+62	SK-2880	{"Conector": "PS2"}	1	3
+63	WORKSTATION XW4400	{"Uso": "ESCRITORIO"}	1	1
+64	AQ6-23K15	{"Conector": "PS2"}	14	3
+65	SCANJET 5590	{}	1	7
+66	ZBOOK 15	{"Uso": "LAPTOP"}	1	1
+67	WORKSTATION XW4600	{"Uso": "ESCRITORIO"}	1	1
+76	KB-0133	{"Conector": "PS2"}	1	3
+77	GM-04003A	{"Conector": "PS2"}	7	4
+78	KB-120	{"Conector": "PS2"}	7	3
+79	E2341	{"Dimension": "19\\"", "Tipo": "LCD"}	6	2
+80	L2045W	{"Dimension": "18.5\\"", "Tipo": "LCD"}	1	2
+81	EVO 510	{"Uso": "ESCRITORIO"}	14	1
+82	L1716	{"Dimension": "14\\"", "Tipo": "LCD"}	1	2
+14	GK-07008U	{"Conector": "PS2"}	7	3
+83	LQ036AA	{"Capacidad": "500GB", "Conector": "SATA", "Tipo": "ESCRITORIO", "Velocidad": "7200RPM"}	1	8
+84	COMPAQ DC5000 MT	{"Uso": "ESCRITORIO"}	1	1
+86	NETSCROLL 120	{"Conector": "PS2"}	7	4
+87	PROBOOK 6360B	{"Uso": "LAPTOP"}	1	1
+88	6731i	{}	17	9
+89	PROBOOK 4420s	{"Uso": "LAPTOP"}	1	1
+90	6753i	{}	17	9
+91	LASERJET PRO 400 COLOR	{"Cart. Magenta": "CE413A", "Tipo": "COLOR", "Cart. Cyan": "CE411A", "Cart. Negro": "CE410A", "Cart. Amarillo": "CE412A", "Suministro": "TONNER"}	1	6
+92	X223W	{"Dimension": "20\\"", "Tipo": "LCD"}	18	2
+93	PROBOOK 4430S	{"Uso": "LAPTOP"}	1	1
+94	GENERICO	{"Conector": "USB"}	2	4
+95	1702	{"Dimension": "14\\"", "Tipo": "LCD"}	1	2
+26	LASERJET P2015	{"Cart. Negro": "Q7553A", "Tipo": "MONOCROMATICA", "Suministro": "TONNER"}	1	6
+96	COMPAQ 6710B	{"Uso": "LAPTOP"}	1	1
+98	GENERICO	{"Conector": "PS2"}	19	4
+99	GENERICO	{"Conector": "PS2"}	19	3
+100	PROBOOK 4720S	{"Uso": "LAPTOP"}	1	1
+101	ZBOOK 15	{"Uso": "LAPTOP"}	1	1
+102	PROBOOK 640 G1	{"Uso": "LAPTOP"}	1	1
+103	POWERLITE 915W	{}	9	10
+104	Z230 SFF WORKSTATION	{"Uso": "ESCRITORIO"}	1	1
+105	Z24N	{"Dimension": "24\\"", "Tipo": "LED"}	1	2
+106	6730B	{"Uso": "LAPTOP"}	1	1
+107	LASERJET P2035	{"Cart. Negro": "CE505A", "Tipo": "MONOCROMATICA", "Suministro": "TONNER"}	1	6
+108	SM56	{"Conector": "USB"}	4	3
+109	LASERJET P3015	{"Cart. Negro": "CE255A", "Tipo": "MONOCROMATICA", "Suministro": "TONNER"}	1	6
+22	LASERJET PRO 400	{"Cart. Negro": "CF280X", "Tipo": "MONOCROMATICA", "Suministro": "TONNER"}	1	6
+110	FX-2190	{"Cart. Negro": "S015335", "Tipo": "MONOCROMATICA", "Suministro": "CINTA"}	9	6
+111	LASERJET 1320	{"Cart. Negro": "Q5949A", "Tipo": "MONOCROMATICA", "Suministro": "TONNER"}	1	6
+112	LASERJET P1606DN	{"Cart. Negro": "CE278A", "Tipo": "MONOCROMATICA", "Suministro": "TONNER"}	1	6
+113	PROXPRESS M3870FD	{"Cart. Negro": "MLT-D203E", "Tipo": "MONOCROMATICA", "Suministro": "TONNER"}	11	6
+114	L200	{"Cart. Magenta": "T6643", "Tipo": "COLOR", "Cart. Cyan": "T6642", "Cart. Negro": "T6641", "Cart. Amarillo": "T6644", "Suministro": "TINTA"}	9	6
+115	WORKCENTRE 5755	{"Toner": "006R01046"}	20	11
+116	WORKCENTRE 5745	{"Toner": "006R01046"}	20	11
+117	WORKCENTRE 4260	{"Toner": "106R01408"}	20	11
+147	420	{"Uso": "LAPTOP"}	1	1
+118	DESIGNJET 800	{"Cart. Magenta": "C4912A #82", "Cab. Negro": "C4810A #11", "Cart. Cyan": "C4911A #82", "Cab. Amarillo": "C4813A #11", "Cart. Negro": "C4844A #10", "Cab. Magenta": "C4812A #11", "Cab. Cyan": "C4811A #11", "Cart. Amarillo": "C4913A #82", "Suministro": "TINTA"}	1	12
+119	DESIGNJET 110 PLUS	{"Cart. Magenta": "C4837A #11", "Cab. Negro": "C4810A #11", "Cart. Cyan": "C4836A #11", "Cab. Amarillo": "C4813A #11", "Cart. Negro": "C4844A #10", "Cab. Magenta": "C4812A #11", "Cab. Cyan": "C4811A #11", "Cart. Amarillo": "C4838A #11", "Suministro": "TONER"}	1	12
+120	SURECOLOR S30670	{"Cart. Magenta": " T689300", "Cab. Negro": ".", "Cart. Cyan": " T689200", "Cab. Amarillo": ".", "Cart. Negro": "T689100", "Cab. Magenta": ".", "Cab. Cyan": ".", "Cart. Amarillo": "T689400", "Suministro": "TINTA"}	9	12
+121	T1300PS	{"Cart. Magenta": "C9372A", "Cab. Negro": "C9380A Fotografico y gris", "Cart. Cyan": "C9371A", "Cab. Amarillo": "C9384A Mate y amarillo", "Cart. Negro": "CM575A", "Cab. Magenta": "C9383A", "Cab. Cyan": "C9383A", "Cart. Amarillo": "C9373A", "Suministro": "TINTA"}	1	12
+41	LASERJET ENTERPRISE 600 M602X	{"Cart. Negro": "CE390A", "Tipo": "MONOCROMATICA", "Suministro": "TONNER"}	1	6
+122	430	{"Uso": "LAPTOP"}	1	1
+148	SCX - 4500	{}	11	7
+123	PFEEZJ1	{"Capacidad": "4GB", "Tipo": "PC3"}	1	13
+124	DH-IPC-HDW1220S-0360B	{}	21	14
+125	GENERICO	{"Uso": "ESCRITORIO"}	14	1
+126	W1941S	{"Dimension": "18.5\\"", "Tipo": "LCD"}	6	2
+127	PROBOOK 6470B	{"Uso": "LAPTOP"}	1	1
+128	E1942	{"Dimension": "18\\"", "Tipo": "LCD"}	6	2
+129	KB-9963	{"Conector": "PS2"}	14	3
+130	GENERICO	{"Uso": "ESCRITORIO"}	22	1
+131	GENERICO	{"Conector": "PS2"}	22	3
+132	GENERICO	{"Conector": "USB"}	22	4
+133	B-AVR1006	{}	8	5
+134	POWERLITE W17	{}	9	10
+135	KU-0316	{"Conector": "USB"}	1	3
+136	HP SCANJER G4050	{}	1	7
+137	designjet 110 plus	{"Cart. Magenta": "C4837A", "Cab. Negro": "C4810A", "Cart. Cyan": "C4836A", "Cab. Amarillo": "C4813A", "Cart. Negro": "C4844A", "Cab. Magenta": "C4812A", "Cab. Cyan": "C4811A", "Cart. Amarillo": "C4838A", "Suministro": "TINTA"}	1	12
+97	X173W	{"Dimension": "15\\"", "Tipo": "LCD"}	18	2
+138	LE1901w	{"Dimension": "15\\"", "Tipo": "LCD"}	1	2
+139	MICROVOLT1200	{}	24	5
+140	S0005-O	{"Conector": "PS2"}	1	4
+141	L177WSB	{"Dimension": "14", "Tipo": "LCD"}	25	2
+143	KB-0133	{"Conector": "PS2"}	14	3
+144	M-SBF96	{"Conector": "PS2"}	1	4
+145	AVR200D	{}	26	5
+146	SG 1000	{}	27	5
+142	COMPAQ dx2200 Microtower	{"Uso": "ESCRITORIO"}	1	1
+149	W1943SS	{"Dimension": "15\\"", "Tipo": "LCD"}	6	2
+150	GK-07006U	{"Conector": "USB"}	7	3
+151	W1942S	{"Dimension": "15 PULGADAS", "Tipo": "LCD"}	25	2
+152	W1742ST	{"Dimension": "15\\"", "Tipo": "LED"}	6	2
+153	D51C	{"Uso": "ESCRITORIO"}	14	1
+154	POWER TECHNOLOGY	{}	29	5
+155	1000	{}	30	5
+\.
+
+
+--
+-- Name: equipment_model_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('equipment_model_id_seq', 155, true);
+
+
+--
+-- Data for Name: equipment_trademark; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY equipment_trademark (id, name) FROM stdin;
+1	HP
+2	ARI
+3	TRIPP LITE
+4	SPEEDMIND
+5	CLON
+6	LG
+7	GENIUS
+8	CDP
+9	EPSON
+10	CANNON
+11	SAMSUNG
+12	LEXMARK
+13	VANTEC
+14	COMPAQ
+15	DELUX
+16	BENQ
+17	AASTRA
+18	ACER
+19	APEX
+20	XEROX
+21	DAHUA
+22	SAZ
+24	SOLA BASIC
+25	FLATRON
+26	ALTEK
+27	SG ELECTRONICS
+29	PRO NET
+30	TDC  MAX
+\.
+
+
+--
+-- Name: equipment_trademark_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('equipment_trademark_id_seq', 30, true);
+
+
+--
+-- Data for Name: equipment_type; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY equipment_type (id, name, is_part, specifications, print_sizes) FROM stdin;
+8	DISCO DURO	t	[{"specification": ["Conector"], "options": ["SATA", "IDE"], "for": "model"}, {"specification": ["Capacidad", "Velocidad"], "options": [], "for": "model"}, {"specification": ["Tipo"], "options": ["ESCRITORIO", "PORTATIL"], "for": "model"}]	\N
+6	IMPRESORA	f	[{"specification": ["Suministro"], "options": ["TONNER", "TINTA", "CINTA"], "for": "model"}, {"specification": ["Tipo"], "options": [{"name": "MONOCROMATICA", "suboptions": ["Cart. Negro"]}, {"name": "COLOR", "suboptions": ["Cart. Cyan", "Cart. Magenta", "Cart. Negro", "Cart. Amarillo"]}], "for": "model"}, {"specification": ["Ip"], "options": [], "for": "allocation"}]	"2.2, 1, 1.5, 1.5, 1.4, 1.9, 1.2, 1.2, 1.2, 1.2, 1.4, 1, 1.5, 1.1, 1.2, 1.2, 1.6, 1.6"
+2	MONITOR	f	[{"specification": ["Tipo"], "options": ["LED", "LCD", "PLASTA"], "for": "model"}, {"specification": ["Dimension"], "options": [], "for": "model"}]	"2.5, 1, 1.5, 1.5, 1.1, 1.4, 1, 1.7, 1.1, 1.2, 1.2, 2, 1.6"
+4	MOUSE	f	[{"specification": ["Conector"], "options": ["USB", "PS2"], "for": "model"}]	"2.5, 1, 1.5, 1.5, 1.2, 1, 1.7, 1.1, 1.2, 1.2, 2, 1.6"
+1	PC	f	[{"specification": ["Procesador", "Ram", "Disco"], "options": [], "for": "device"}, {"specification": ["Unidad Optica"], "options": ["DVD Writer", "DVD Rom", "CD Writer", "CD Rom"], "for": "device"}, {"specification": ["Unidad Lectora"], "options": ["CARD READER", "FLOPPY", "NINGUNO"], "for": "device"}, {"specification": ["Ip", "Usuario"], "options": [], "for": "allocation"}, {"specification": ["Sistema Operativo"], "options": ["WINDOWS 7 PROFESIONAL", "WINDOWS XP PROFESIONAL", "UBUNTU", "UBUNTU SERVER", "CENTOS"], "for": "allocation"}, {"specification": ["Bits"], "options": ["32 BITS", "64 BITS"], "for": "allocation"}, {"specification": ["Acceso Remoto"], "options": ["SI", "NO"], "for": "allocation"}, {"specification": ["Uso"], "options": ["ESCRITORIO", "LAPTOP"], "for": "model"}]	"2.2, 1, 1.5, 1.5, 1.4, 1.7, 1, 0.8, 1, 1.2, 1.4, 1.3, 1.5, 1, 1, 1, 1.5, 1.1, 1.2, 1.2, 1.6, 1.6"
+5	REGULADOR	f	[]	"2.5, 1, 1.5, 1.5, 1, 1.7, 1.1, 1.2, 1.2, 2, 1.6"
+3	TECLADO	f	[{"specification": ["Conector"], "options": ["USB", "PS2"], "for": "model"}]	"2.5, 1, 1.5, 1.5, 1.2, 1, 1.7, 1.1, 1.2, 1.2, 2, 1.6"
+12	PLOTER	f	[{"specification": ["Suministro"], "options": ["TINTA", "TONER"], "for": "model"}, {"specification": ["Cart. Negro", "Cart. Cyan", "Cart. Magenta", "Cart. Amarillo"], "options": [], "for": "model"}, {"specification": ["Cab. Negro", "Cab. Cyan", "Cab. Magenta", "Cab. Amarillo"], "options": [], "for": "model"}]	"2.5, 1, 1.5, 1.5, 1.5,1.2,1.2,1.2,1.2,1.2,1.2,1.2,1.2,1, 1.7, 1.1, 1.2, 1.2, 2, 1.6"
+7	ESCANNER	f	[]	"2.5, 1, 1.5, 1.5, 1, 1.7, 1.1, 1.2, 1.2, 2, 1.6"
+13	MEMORIA RAM	t	[{"specification": ["Capacidad", "Tipo"], "options": [], "for": "model"}]	""
+14	CAMARA IP	f	[{"specification": ["Ip"], "options": [], "for": "device"}]	"2.5, 1, 1.5, 1.5, 1.3, 1, 1.7, 1.1, 1.2, 1.2, 2, 1.6"
+10	PROYECTOR	f	[]	"2.5, 1, 1.5, 1.5, 1, 1.7, 1.1, 1.2, 1.2, 2, 1.6"
+9	TELEFONO	f	[{"specification": ["Ip", "Extension"], "options": [], "for": "allocation"}, {"specification": ["Mac"], "options": [], "for": "device"}]	"2.5, 1, 1.5, 1.5, 1.5, 1.3, 1.4,1, 1.7, 1.1, 1.2, 1.2, 2, 1.6"
+11	COPIADORA	f	[{"specification": ["Toner"], "options": [], "for": "model"}, {"specification": ["Ip"], "options": [], "for": "allocation"}]	"2.5, 1, 1.5, 1.5, 1.5,1.4,1, 1.7, 1.1, 1.2, 1.2, 2, 1.6"
+\.
+
+
+--
+-- Name: equipment_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('equipment_type_id_seq', 14, true);
+
+
+--
+-- Data for Name: providers_provider; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY providers_provider (id, ruc, name, representative, address, city, cellphone, telephone) FROM stdin;
+1	1710124882001	COPI.COM	MONICA ELIZABETH PEREZ PAREDES	ACUÑA OE1-41 Y AV. 10 DE AGOSTO	QUITO		022236710
+2	1791772229001	TECNOPLUS	SANDRA ARACELY ROCA MERA	JIPIJAPA, ISLA SAN CRISTOBAL N44-534 E ISLA SEYMOUR	QUITO		022272459
+3	1711752996001	VAGADAMIA	PAUL DARIO DAVILA GONZALEZ	LA GRANJA, II ETAPA DOMINGO COMIN N31-97 GASPAR DE CARVAJAL	QUITO	0998323998	2244100
+4	1001999000001	SERVIELEC	AGUILAR ACOSTA OSCAR ALBERTO	MANUEL CAÑOLA E10-46 Y JOAQUÍN SUMAITA	QUITO	0996035544	026039000
+5	1802160406001	COMPUNET	VIEIRA JACOME MARIO FABRIZZIO	AV. MANUELITA SAENZ Y QUIS QUIS	AMBATO	0998378600	032419642
+\.
+
+
+--
+-- Name: providers_provider_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('providers_provider_id_seq', 5, true);
+
+
+--
+-- Data for Name: technical_assistance_maintenance; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY technical_assistance_maintenance (id, date, problem, solution, device_id) FROM stdin;
+1	2016-02-26	Lentitud en el equipo, se detectó fallo en el disco duro.	Validación de garantía y reposición de disco.	31
+2	2016-03-11	Necesidad de respaldar información	Cambio de disco duro y formateo del equipo con linux	199
+3	2016-04-08	Daño en el driver de tarjeta de video	Formateo y aumento de memoria RAM	119
+4	2016-05-05	Lentitud en ejecutar los procesos	Formateo y aumento de memoria ram	223
+\.
+
+
+--
+-- Name: technical_assistance_maintenance_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('technical_assistance_maintenance_id_seq', 4, true);
+
+
+--
+-- Data for Name: technical_assistance_parts; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY technical_assistance_parts (id, is_active, maintenance_id, part_id) FROM stdin;
+1	t	2	307
+2	t	3	506
+3	t	3	507
+\.
+
+
+--
+-- Name: technical_assistance_parts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('technical_assistance_parts_id_seq', 3, true);
+
+
+--
+-- Name: allocation_allocation_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY allocation_allocation
+    ADD CONSTRAINT allocation_allocation_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- Name: auth_group_permissions_group_id_permission_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_permission_id_key UNIQUE (group_id, permission_id);
+
+
+--
+-- Name: auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_permission_content_type_id_codename_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_codename_key UNIQUE (content_type_id, codename);
+
+
+--
+-- Name: auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups_user_id_group_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_group_id_key UNIQUE (user_id, group_id);
+
+
+--
+-- Name: auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user
+    ADD CONSTRAINT auth_user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions_user_id_permission_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_permission_id_key UNIQUE (user_id, permission_id);
+
+
+--
+-- Name: auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user
+    ADD CONSTRAINT auth_user_username_key UNIQUE (username);
+
+
+--
+-- Name: django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY django_admin_log
+    ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_content_type_app_label_45f3b1d93ec8c61c_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY django_content_type
+    ADD CONSTRAINT django_content_type_app_label_45f3b1d93ec8c61c_uniq UNIQUE (app_label, model);
+
+
+--
+-- Name: django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY django_content_type
+    ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY django_migrations
+    ADD CONSTRAINT django_migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY django_session
+    ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
+
+
+--
+-- Name: equipment_device_code_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY equipment_device
+    ADD CONSTRAINT equipment_device_code_key UNIQUE (code);
+
+
+--
+-- Name: equipment_device_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY equipment_device
+    ADD CONSTRAINT equipment_device_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: equipment_device_serial_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY equipment_device
+    ADD CONSTRAINT equipment_device_serial_key UNIQUE (serial);
+
+
+--
+-- Name: equipment_model_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY equipment_model
+    ADD CONSTRAINT equipment_model_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: equipment_trademark_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY equipment_trademark
+    ADD CONSTRAINT equipment_trademark_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: equipment_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY equipment_type
+    ADD CONSTRAINT equipment_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: providers_provider_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY providers_provider
+    ADD CONSTRAINT providers_provider_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: technical_assistance_maintenance_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY technical_assistance_maintenance
+    ADD CONSTRAINT technical_assistance_maintenance_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: technical_assistance_parts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY technical_assistance_parts
+    ADD CONSTRAINT technical_assistance_parts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: allocation_allocation_9379346c; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX allocation_allocation_9379346c ON allocation_allocation USING btree (device_id);
+
+
+--
+-- Name: auth_group_name_253ae2a6331666e8_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX auth_group_name_253ae2a6331666e8_like ON auth_group USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions_0e939a4f; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX auth_group_permissions_0e939a4f ON auth_group_permissions USING btree (group_id);
+
+
+--
+-- Name: auth_group_permissions_8373b171; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX auth_group_permissions_8373b171 ON auth_group_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_permission_417f1b1c; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX auth_permission_417f1b1c ON auth_permission USING btree (content_type_id);
+
+
+--
+-- Name: auth_user_groups_0e939a4f; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX auth_user_groups_0e939a4f ON auth_user_groups USING btree (group_id);
+
+
+--
+-- Name: auth_user_groups_e8701ad4; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX auth_user_groups_e8701ad4 ON auth_user_groups USING btree (user_id);
+
+
+--
+-- Name: auth_user_user_permissions_8373b171; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX auth_user_user_permissions_8373b171 ON auth_user_user_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_user_user_permissions_e8701ad4; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX auth_user_user_permissions_e8701ad4 ON auth_user_user_permissions USING btree (user_id);
+
+
+--
+-- Name: auth_user_username_51b3b110094b8aae_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX auth_user_username_51b3b110094b8aae_like ON auth_user USING btree (username varchar_pattern_ops);
+
+
+--
+-- Name: django_admin_log_417f1b1c; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX django_admin_log_417f1b1c ON django_admin_log USING btree (content_type_id);
+
+
+--
+-- Name: django_admin_log_e8701ad4; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX django_admin_log_e8701ad4 ON django_admin_log USING btree (user_id);
+
+
+--
+-- Name: django_session_de54fa62; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX django_session_de54fa62 ON django_session USING btree (expire_date);
+
+
+--
+-- Name: django_session_session_key_461cfeaa630ca218_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX django_session_session_key_461cfeaa630ca218_like ON django_session USING btree (session_key varchar_pattern_ops);
+
+
+--
+-- Name: equipment_device_32ca2ddc; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX equipment_device_32ca2ddc ON equipment_device USING btree (provider_id);
+
+
+--
+-- Name: equipment_device_477cbf8a; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX equipment_device_477cbf8a ON equipment_device USING btree (model_id);
+
+
+--
+-- Name: equipment_device_code_1701a15ba01fdf93_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX equipment_device_code_1701a15ba01fdf93_like ON equipment_device USING btree (code varchar_pattern_ops);
+
+
+--
+-- Name: equipment_device_serial_7bbd21cf3a1d06f8_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX equipment_device_serial_7bbd21cf3a1d06f8_like ON equipment_device USING btree (serial varchar_pattern_ops);
+
+
+--
+-- Name: equipment_model_02a81214; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX equipment_model_02a81214 ON equipment_model USING btree (trademark_id);
+
+
+--
+-- Name: equipment_model_94757cae; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX equipment_model_94757cae ON equipment_model USING btree (type_id);
+
+
+--
+-- Name: technical_assistance_maintenance_9379346c; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX technical_assistance_maintenance_9379346c ON technical_assistance_maintenance USING btree (device_id);
+
+
+--
+-- Name: technical_assistance_parts_68aae59d; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX technical_assistance_parts_68aae59d ON technical_assistance_parts USING btree (maintenance_id);
+
+
+--
+-- Name: technical_assistance_parts_b4e61b8d; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX technical_assistance_parts_b4e61b8d ON technical_assistance_parts USING btree (part_id);
+
+
+--
+-- Name: D02a76ba9803a9b451d0185ae7042440; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY technical_assistance_parts
+    ADD CONSTRAINT "D02a76ba9803a9b451d0185ae7042440" FOREIGN KEY (maintenance_id) REFERENCES technical_assistance_maintenance(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: allocation_al_device_id_4fe69b741c3fd228_fk_equipment_device_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY allocation_allocation
+    ADD CONSTRAINT allocation_al_device_id_4fe69b741c3fd228_fk_equipment_device_id FOREIGN KEY (device_id) REFERENCES equipment_device(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_content_type_id_508cf46651277a81_fk_django_content_type_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_permission
+    ADD CONSTRAINT auth_content_type_id_508cf46651277a81_fk_django_content_type_id FOREIGN KEY (content_type_id) REFERENCES django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissio_group_id_689710a9a73b7457_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissio_group_id_689710a9a73b7457_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permission_id_1f49ccbbdc69d2fc_fk_auth_permission_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permission_id_1f49ccbbdc69d2fc_fk_auth_permission_id FOREIGN KEY (permission_id) REFERENCES auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user__permission_id_384b62483d7071f0_fk_auth_permission_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user__permission_id_384b62483d7071f0_fk_auth_permission_id FOREIGN KEY (permission_id) REFERENCES auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups_group_id_33ac548dcf5f8e37_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_group_id_33ac548dcf5f8e37_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups_user_id_4b5ed4ffdb8fd9b0_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_4b5ed4ffdb8fd9b0_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permiss_user_id_7f0938558328534a_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permiss_user_id_7f0938558328534a_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: djan_content_type_id_697914295151027a_fk_django_content_type_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY django_admin_log
+    ADD CONSTRAINT djan_content_type_id_697914295151027a_fk_django_content_type_id FOREIGN KEY (content_type_id) REFERENCES django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log_user_id_52fdd58701c5f563_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_52fdd58701c5f563_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: equipme_trademark_id_1ac4c22d08691093_fk_equipment_trademark_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY equipment_model
+    ADD CONSTRAINT equipme_trademark_id_1ac4c22d08691093_fk_equipment_trademark_id FOREIGN KEY (trademark_id) REFERENCES equipment_trademark(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: equipment_device_model_id_f363451fd7860d_fk_equipment_model_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY equipment_device
+    ADD CONSTRAINT equipment_device_model_id_f363451fd7860d_fk_equipment_model_id FOREIGN KEY (model_id) REFERENCES equipment_model(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: equipment_model_type_id_6fd9b110e822d2f9_fk_equipment_type_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY equipment_model
+    ADD CONSTRAINT equipment_model_type_id_6fd9b110e822d2f9_fk_equipment_type_id FOREIGN KEY (type_id) REFERENCES equipment_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: equipment_provider_id_131457271f77d150_fk_providers_provider_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY equipment_device
+    ADD CONSTRAINT equipment_provider_id_131457271f77d150_fk_providers_provider_id FOREIGN KEY (provider_id) REFERENCES providers_provider(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: technical_ass_device_id_4a0b718b5dc70b7e_fk_equipment_device_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY technical_assistance_maintenance
+    ADD CONSTRAINT technical_ass_device_id_4a0b718b5dc70b7e_fk_equipment_device_id FOREIGN KEY (device_id) REFERENCES equipment_device(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: technical_assis_part_id_384dc63de4260294_fk_equipment_device_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY technical_assistance_parts
+    ADD CONSTRAINT technical_assis_part_id_384dc63de4260294_fk_equipment_device_id FOREIGN KEY (part_id) REFERENCES equipment_device(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
